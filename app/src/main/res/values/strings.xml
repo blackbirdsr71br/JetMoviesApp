@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">JetMovies</string>
+    <string name="app_genres">Géneros</string>
+    <string name="app_search">Search List</string>
+    <string name="app_genre">Género</string>
+    <string name="app_error">No se encuentra</string>
+</resources>
