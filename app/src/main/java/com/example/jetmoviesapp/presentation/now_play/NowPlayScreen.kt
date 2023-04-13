@@ -45,7 +45,6 @@ import com.example.jetmoviesapp.theme.ratingStarColor
 fun NowPlayScreen(
     viewModel: NowPlayViewModel = hiltViewModel(),
     navController: NavController,
-    showBottomBar: MutableState<Boolean>,
 ) {
     val topRatedList = viewModel.nowPlay.collectAsLazyPagingItems()
     val navBackStackEntry by navController.currentBackStackEntryAsState()

@@ -15,13 +15,16 @@ import javax.inject.Inject
 
 @HiltViewModel
 class TopRatedViewModel @Inject constructor(
-    private val networkRepository: NetworkRepository
+    private val networkRepository: NetworkRepository,
 ) : ViewModel() {
 
     val topRated: Flow<PagingData<Movie>> = Pager(
         config = PagingConfig(pageSize = 20),
-        pagingSourceFactory = { MoviePagingSource(networkRepository, MoviePagingSource.Source.TopRated) }
+        pagingSourceFactory = {
+            MoviePagingSource(
+                networkRepository,
+                MoviePagingSource.Source.TopRated,
+            )
+        },
     ).flow.cachedIn(viewModelScope)
-
-
 }

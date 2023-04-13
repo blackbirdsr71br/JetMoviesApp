@@ -6,10 +6,7 @@ import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Category
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Search
-import androidx.compose.material.icons.filled.VideoLibrary
+import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -31,7 +28,7 @@ fun AppBottomNavigation(
     ) {
         val items = listOf(
             Screen.Home.route to Icons.Filled.Home,
-            Screen.Search.route to Icons.Filled.Search,
+            Screen.Search.route to Icons.Filled.Create,
             Screen.Genres.route to Icons.Filled.Category,
             Screen.WatchList.route to Icons.Filled.VideoLibrary,
         )

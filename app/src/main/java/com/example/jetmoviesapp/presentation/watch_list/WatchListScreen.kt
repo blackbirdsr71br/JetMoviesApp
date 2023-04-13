@@ -16,10 +16,9 @@ import com.example.jetmoviesapp.R
 import com.example.jetmoviesapp.presentation.watch_list.components.WatchListItem
 import kotlinx.coroutines.launch
 
-
 @Composable
 fun WatchListScreen(
-    viewModel: WatchListViewModel = hiltViewModel()
+    viewModel: WatchListViewModel = hiltViewModel(),
 ) {
     val state = viewModel.state.value
     val scaffoldState = rememberScaffoldState()
@@ -31,17 +30,17 @@ fun WatchListScreen(
             .imePadding(),
         topBar = {
             TopAppBar(
-                title = { Text(text = "Watch List") },
+                title = { Text(text = "Room Database: Watch List") },
                 backgroundColor = Color.Transparent,
-                elevation = 0.dp
+                elevation = 0.dp,
             )
         },
-        scaffoldState = scaffoldState
+        scaffoldState = scaffoldState,
     ) {
         Column(
             modifier = Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Top
+            verticalArrangement = Arrangement.Top,
         ) {
             LazyColumn(modifier = Modifier.padding(it)) {
                 items(items = state.list) { item ->
@@ -50,7 +49,7 @@ fun WatchListScreen(
                         scope.launch {
                             val result = scaffoldState.snackbarHostState.showSnackbar(
                                 message = "Movie deleted",
-                                actionLabel = "Undo"
+                                actionLabel = "Undo",
                             )
                             if (result == SnackbarResult.ActionPerformed) {
                                 viewModel.onEvent(WatchListEvent.RestoreMovie)
@@ -62,11 +61,11 @@ fun WatchListScreen(
             if (state.isEmpty) {
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Center
+                    verticalArrangement = Arrangement.Center,
                 ) {
                     Icon(
                         painter = painterResource(id = R.drawable.ic_no_data),
-                        contentDescription = ""
+                        contentDescription = "",
                     )
                     Spacer(modifier = Modifier.height(8.dp))
                     Text(text = "There is no movie in your Watch List")

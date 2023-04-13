@@ -9,7 +9,7 @@ import java.io.IOException
 
 class MoviePagingSource(
     private val networkRepository: NetworkRepository,
-    private val source: Source
+    private val source: Source,
 ) : PagingSource<Int, Movie>() {
     override fun getRefreshKey(state: PagingState<Int, Movie>): Int? {
         return state.anchorPosition?.let { anchorPosition ->
@@ -28,14 +28,14 @@ class MoviePagingSource(
                 is Source.Popular -> networkRepository.getPopularMovies(page = nextPageNumber)
                 is Source.MovieWithGenres -> networkRepository.getMovieWithGenres(
                     page = nextPageNumber,
-                    genreId = source.genreId ?: 0
+                    genreId = source.genreId ?: 0,
                 )
             }
 
             LoadResult.Page(
                 data = response.results,
                 prevKey = null,
-                nextKey = response.page.plus(1)
+                nextKey = response.page.plus(1),
             )
         } catch (e: IOException) {
             LoadResult.Error(e)

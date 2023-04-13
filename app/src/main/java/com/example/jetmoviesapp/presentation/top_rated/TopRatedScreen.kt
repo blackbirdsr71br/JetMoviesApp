@@ -26,20 +26,19 @@ import androidx.navigation.NavController
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
-import com.skydoves.landscapist.CircularReveal
-import com.skydoves.landscapist.ShimmerParams
-import com.skydoves.landscapist.coil.CoilImage
 import com.example.jetmoviesapp.R
 import com.example.jetmoviesapp.common.Constants
 import com.example.jetmoviesapp.data.remote.movie.Movie
 import com.example.jetmoviesapp.presentation.navigation.Screen
 import com.example.jetmoviesapp.theme.ratingStarColor
-
+import com.skydoves.landscapist.CircularReveal
+import com.skydoves.landscapist.ShimmerParams
+import com.skydoves.landscapist.coil.CoilImage
 
 @Composable
 fun TopRatedScreen(
-    viewModel : TopRatedViewModel = hiltViewModel(),
-    navController : NavController,
+    viewModel: TopRatedViewModel = hiltViewModel(),
+    navController: NavController,
 ) {
     val topRatedList = viewModel.topRated.collectAsLazyPagingItems()
 
@@ -48,14 +47,14 @@ fun TopRatedScreen(
             TopAppBar(
                 title = { Text(text = "Top Rated") },
                 backgroundColor = Color.Transparent,
-                elevation = 0.dp
+                elevation = 0.dp,
             )
         },
-        modifier = Modifier.statusBarsPadding()
+        modifier = Modifier.statusBarsPadding(),
     ) {
         LazyColumn(
             modifier = Modifier
-                .padding(paddingValues = it)
+                .padding(paddingValues = it),
         ) {
             items(topRatedList) { item ->
                 item?.let { topRated ->
@@ -67,11 +66,11 @@ fun TopRatedScreen(
             topRatedList.apply {
                 when {
                     loadState.refresh is LoadState.Loading -> {
-                        //when first time response page is loading
+                        // when first time response page is loading
                         item {
                             Column(
                                 modifier = Modifier.fillMaxWidth(),
-                                horizontalAlignment = Alignment.CenterHorizontally
+                                horizontalAlignment = Alignment.CenterHorizontally,
                             ) {
                                 CircularProgressIndicator(color = Color.DarkGray)
                                 Text(text = "Cargado información de Peliculas...")
@@ -98,12 +97,10 @@ fun TopRatedScreen(
             }
         }
     }
-
 }
 
 @Composable
-fun TopRatedItem(topRated : Movie, onClick : (Movie) -> Unit) {
-
+fun TopRatedItem(topRated: Movie, onClick: (Movie) -> Unit) {
     Card(
         shape = RoundedCornerShape(12.dp),
         elevation = 4.dp,
@@ -112,12 +109,12 @@ fun TopRatedItem(topRated : Movie, onClick : (Movie) -> Unit) {
             .padding(12.dp)
             .clickable {
                 onClick(topRated)
-            }
+            },
     ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(8.dp)
+                .padding(8.dp),
         ) {
             CoilImage(
                 imageModel = Constants.IMAGE_URL + topRated.posterPath,
@@ -125,7 +122,9 @@ fun TopRatedItem(topRated : Movie, onClick : (Movie) -> Unit) {
                 shimmerParams = ShimmerParams(
                     baseColor = MaterialTheme.colors.background,
                     highlightColor = Color.LightGray.copy(alpha = 0.6f),
-                    durationMillis = 350, dropOff = 0.65f, tilt = 20f
+                    durationMillis = 350,
+                    dropOff = 0.65f,
+                    tilt = 20f,
                 ),
                 circularReveal = CircularReveal(duration = 350),
                 failure = { Text(text = "Image request failed!") },
@@ -148,8 +147,8 @@ fun TopRatedItem(topRated : Movie, onClick : (Movie) -> Unit) {
                         style = SpanStyle(
                             color = Color.Gray,
                             fontSize = 16.sp,
-                            fontWeight = FontWeight.Light
-                        )
+                            fontWeight = FontWeight.Light,
+                        ),
                     ) {
                         append(" (${topRated.title}) ")
                     }
@@ -157,15 +156,18 @@ fun TopRatedItem(topRated : Movie, onClick : (Movie) -> Unit) {
                 Text(text = annotatedString, style = MaterialTheme.typography.h6)
                 Row {
                     Icon(
-                        imageVector = Icons.Default.Star, contentDescription = "",
+                        imageVector = Icons.Default.Star,
+                        contentDescription = "",
                         modifier = Modifier.size(24.dp),
-                        tint = ratingStarColor
+                        tint = ratingStarColor,
                     )
                     Text(text = "${topRated.voteAverage}/10", color = Color.LightGray)
                 }
                 Text(
-                    text = topRated.overview, maxLines = 5, overflow = TextOverflow.Ellipsis,
-                    style = MaterialTheme.typography.subtitle2
+                    text = topRated.overview,
+                    maxLines = 5,
+                    overflow = TextOverflow.Ellipsis,
+                    style = MaterialTheme.typography.subtitle2,
                 )
             }
         }

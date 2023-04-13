@@ -18,12 +18,12 @@ object DatabaseModule {
     @Singleton
     @Provides
     fun provideDatabase(
-        @ApplicationContext context: Context
+        @ApplicationContext context: Context,
     ): WatchListDatabase {
         return Room.databaseBuilder(
             context.applicationContext,
             WatchListDatabase::class.java,
-            "watch_list_db"
+            "jetmovies_db",
         )
             .fallbackToDestructiveMigration()
             .build()
@@ -32,7 +32,7 @@ object DatabaseModule {
     @Singleton
     @Provides
     fun provideWatchListDao(
-        db: WatchListDatabase
+        db: WatchListDatabase,
     ): WatchListDao {
         return db.watchListDao()
     }

@@ -2,17 +2,14 @@ package com.example.jetmoviesapp.presentation.home
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.drawWithCache
 import androidx.compose.ui.graphics.BlendMode
 import androidx.compose.ui.graphics.Brush
@@ -24,7 +21,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.example.jetmoviesapp.R
 import com.example.jetmoviesapp.domain.model.HomeType
 import com.example.jetmoviesapp.presentation.genres.GenresViewModel
 import com.example.jetmoviesapp.presentation.home.components.Header
@@ -32,8 +28,6 @@ import com.example.jetmoviesapp.presentation.home.components.PopularHomeItem
 import com.example.jetmoviesapp.presentation.home.components.TopRatedHomeItem
 import com.example.jetmoviesapp.presentation.navigation.Screen
 import com.example.jetmoviesapp.theme.RainbowColors
-import com.skydoves.landscapist.CircularReveal
-import com.skydoves.landscapist.coil.CoilImage
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
@@ -67,24 +61,6 @@ fun HomeScreen(
                 modifier = Modifier
                     .padding(top = 30.dp)
                     .height(50.dp),
-                actions = {
-                    CoilImage(
-                        imageModel = R.drawable.logout_app,
-                        modifier = Modifier
-                            .width(24.dp)
-                            .height(24.dp)
-                            .clip(RoundedCornerShape(24.dp))
-                            .clickable {
-                                navController.popBackStack()
-                                navController.navigate(route = Screen.LoginScreen.route) {
-                                    popUpTo(route = Screen.Home.route) {
-                                        inclusive = true
-                                    }
-                                }
-                            },
-                        circularReveal = CircularReveal(duration = 350),
-                    )
-                },
             )
         },
     ) {

@@ -6,10 +6,8 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
+import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -23,8 +21,8 @@ import com.example.jetmoviesapp.presentation.login.presentation.AuthScreen
 import com.example.jetmoviesapp.presentation.movie_genres.MovieWithGenres
 import com.example.jetmoviesapp.presentation.now_play.NowPlayScreen
 import com.example.jetmoviesapp.presentation.popular.PopularMoviesScreen
-import com.example.jetmoviesapp.presentation.search.SearchScreen
 import com.example.jetmoviesapp.presentation.top_rated.TopRatedScreen
+import com.example.jetmoviesapp.presentation.watch_list.WatchListScreen
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 @OptIn(
@@ -47,13 +45,11 @@ fun NavigateScreens(
             AuthScreen(authViewModel = AuthViewModel())
         }
         composable(Screen.Start.route) {
-            val showBottomBar = rememberSaveable { mutableStateOf(true) }
             HomeScreen(
                 navController = navController,
             )
         }
         composable(Screen.Home.route) {
-            val showBottomBar = rememberSaveable { mutableStateOf(true) }
             HomeScreen(
                 navController = navController,
             )
@@ -71,14 +67,12 @@ fun NavigateScreens(
             GenresScreen(navController = navController)
         }
         composable(Screen.Search.route) {
-            SearchScreen(navController = navController)
+            // SearchScreen(navController = navController)
+            WatchListScreen()
         }
         composable(Screen.WatchList.route) {
-            // WatchListScreen()
-            val showBottomBar = rememberSaveable { mutableStateOf(true) }
             NowPlayScreen(
                 navController = navController,
-                showBottomBar = showBottomBar,
             )
         }
         composable(

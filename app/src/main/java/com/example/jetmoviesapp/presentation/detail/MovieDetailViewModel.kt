@@ -18,7 +18,7 @@ import javax.inject.Inject
 class MovieDetailViewModel @Inject constructor(
     private val networkRepository: NetworkRepository,
     private val localRepository: LocalRepository,
-    savedStateHandle: SavedStateHandle
+    savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
 
     private val _state = mutableStateOf(MovieDetailState())
@@ -33,13 +33,12 @@ class MovieDetailViewModel @Inject constructor(
     private val _isBookmarked = mutableStateOf(false)
     val isBookmarked: State<Boolean> get() = _isBookmarked
 
-
     fun onEvent(event: MoviesEvent) {
         when (event) {
             is MoviesEvent.BookmarkMovie -> {
                 viewModelScope.launch(Dispatchers.IO) {
                     localRepository.insert(event.movie)
-                    withContext(Dispatchers.Main){
+                    withContext(Dispatchers.Main) {
                         _isBookmarked.value = true
                     }
                 }
@@ -47,12 +46,12 @@ class MovieDetailViewModel @Inject constructor(
             is MoviesEvent.DeleteMovie -> {
                 viewModelScope.launch(Dispatchers.IO) {
                     localRepository.delete(event.movie)
-                    withContext(Dispatchers.Main){
+                    withContext(Dispatchers.Main) {
                         _isBookmarked.value = false
                     }
                 }
             }
-            is MoviesEvent.IsBookmarked ->{
+            is MoviesEvent.IsBookmarked -> {
                 viewModelScope.launch(Dispatchers.IO) {
                     val movie = localRepository.getMovieById(id = event.id)
                     withContext(Dispatchers.Main) {

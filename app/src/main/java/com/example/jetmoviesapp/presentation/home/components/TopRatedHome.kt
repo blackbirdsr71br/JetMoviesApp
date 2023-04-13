@@ -15,18 +15,17 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.skydoves.landscapist.CircularReveal
-import com.skydoves.landscapist.ShimmerParams
-import com.skydoves.landscapist.coil.CoilImage
 import com.example.jetmoviesapp.common.Constants
 import com.example.jetmoviesapp.data.remote.movie.Movie
 import com.example.jetmoviesapp.theme.ratingStarColor
-
+import com.skydoves.landscapist.CircularReveal
+import com.skydoves.landscapist.ShimmerParams
+import com.skydoves.landscapist.coil.CoilImage
 
 @Composable
 fun TopRatedHomeItem(
     topRated: Movie,
-    onClick: (Movie) -> Unit
+    onClick: (Movie) -> Unit,
 ) {
     Column(
         modifier = Modifier
@@ -42,7 +41,9 @@ fun TopRatedHomeItem(
             shimmerParams = ShimmerParams(
                 baseColor = MaterialTheme.colors.background,
                 highlightColor = Color.LightGray.copy(alpha = 0.6f),
-                durationMillis = 350, dropOff = 0.65f, tilt = 20f
+                durationMillis = 350,
+                dropOff = 0.65f,
+                tilt = 20f,
             ),
             circularReveal = CircularReveal(duration = 350),
             failure = { Text(text = "Resim yüklenemedi!") },
@@ -60,11 +61,10 @@ fun TopRatedHomeItem(
                     imageVector = Icons.Filled.Star,
                     contentDescription = "",
                     tint = ratingStarColor,
-                    modifier = Modifier.padding(end = 4.dp)
+                    modifier = Modifier.padding(end = 4.dp),
                 )
                 Text(text = "${topRated.voteAverage}/10", color = Color.LightGray)
             }
-
         }
     }
 }
