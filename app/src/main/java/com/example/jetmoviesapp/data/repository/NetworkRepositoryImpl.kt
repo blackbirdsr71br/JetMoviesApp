@@ -3,13 +3,16 @@ package com.example.jetmoviesapp.data.repository
 import com.example.jetmoviesapp.common.Resource
 import com.example.jetmoviesapp.data.remote.ApiService
 import com.example.jetmoviesapp.data.remote.genre.GenreResponse
+import com.example.jetmoviesapp.data.remote.latest.LatestResponse
 import com.example.jetmoviesapp.data.remote.movie.MovieResponse
 import com.example.jetmoviesapp.data.remote.movie_detail.toMovieDetail
 import com.example.jetmoviesapp.domain.model.HomeType
 import com.example.jetmoviesapp.domain.model.MovieDetail
 import com.example.jetmoviesapp.domain.repository.NetworkRepository
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
 class NetworkRepositoryImpl @Inject constructor(
@@ -22,6 +25,10 @@ class NetworkRepositoryImpl @Inject constructor(
 
     override suspend fun getNowPlayingMovies(page: Int): MovieResponse {
         return api.getNowPlayingMovies(page = page)
+    }
+
+    override suspend fun getLatestMovies(): LatestResponse {
+        return api.getLatestMovies()
     }
 
     override suspend fun getGenres(): GenreResponse {
@@ -48,7 +55,7 @@ class NetworkRepositoryImpl @Inject constructor(
         } catch (e: Exception) {
             emit(Resource.Error(e.localizedMessage ?: "Error"))
         }
-    }
+    }.flowOn(Dispatchers.IO)
 
     override fun getHomeMovies(): Flow<Resource<List<HomeType>>> = flow {
         emit(Resource.Loading())

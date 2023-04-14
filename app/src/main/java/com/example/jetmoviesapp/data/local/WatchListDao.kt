@@ -8,7 +8,6 @@ import androidx.room.Query
 import com.example.jetmoviesapp.data.local.entities.MovieEntity
 import kotlinx.coroutines.flow.Flow
 
-
 @Dao
 interface WatchListDao {
 

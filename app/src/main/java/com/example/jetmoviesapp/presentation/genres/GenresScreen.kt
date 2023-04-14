@@ -20,16 +20,16 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.example.jetmoviesapp.R
 import com.example.jetmoviesapp.data.remote.genre.Genre
 import com.example.jetmoviesapp.presentation.navigation.Screen
 import com.example.jetmoviesapp.theme.genreBgColor
 import com.example.jetmoviesapp.theme.genreColor
-import com.example.jetmoviesapp.R
 
 @Composable
 fun GenresScreen(
     viewModel: GenresViewModel = hiltViewModel(),
-    navController: NavController
+    navController: NavController,
 ) {
     val genres = viewModel.stateGenres.value
     Scaffold(
@@ -37,14 +37,14 @@ fun GenresScreen(
             TopAppBar(
                 title = { Text(text = stringResource(R.string.app_genres)) },
                 backgroundColor = Color.Transparent,
-                elevation = 0.dp
+                elevation = 0.dp,
             )
         },
-        modifier = Modifier.statusBarsPadding()
+        modifier = Modifier.statusBarsPadding(),
     ) {
         LazyVerticalGrid(
             columns = GridCells.Fixed(2),
-            modifier = Modifier.padding(it)
+            modifier = Modifier.padding(it),
         ) {
             items(genres) { genre ->
                 GenresItem(genre = genre, onClick = {
@@ -57,7 +57,6 @@ fun GenresScreen(
 
 @Composable
 fun GenresItem(genre: Genre, onClick: (Genre) -> Unit) {
-
     Card(
         elevation = 2.dp,
         shape = RoundedCornerShape(50),
@@ -65,13 +64,13 @@ fun GenresItem(genre: Genre, onClick: (Genre) -> Unit) {
         contentColor = genreColor,
         modifier = Modifier
             .padding(8.dp)
-            .clickable { onClick(genre) }
+            .clickable { onClick(genre) },
     ) {
         Text(
             text = genre.name,
             textAlign = TextAlign.Center,
             modifier = Modifier.padding(vertical = 8.dp),
-            fontSize = 18.sp
+            fontSize = 18.sp,
         )
     }
 }

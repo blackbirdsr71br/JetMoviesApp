@@ -15,13 +15,16 @@ import javax.inject.Inject
 
 @HiltViewModel
 class NowPlayViewModel @Inject constructor(
-    private val networkRepository: NetworkRepository
+    private val networkRepository: NetworkRepository,
 ) : ViewModel() {
 
     val nowPlay: Flow<PagingData<Movie>> = Pager(
         config = PagingConfig(pageSize = 20),
-        pagingSourceFactory = { MoviePagingSource(networkRepository, MoviePagingSource.Source.NowPlay) }
+        pagingSourceFactory = {
+            MoviePagingSource(
+                networkRepository,
+                MoviePagingSource.Source.NowPlay,
+            )
+        },
     ).flow.cachedIn(viewModelScope)
-
-
 }

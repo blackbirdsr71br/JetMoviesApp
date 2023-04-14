@@ -31,6 +31,7 @@ fun AppBottomNavigation(
             Screen.Search.route to Icons.Filled.Create,
             Screen.Genres.route to Icons.Filled.Category,
             Screen.WatchList.route to Icons.Filled.VideoLibrary,
+            Screen.Latest.route to Icons.Filled.AccessTime,
         )
 
         items.forEach { pair: Pair<String, ImageVector> ->

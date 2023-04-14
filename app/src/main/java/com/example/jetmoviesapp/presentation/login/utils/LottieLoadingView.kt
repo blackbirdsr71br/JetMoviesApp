@@ -1,6 +1,5 @@
 package com.example.jetmoviesapp.presentation.login.utils
 
-import android.content.Context
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -11,19 +10,17 @@ import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.LottieConstants
 import com.airbnb.lottie.compose.rememberLottieComposition
 
-
 @Composable
 fun LottieLoadingView(
-    context: Context,
     file: Int,
     modifier: Modifier = Modifier,
-    iterations: Int = LottieConstants.IterateForever
+    iterations: Int = LottieConstants.IterateForever,
 ) {
     val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(file))
     LottieAnimation(
         composition,
         modifier = modifier.defaultMinSize(300.dp),
-        iterations = iterations
+        iterations = iterations,
     )
 
     // OLD ANDROID VIEW IMPLEMENTATION
@@ -39,6 +36,4 @@ fun LottieLoadingView(
 //    ) {
 //        it.playAnimation()
 //    }
-
-
 }

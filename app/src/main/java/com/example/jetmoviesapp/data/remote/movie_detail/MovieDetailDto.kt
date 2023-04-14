@@ -1,9 +1,9 @@
 package com.example.jetmoviesapp.data.remote.movie_detail
 
-import com.google.gson.annotations.SerializedName
 import com.example.jetmoviesapp.data.remote.genre.Genre
 import com.example.jetmoviesapp.data.remote.movie.MovieResponse
 import com.example.jetmoviesapp.domain.model.MovieDetail
+import com.google.gson.annotations.SerializedName
 
 data class MovieDetailDto(
     val adult: Boolean,
@@ -61,7 +61,7 @@ data class MovieDetailDto(
     val voteCount: Int,
 
     val similar: MovieResponse,
-    val credits: Credit
+    val credits: Credit,
 )
 
 fun MovieDetailDto.toMovieDetail(): MovieDetail {
@@ -83,6 +83,6 @@ fun MovieDetailDto.toMovieDetail(): MovieDetail {
         voteAverage = voteAverage,
         voteCount = voteCount,
         similar = similar,
-        credit = credits
+        credit = credits,
     )
 }

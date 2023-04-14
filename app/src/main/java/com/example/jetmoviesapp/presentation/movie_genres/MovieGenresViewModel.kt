@@ -15,7 +15,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MovieGenresViewModel @Inject constructor(
-    private val networkRepository: NetworkRepository
+    private val networkRepository: NetworkRepository,
 ) : ViewModel() {
 
     fun moviesWithGenres(genreId: Int): Flow<PagingData<Movie>> {
@@ -24,9 +24,9 @@ class MovieGenresViewModel @Inject constructor(
             pagingSourceFactory = {
                 MoviePagingSource(
                     networkRepository,
-                    MoviePagingSource.Source.MovieWithGenres(genreId = genreId)
+                    MoviePagingSource.Source.MovieWithGenres(genreId = genreId),
                 )
-            }
+            },
         ).flow.cachedIn(viewModelScope)
     }
 }

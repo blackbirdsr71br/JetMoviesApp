@@ -1,8 +1,5 @@
 package com.example.jetmoviesapp.presentation.now_play
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.slideInVertically
-import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -11,8 +8,6 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
@@ -27,19 +22,17 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
 import com.example.jetmoviesapp.R
 import com.example.jetmoviesapp.common.Constants
 import com.example.jetmoviesapp.data.remote.movie.Movie
-import com.example.jetmoviesapp.presentation.navigation.AppBottomNavigation
 import com.example.jetmoviesapp.presentation.navigation.Screen
+import com.example.jetmoviesapp.theme.ratingStarColor
 import com.skydoves.landscapist.CircularReveal
 import com.skydoves.landscapist.ShimmerParams
 import com.skydoves.landscapist.coil.CoilImage
-import com.example.jetmoviesapp.theme.ratingStarColor
 
 @Composable
 fun NowPlayScreen(
@@ -47,8 +40,6 @@ fun NowPlayScreen(
     navController: NavController,
 ) {
     val topRatedList = viewModel.nowPlay.collectAsLazyPagingItems()
-    val navBackStackEntry by navController.currentBackStackEntryAsState()
-    val currentDestination = navBackStackEntry?.destination
     Scaffold(
         topBar = {
             TopAppBar(

@@ -13,6 +13,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.example.jetmoviesapp.presentation.latest.LatestScreen
 import com.example.jetmoviesapp.presentation.detail.MovieDetailScreen
 import com.example.jetmoviesapp.presentation.genres.GenresScreen
 import com.example.jetmoviesapp.presentation.home.HomeScreen
@@ -74,6 +75,9 @@ fun NavigateScreens(
             NowPlayScreen(
                 navController = navController,
             )
+        }
+        composable(Screen.Latest.route) {
+            LatestScreen()
         }
         composable(
             Screen.MovieWithGenres.route + "/{genreId}/{genreName}",
