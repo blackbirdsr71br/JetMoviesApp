@@ -16,21 +16,21 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.skydoves.landscapist.CircularReveal
-import com.skydoves.landscapist.coil.CoilImage
 import com.example.jetmoviesapp.common.Constants
 import com.example.jetmoviesapp.data.remote.movie_detail.Cast
 import com.example.jetmoviesapp.theme.categoryColor
-
+import com.skydoves.landscapist.CircularReveal
+import com.skydoves.landscapist.coil.CoilImage
 
 @Composable
 fun MovieCast(
     cast: List<Cast>,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Column(modifier = modifier) {
         Text(
-            text = "Cast", color = categoryColor,
+            text = "Cast",
+            color = categoryColor,
             modifier = Modifier
                 .padding(start = 16.dp, top = 12.dp),
             fontWeight = FontWeight.Bold,
@@ -47,11 +47,13 @@ fun MovieCast(
                         contentScale = ContentScale.Crop,
                         modifier = modifier
                             .size(85.dp)
-                            .clip(shape = CircleShape), alignment = Alignment.Center
+                            .clip(shape = CircleShape),
+                        alignment = Alignment.Center,
                     )
                     Text(text = castItem.name, overflow = TextOverflow.Ellipsis)
                     Text(
-                        text = castItem.character, color = Color.LightGray,
+                        text = castItem.character,
+                        color = Color.LightGray,
                         fontSize = 12.sp,
                     )
                 }

@@ -15,23 +15,24 @@ import com.example.jetmoviesapp.theme.categoryColor
 @Composable
 fun MovieDescription(
     description: String,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Column(modifier = modifier.padding(8.dp)) {
         Text(
-            text = "Description", color = categoryColor,
+            text = "Description",
+            color = categoryColor,
             modifier = Modifier
                 .padding(start = 16.dp, top = 12.dp),
             fontWeight = FontWeight.Bold,
             style = MaterialTheme.typography.h6,
         )
 
-            Text(
-                text = description,
-                textAlign = TextAlign.Justify,
-                modifier = Modifier.padding(start = 16.dp, top = 8.dp, end = 8.dp),
-                color = Color.Gray, style = MaterialTheme.typography.body2,
-            )
-
+        Text(
+            text = description,
+            textAlign = TextAlign.Justify,
+            modifier = Modifier.padding(start = 16.dp, top = 8.dp, end = 8.dp),
+            color = Color.Gray,
+            style = MaterialTheme.typography.body2,
+        )
     }
 }
