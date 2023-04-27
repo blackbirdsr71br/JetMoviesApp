@@ -27,11 +27,11 @@ fun AppBottomNavigation(
         backgroundColor = Color.White,
     ) {
         val items = listOf(
-            Screen.Home.route to Icons.Filled.Home,
-            Screen.Search.route to Icons.Filled.Create,
-            Screen.Genres.route to Icons.Filled.Category,
-            Screen.WatchList.route to Icons.Filled.VideoLibrary,
-            Screen.Latest.route to Icons.Filled.AccessTime,
+            "home" to Icons.Filled.Home,
+            "room" to Icons.Filled.Create,
+            "genres" to Icons.Filled.Category,
+            "play_now" to Icons.Filled.VideoLibrary,
+            "latest" to Icons.Filled.AccessTime,
         )
 
         items.forEach { pair: Pair<String, ImageVector> ->
@@ -45,7 +45,7 @@ fun AppBottomNavigation(
                         fontSize = 10.sp,
                     )
                 },
-                alwaysShowLabel = false,
+                alwaysShowLabel = true,
                 onClick = {
                     navController.navigate(pair.first) {
                         popUpTo(navController.graph.findStartDestination().id) {

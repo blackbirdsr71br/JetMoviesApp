@@ -7,18 +7,15 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.example.jetmoviesapp.presentation.latest.LatestScreen
 import com.example.jetmoviesapp.presentation.detail.MovieDetailScreen
 import com.example.jetmoviesapp.presentation.genres.GenresScreen
 import com.example.jetmoviesapp.presentation.home.HomeScreen
-import com.example.jetmoviesapp.presentation.login.model.AuthViewModel
-import com.example.jetmoviesapp.presentation.login.presentation.AuthScreen
+import com.example.jetmoviesapp.presentation.latest.LatestScreen
 import com.example.jetmoviesapp.presentation.movie_genres.MovieWithGenres
 import com.example.jetmoviesapp.presentation.now_play.NowPlayScreen
 import com.example.jetmoviesapp.presentation.popular.PopularMoviesScreen
@@ -42,9 +39,6 @@ fun NavigateScreens(
         startDestination = Screen.Start.route,
         modifier = Modifier.padding(paddingValues),
     ) {
-        composable(Screen.LoginScreen.route) {
-            AuthScreen(authViewModel = AuthViewModel())
-        }
         composable(Screen.Start.route) {
             HomeScreen(
                 navController = navController,
@@ -80,7 +74,7 @@ fun NavigateScreens(
             LatestScreen()
         }
         composable(
-            Screen.MovieWithGenres.route + "/{genreId}/{genreName}",
+            route = "Género" + "/{genreId}/{genreName}",
             arguments = listOf(
                 navArgument("genreId") { type = NavType.IntType },
                 navArgument("genreName") { type = NavType.StringType },

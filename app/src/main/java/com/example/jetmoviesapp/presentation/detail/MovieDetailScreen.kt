@@ -99,8 +99,8 @@ fun MovieDetailScreen(
             )
             IconButton(
                 onClick = {
-                    navController.navigate(route = Screen.Start.route) {
-                        popUpTo(route = Screen.Home.route) {
+                    navController.navigate(route = "home") {
+                        popUpTo(route = "movie_detail") {
                             inclusive = true
                         }
                     }

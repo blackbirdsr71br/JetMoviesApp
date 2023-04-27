@@ -1,4 +1,4 @@
-package com.example.jetmoviesapp.presentation.login.utils
+package com.example.jetmoviesapp.presentation.loginauth.signin
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height

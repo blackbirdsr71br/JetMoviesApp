@@ -7,7 +7,7 @@ sealed class Screen(val route: String) {
     object MovieDetail : Screen(route = "movie_detail")
     object Genres : Screen(route = "genres")
     object Search : Screen(route = "Room")
-    object WatchList : Screen(route = "play now")
+    object WatchList : Screen(route = "play_now")
     object Latest : Screen(route = "Latest")
     object MovieWithGenres : Screen(route = "Género")
     object LoginScreen : Screen(route = "Login")

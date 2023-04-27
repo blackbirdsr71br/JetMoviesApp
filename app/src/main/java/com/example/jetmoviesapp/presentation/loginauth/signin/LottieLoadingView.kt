@@ -1,4 +1,4 @@
-package com.example.jetmoviesapp.presentation.login.utils
+package com.example.jetmoviesapp.presentation.loginauth.signin
 
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.runtime.Composable
