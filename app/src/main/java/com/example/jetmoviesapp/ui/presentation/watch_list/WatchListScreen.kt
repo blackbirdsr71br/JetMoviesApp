@@ -12,13 +12,16 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import com.example.jetmoviesapp.R
+import com.example.jetmoviesapp.ui.presentation.composables.JetMoviesTopBar
 import com.example.jetmoviesapp.ui.presentation.watch_list.components.WatchListItem
 import kotlinx.coroutines.launch
 
 @Composable
 fun WatchListScreen(
     viewModel: WatchListViewModel = hiltViewModel(),
+    navController: NavController,
 ) {
     val state = viewModel.state.value
     val scaffoldState = rememberScaffoldState()
@@ -29,10 +32,10 @@ fun WatchListScreen(
             .statusBarsPadding()
             .imePadding(),
         topBar = {
-            TopAppBar(
-                title = { Text(text = "Room Database: Watch List") },
-                backgroundColor = Color.Transparent,
-                elevation = 0.dp,
+            JetMoviesTopBar(
+                title = "Watching List",
+                backGroundColor = Color.Transparent,
+                navController = navController,
             )
         },
         scaffoldState = scaffoldState,

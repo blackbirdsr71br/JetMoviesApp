@@ -22,6 +22,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.jetmoviesapp.R
 import com.example.jetmoviesapp.data.remote.genre.Genre
+import com.example.jetmoviesapp.ui.presentation.composables.JetMoviesTopBar
 import com.example.jetmoviesapp.ui.theme.genreBgColor
 import com.example.jetmoviesapp.ui.theme.genreColor
 
@@ -33,10 +34,10 @@ fun GenresScreen(
     val genres = viewModel.stateGenres.value
     Scaffold(
         topBar = {
-            TopAppBar(
-                title = { Text(text = stringResource(R.string.app_genres)) },
-                backgroundColor = Color.Transparent,
-                elevation = 0.dp,
+            JetMoviesTopBar(
+                title = "Genres List",
+                backGroundColor = Color.Transparent,
+                navController = navController,
             )
         },
         modifier = Modifier.statusBarsPadding(),

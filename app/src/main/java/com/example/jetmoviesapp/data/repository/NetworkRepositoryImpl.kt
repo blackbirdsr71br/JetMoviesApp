@@ -3,7 +3,6 @@ package com.example.jetmoviesapp.data.repository
 import com.example.jetmoviesapp.common.Resource
 import com.example.jetmoviesapp.data.remote.ApiService
 import com.example.jetmoviesapp.data.remote.genre.GenreResponse
-import com.example.jetmoviesapp.data.remote.latest.LatestResponse
 import com.example.jetmoviesapp.data.remote.movie.MovieResponse
 import com.example.jetmoviesapp.data.remote.movie_detail.toMovieDetail
 import com.example.jetmoviesapp.domain.model.HomeType
@@ -27,8 +26,8 @@ class NetworkRepositoryImpl @Inject constructor(
         return api.getNowPlayingMovies(page = page)
     }
 
-    override suspend fun getLatestMovies(): LatestResponse {
-        return api.getLatestMovies()
+    override suspend fun getLatestMovies(page: Int): MovieResponse {
+        return api.getLatestMovies(page = page)
     }
 
     override suspend fun getGenres(): GenreResponse {

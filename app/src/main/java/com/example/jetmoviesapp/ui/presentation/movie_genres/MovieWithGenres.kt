@@ -28,6 +28,7 @@ import androidx.paging.compose.items
 import com.example.jetmoviesapp.R
 import com.example.jetmoviesapp.common.Constants
 import com.example.jetmoviesapp.data.remote.movie.Movie
+import com.example.jetmoviesapp.ui.presentation.composables.JetMoviesTopBar
 import com.example.jetmoviesapp.ui.theme.ratingStarColor
 import com.skydoves.landscapist.CircularReveal
 import com.skydoves.landscapist.ShimmerParams
@@ -44,10 +45,10 @@ fun MovieWithGenres(
 
     Scaffold(
         topBar = {
-            TopAppBar(
-                title = { Text(text = stringResource(R.string.app_genre) + ": $genreName ") },
-                backgroundColor = Color.Transparent,
-                elevation = 0.dp,
+            JetMoviesTopBar(
+                title = "Movie Genres",
+                backGroundColor = Color.Transparent,
+                navController = navController,
             )
         },
         modifier = Modifier.statusBarsPadding(),

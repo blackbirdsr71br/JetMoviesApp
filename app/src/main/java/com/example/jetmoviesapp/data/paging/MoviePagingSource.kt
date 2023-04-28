@@ -26,6 +26,7 @@ class MoviePagingSource(
                 is Source.TopRated -> networkRepository.getTopRatedMovies(page = nextPageNumber)
                 is Source.NowPlay -> networkRepository.getNowPlayingMovies(page = nextPageNumber)
                 is Source.Popular -> networkRepository.getPopularMovies(page = nextPageNumber)
+                is Source.Latest -> networkRepository.getLatestMovies(page = nextPageNumber)
                 is Source.MovieWithGenres -> networkRepository.getMovieWithGenres(
                     page = nextPageNumber,
                     genreId = source.genreId ?: 0,
@@ -48,6 +49,7 @@ class MoviePagingSource(
         object TopRated : Source()
         object NowPlay : Source()
         object Popular : Source()
+        object Latest : Source()
         class MovieWithGenres(genreId: Int) : Source(genreId = genreId)
     }
 }

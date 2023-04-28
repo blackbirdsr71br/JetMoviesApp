@@ -63,7 +63,7 @@ fun NavigateScreens(
         }
         composable(Screen.Search.route) {
             // SearchScreen(navController = navController)
-            WatchListScreen()
+            // WatchListScreen()
         }
         composable(Screen.WatchList.route) {
             NowPlayScreen(
@@ -71,7 +71,7 @@ fun NavigateScreens(
             )
         }
         composable(Screen.Latest.route) {
-            LatestScreen()
+            // LatestScreen()
         }
         composable(
             route = "Género" + "/{genreId}/{genreName}",

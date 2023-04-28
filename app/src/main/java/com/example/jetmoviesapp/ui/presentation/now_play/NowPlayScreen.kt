@@ -28,6 +28,7 @@ import androidx.paging.compose.items
 import com.example.jetmoviesapp.R
 import com.example.jetmoviesapp.common.Constants
 import com.example.jetmoviesapp.data.remote.movie.Movie
+import com.example.jetmoviesapp.ui.presentation.composables.JetMoviesTopBar
 import com.example.jetmoviesapp.ui.theme.ratingStarColor
 import com.skydoves.landscapist.CircularReveal
 import com.skydoves.landscapist.ShimmerParams
@@ -38,13 +39,13 @@ fun NowPlayScreen(
     viewModel: NowPlayViewModel = hiltViewModel(),
     navController: NavController,
 ) {
-    val topRatedList = viewModel.nowPlay.collectAsLazyPagingItems()
+    val nowPlayList = viewModel.nowPlay.collectAsLazyPagingItems()
     Scaffold(
         topBar = {
-            TopAppBar(
-                title = { Text(text = "Now Playing") },
-                backgroundColor = Color.Transparent,
-                elevation = 0.dp,
+            JetMoviesTopBar(
+                title = "Now Playing",
+                backGroundColor = Color.Transparent,
+                navController = navController,
             )
         },
         modifier = Modifier.statusBarsPadding(),
@@ -53,14 +54,14 @@ fun NowPlayScreen(
             modifier = Modifier
                 .padding(paddingValues = it),
         ) {
-            items(topRatedList) { item ->
+            items(nowPlayList) { item ->
                 item?.let { topRated ->
                     NowPlayItem(topRated = topRated) { navigatedItem ->
                         navController.navigate(route = "movie_detail" + "/${navigatedItem.id}")
                     }
                 }
             }
-            topRatedList.apply {
+            nowPlayList.apply {
                 when {
                     loadState.refresh is LoadState.Loading -> {
                         // when first time response page is loading

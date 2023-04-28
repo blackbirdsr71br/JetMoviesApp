@@ -193,7 +193,9 @@ class MainActivity : ComponentActivity() {
                     }
                     composable(route = "Room") {
                         // SearchScreen(navController = navController)
-                        WatchListScreen()
+                        WatchListScreen(
+                            navController = navControllerMain,
+                        )
                     }
                     composable(route = "play_now") {
                         NowPlayScreen(
@@ -201,7 +203,9 @@ class MainActivity : ComponentActivity() {
                         )
                     }
                     composable(route = "latest") {
-                        LatestScreen()
+                        LatestScreen(
+                            navController = navControllerMain,
+                        )
                     }
                     composable(
                         route = "genres_detail" + "/{genreId}/{genreName}",

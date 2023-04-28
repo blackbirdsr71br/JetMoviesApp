@@ -1,5 +1,6 @@
 package com.example.jetmoviesapp.ui.presentation.latest
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -8,43 +9,78 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.example.jetmoviesapp.data.remote.latest.Latest
+import androidx.navigation.NavController
+import androidx.paging.LoadState
+import androidx.paging.compose.collectAsLazyPagingItems
+import androidx.paging.compose.items
+import com.example.jetmoviesapp.R
+import com.example.jetmoviesapp.common.Constants
+import com.example.jetmoviesapp.data.remote.movie.Movie
+import com.example.jetmoviesapp.ui.presentation.composables.JetMoviesTopBar
 import com.example.jetmoviesapp.ui.theme.ratingStarColor
+import com.skydoves.landscapist.CircularReveal
+import com.skydoves.landscapist.ShimmerParams
+import com.skydoves.landscapist.coil.CoilImage
 
 @Composable
 fun LatestScreen(
     viewModel: LatestMoviesViewModel = hiltViewModel(),
+    navController: NavController,
 ) {
-    val latestList = viewModel.stateGenres.value
-    println("Latest*********** ")
-    println("Latest*********** ")
-    println("Latest*********** = $latestList")
+    val latestlist = viewModel.latest.collectAsLazyPagingItems()
     Scaffold(
         topBar = {
-            TopAppBar(
-                title = { Text(text = "Latest Movies") },
-                backgroundColor = Color.Transparent,
-                elevation = 0.dp,
+            JetMoviesTopBar(
+                title = "Lates movies",
+                backGroundColor = Color.Transparent,
+                navController = navController,
             )
         },
         modifier = Modifier.statusBarsPadding(),
     ) {
-        if (latestList != null) {
-            LazyColumn(
-                modifier = Modifier
-                    .padding(paddingValues = it),
-            ) {
-                item {
-                    latestList.forEach() { latest ->
-                        LatestMovieItem(latest = latest)
+        LazyColumn(
+            modifier = Modifier
+                .padding(paddingValues = it),
+        ) {
+            items(latestlist) { item ->
+                item?.let { topRated ->
+                    LatesMovietItem(topRated = topRated) { navigatedItem ->
+                        navController.navigate(route = "movie_detail" + "/${navigatedItem.id}")
+                    }
+                }
+            }
+            latestlist.apply {
+                when {
+                    loadState.refresh is LoadState.Loading -> {
+                        // when first time response page is loading
+                        item { CircularProgressIndicator(color = Color.DarkGray) }
+                    }
+
+                    loadState.append is LoadState.Loading -> {
+                        item {
+                            LinearProgressIndicator(
+                                color = Color.Red,
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .statusBarsPadding(),
+                            )
+                        }
+                    }
+
+                    loadState.refresh is LoadState.Error -> {
+                        item { Text(text = "Error: " + stringResource(R.string.app_error)) }
                     }
                 }
             }
@@ -53,19 +89,39 @@ fun LatestScreen(
 }
 
 @Composable
-fun LatestMovieItem(latest: Latest) {
+fun LatesMovietItem(topRated: Movie, onClick: (Movie) -> Unit) {
     Card(
         shape = RoundedCornerShape(12.dp),
         elevation = 4.dp,
         modifier = Modifier
             .height(220.dp)
-            .padding(12.dp),
+            .padding(12.dp)
+            .clickable {
+                onClick(topRated)
+            },
     ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(8.dp),
         ) {
+            CoilImage(
+                imageModel = Constants.IMAGE_URL + topRated.posterPath,
+                contentScale = ContentScale.Crop,
+                shimmerParams = ShimmerParams(
+                    baseColor = MaterialTheme.colors.background,
+                    highlightColor = Color.LightGray.copy(alpha = 0.6f),
+                    durationMillis = 350,
+                    dropOff = 0.65f,
+                    tilt = 20f,
+                ),
+                circularReveal = CircularReveal(duration = 350),
+                failure = { Text(text = "Image request failed!") },
+                modifier = Modifier
+                    .height(200.dp)
+                    .width(120.dp)
+                    .shadow(elevation = 8.dp, shape = RoundedCornerShape(12.dp)),
+            )
             Column(
                 modifier = Modifier
                     .padding(start = 12.dp)
@@ -74,7 +130,7 @@ fun LatestMovieItem(latest: Latest) {
             ) {
                 val annotatedString = buildAnnotatedString {
                     withStyle(style = SpanStyle(color = Color.Black)) {
-                        append(latest.originalTitle)
+                        append(topRated.originalTitle)
                     }
                     withStyle(
                         style = SpanStyle(
@@ -83,7 +139,7 @@ fun LatestMovieItem(latest: Latest) {
                             fontWeight = FontWeight.Light,
                         ),
                     ) {
-                        append(" (${latest.title}) ")
+                        append(" (${topRated.title}) ")
                     }
                 }
                 Text(text = annotatedString, style = MaterialTheme.typography.h6)
@@ -94,7 +150,14 @@ fun LatestMovieItem(latest: Latest) {
                         modifier = Modifier.size(24.dp),
                         tint = ratingStarColor,
                     )
+                    Text(text = "${topRated.voteAverage}/10", color = Color.LightGray)
                 }
+                Text(
+                    text = topRated.overview,
+                    maxLines = 5,
+                    overflow = TextOverflow.Ellipsis,
+                    style = MaterialTheme.typography.subtitle2,
+                )
             }
         }
     }

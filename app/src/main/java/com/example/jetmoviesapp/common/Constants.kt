@@ -13,5 +13,5 @@ object Constants {
     const val DISCOVER = "discover/movie"
     const val SEARCH_MOVIE = "search/movie"
     const val NOW_PLAYING = "movie/now_playing"
-    const val LATEST = "movie/latest"
+    const val LATEST = "movie/upcoming"
 }

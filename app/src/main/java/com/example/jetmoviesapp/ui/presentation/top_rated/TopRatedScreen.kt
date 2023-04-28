@@ -29,6 +29,7 @@ import androidx.paging.compose.items
 import com.example.jetmoviesapp.R
 import com.example.jetmoviesapp.common.Constants
 import com.example.jetmoviesapp.data.remote.movie.Movie
+import com.example.jetmoviesapp.ui.presentation.composables.JetMoviesTopBar
 import com.example.jetmoviesapp.ui.theme.ratingStarColor
 import com.skydoves.landscapist.CircularReveal
 import com.skydoves.landscapist.ShimmerParams
@@ -43,10 +44,10 @@ fun TopRatedScreen(
 
     Scaffold(
         topBar = {
-            TopAppBar(
-                title = { Text(text = "Top Rated") },
-                backgroundColor = Color.Transparent,
-                elevation = 0.dp,
+            JetMoviesTopBar(
+                title = "Top Rated",
+                backGroundColor = Color.Transparent,
+                navController = navController,
             )
         },
         modifier = Modifier.statusBarsPadding(),

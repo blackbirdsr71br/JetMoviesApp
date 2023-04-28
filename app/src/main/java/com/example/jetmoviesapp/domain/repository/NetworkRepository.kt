@@ -14,7 +14,7 @@ interface NetworkRepository {
 
     suspend fun getNowPlayingMovies(page: Int): MovieResponse
 
-    suspend fun getLatestMovies(): LatestResponse
+    suspend fun getLatestMovies(page: Int): MovieResponse
 
     suspend fun getGenres(): GenreResponse
 

@@ -59,5 +59,6 @@ interface ApiService {
     @GET(Constants.LATEST)
     suspend fun getLatestMovies(
         @Query("language") language: String = "es-ES",
-    ): LatestResponse
+        @Query("page") page: Int,
+    ): MovieResponse
 }

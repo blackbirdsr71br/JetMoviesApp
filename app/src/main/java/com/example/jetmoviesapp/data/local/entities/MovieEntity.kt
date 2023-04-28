@@ -14,3 +14,4 @@ data class MovieEntity(
     val runtime: Int?,
     val overview: String?
 )
+
