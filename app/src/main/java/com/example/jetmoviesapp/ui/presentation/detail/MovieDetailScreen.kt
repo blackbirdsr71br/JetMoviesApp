@@ -31,7 +31,6 @@ import com.example.jetmoviesapp.ui.presentation.detail.components.MovieCast
 import com.example.jetmoviesapp.ui.presentation.detail.components.MovieDescription
 import com.example.jetmoviesapp.ui.presentation.detail.components.MovieGenres
 import com.example.jetmoviesapp.ui.presentation.detail.components.SimilarMovies
-import com.example.jetmoviesapp.ui.presentation.navigation.Screen
 import com.example.jetmoviesapp.ui.theme.ratingStarColor
 import com.skydoves.landscapist.CircularReveal
 import com.skydoves.landscapist.ShimmerParams
@@ -99,11 +98,9 @@ fun MovieDetailScreen(
             )
             IconButton(
                 onClick = {
-                    navController.navigate(route = "home") {
-                        popUpTo(route = "movie_detail") {
-                            inclusive = true
-                        }
-                    }
+                    navController.popBackStack(route = "movie_details", inclusive = true)
+                    navController.popBackStack(route = "popular", inclusive = true)
+                    navController.navigate(route = "home")
                 },
                 modifier = Modifier.constrainAs(arrowBack) {
                     linkTo(start = parent.start, end = poster.start)
@@ -223,7 +220,7 @@ fun MovieDetailScreen(
                     linkTo(start = parent.start, end = parent.end)
                 },
             ) { similarMovie ->
-                navController.navigate(Screen.MovieDetail.route + "/${similarMovie.id}")
+                navController.navigate(route = "movie_detail" + "/${similarMovie.id}")
             }
         }
         val (circularProgress, errorString) = createRefs()

@@ -3,6 +3,7 @@ package com.example.jetmoviesapp.ui.presentation
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
+import androidx.activity.compose.BackHandler
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
 import androidx.activity.result.IntentSenderRequest
@@ -61,7 +62,6 @@ import com.example.jetmoviesapp.ui.presentation.loginauth.signin.SignInScreen
 import com.example.jetmoviesapp.ui.presentation.loginauth.signin.SignInViewmodel
 import com.example.jetmoviesapp.ui.presentation.movie_genres.MovieWithGenres
 import com.example.jetmoviesapp.ui.presentation.navigation.AppBottomNavigation
-import com.example.jetmoviesapp.ui.presentation.navigation.Screen
 import com.example.jetmoviesapp.ui.presentation.now_play.NowPlayScreen
 import com.example.jetmoviesapp.ui.presentation.popular.PopularMoviesScreen
 import com.example.jetmoviesapp.ui.presentation.top_rated.TopRatedScreen
@@ -204,7 +204,7 @@ class MainActivity : ComponentActivity() {
                         LatestScreen()
                     }
                     composable(
-                        Screen.MovieWithGenres.route + "/{genreId}/{genreName}",
+                        route = "genres_detail" + "/{genreId}/{genreName}",
                         arguments = listOf(
                             navArgument("genreId") { type = NavType.IntType },
                             navArgument("genreName") { type = NavType.StringType },
@@ -236,6 +236,8 @@ fun MainScreen(
     val scaffoldState =
         rememberScaffoldState(rememberDrawerState(DrawerValue.Closed))
     val scope = rememberCoroutineScope()
+    BackHandler {
+    }
     Scaffold(
         scaffoldState = scaffoldState,
         topBar = {

@@ -18,7 +18,6 @@ import com.example.jetmoviesapp.ui.presentation.genres.GenresViewModel
 import com.example.jetmoviesapp.ui.presentation.home.components.Header
 import com.example.jetmoviesapp.ui.presentation.home.components.PopularHomeItem
 import com.example.jetmoviesapp.ui.presentation.home.components.TopRatedHomeItem
-import com.example.jetmoviesapp.ui.presentation.navigation.Screen
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
@@ -30,40 +29,6 @@ fun HomeScreen(
     val genres = genresViewModel.stateGenres.value
     val state = viewModel.state.value
     val homeItems = state.homeList
-    /*Scaffold(
-        topBar = {
-            TopAppBar(
-                title = {
-                    Text(
-                        text = "JetMovies",
-                        modifier = Modifier.graphicsLayer(alpha = 0.99f)
-                            .drawWithCache {
-                                val brush = Brush.horizontalGradient(RainbowColors)
-                                onDrawWithContent {
-                                    drawContent()
-                                    drawRect(brush, blendMode = BlendMode.SrcAtop)
-                                }
-                            },
-                        fontWeight = FontWeight.ExtraBold,
-                        fontSize = 24.sp,
-                        textAlign = TextAlign.Center,
-                    )
-                },
-                modifier = Modifier
-                    .padding(top = 30.dp)
-                    .height(50.dp),
-            )
-        },
-        drawerShape = RoundedCornerShape(0.dp),
-        drawerContent = {
-            DrawerCompose(
-                scope = scope,
-                scaffoldState = scaffoldState,
-                userName = "Alex",
-                userId = "1046589",
-            ) { }
-        },
-    ) {*/
     Column(
         modifier = Modifier
             .background(Color.White),
@@ -76,14 +41,14 @@ fun HomeScreen(
                     is HomeType.TopRated -> {
                         item {
                             Header(header = "Top Rated", onClickSeeMore = {
-                                navController.navigate(Screen.TopRated.route)
+                                navController.navigate(route = "top_rated")
                             })
                         }
                         item {
                             LazyRow {
                                 items(homeType.topRated) { topRated ->
                                     TopRatedHomeItem(topRated = topRated) { navigatedItem ->
-                                        navController.navigate(Screen.MovieDetail.route + "/${navigatedItem.id}")
+                                        navController.navigate(route = "movie_detail" + "/${navigatedItem.id}")
                                     }
                                 }
                             }
@@ -93,7 +58,7 @@ fun HomeScreen(
                     is HomeType.Popular -> {
                         item {
                             Header(header = "Popular", onClickSeeMore = {
-                                navController.navigate(Screen.Popular.route)
+                                navController.navigate(route = "popular")
                             })
                         }
                         items(items = homeType.popular) { popular ->
@@ -101,7 +66,7 @@ fun HomeScreen(
                                 popular = popular,
                                 genres = genres,
                             ) { navigatedItem ->
-                                navController.navigate(Screen.MovieDetail.route + "/${navigatedItem.id}")
+                                navController.navigate(route = "movie_detail" + "/${navigatedItem.id}")
                             }
                         }
                     }

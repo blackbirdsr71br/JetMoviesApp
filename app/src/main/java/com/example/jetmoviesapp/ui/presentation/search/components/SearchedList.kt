@@ -26,7 +26,6 @@ import androidx.paging.compose.items
 import com.example.jetmoviesapp.R
 import com.example.jetmoviesapp.common.Constants
 import com.example.jetmoviesapp.data.remote.movie.Movie
-import com.example.jetmoviesapp.ui.presentation.navigation.Screen
 import com.skydoves.landscapist.CircularReveal
 import com.skydoves.landscapist.ShimmerParams
 import com.skydoves.landscapist.coil.CoilImage
@@ -45,7 +44,7 @@ fun SearchedList(
             item?.let { movie ->
                 Column {
                     SearchedItem(movie = movie) { navigatedItem ->
-                        navController.navigate(Screen.MovieDetail.route + "/${navigatedItem.id}")
+                        navController.navigate(route = "movie_detail" + "/${navigatedItem.id}")
                     }
                 }
             }

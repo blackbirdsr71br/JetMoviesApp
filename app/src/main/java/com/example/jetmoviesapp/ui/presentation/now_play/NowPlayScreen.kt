@@ -28,7 +28,6 @@ import androidx.paging.compose.items
 import com.example.jetmoviesapp.R
 import com.example.jetmoviesapp.common.Constants
 import com.example.jetmoviesapp.data.remote.movie.Movie
-import com.example.jetmoviesapp.ui.presentation.navigation.Screen
 import com.example.jetmoviesapp.ui.theme.ratingStarColor
 import com.skydoves.landscapist.CircularReveal
 import com.skydoves.landscapist.ShimmerParams
@@ -57,7 +56,7 @@ fun NowPlayScreen(
             items(topRatedList) { item ->
                 item?.let { topRated ->
                     NowPlayItem(topRated = topRated) { navigatedItem ->
-                        navController.navigate(Screen.MovieDetail.route + "/${navigatedItem.id}")
+                        navController.navigate(route = "movie_detail" + "/${navigatedItem.id}")
                     }
                 }
             }
@@ -67,6 +66,7 @@ fun NowPlayScreen(
                         // when first time response page is loading
                         item { CircularProgressIndicator(color = Color.DarkGray) }
                     }
+
                     loadState.append is LoadState.Loading -> {
                         item {
                             LinearProgressIndicator(
@@ -77,6 +77,7 @@ fun NowPlayScreen(
                             )
                         }
                     }
+
                     loadState.refresh is LoadState.Error -> {
                         item { Text(text = "Error: " + stringResource(R.string.app_error)) }
                     }

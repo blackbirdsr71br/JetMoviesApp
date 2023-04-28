@@ -30,7 +30,7 @@ fun MovieGenres(
             TextButton(
                 onClick = {
                     navController
-                        .navigate("genero" + "/${genre.id}/${genre.name}")
+                        .navigate(route = "genres_detail" + "/${genre.id}/${genre.name}")
                 },
                 shape = RoundedCornerShape(12.dp),
                 colors = ButtonDefaults.buttonColors(
