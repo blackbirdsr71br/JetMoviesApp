@@ -3,6 +3,7 @@ package com.example.jetmoviesapp.data.local.entities
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.example.jetmoviesapp.data.remote.genre.Genre
 
 @Entity(tableName = "tbl_movie")
 data class MovieEntity(
@@ -12,6 +13,6 @@ data class MovieEntity(
     @ColumnInfo(name = "poster_path") val posterPath: String?,
     @ColumnInfo(name = "vote_average") val voteAverage: Double,
     val runtime: Int?,
-    val overview: String?
+    val overview: String?,
 )
 

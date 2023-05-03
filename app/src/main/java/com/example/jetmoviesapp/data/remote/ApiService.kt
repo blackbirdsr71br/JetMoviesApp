@@ -1,8 +1,8 @@
 package com.example.jetmoviesapp.data.remote
 
 import com.example.jetmoviesapp.common.Constants
+import com.example.jetmoviesapp.data.remote.genre.Genre
 import com.example.jetmoviesapp.data.remote.genre.GenreResponse
-import com.example.jetmoviesapp.data.remote.latest.LatestResponse
 import com.example.jetmoviesapp.data.remote.movie.MovieResponse
 import com.example.jetmoviesapp.data.remote.movie_detail.MovieDetailDto
 import retrofit2.http.GET

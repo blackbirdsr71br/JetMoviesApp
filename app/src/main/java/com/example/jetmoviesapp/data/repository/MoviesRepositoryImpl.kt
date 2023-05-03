@@ -2,15 +2,15 @@ package com.example.jetmoviesapp.data.repository
 
 import com.example.jetmoviesapp.data.local.WatchListDao
 import com.example.jetmoviesapp.data.local.entities.MovieEntity
-import com.example.jetmoviesapp.domain.repository.LocalRepository
+import com.example.jetmoviesapp.domain.repository.MoviesRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
-class LocalRepositoryImpl @Inject constructor(
+class MoviesRepositoryImpl @Inject constructor(
     private val dao: WatchListDao,
-) : LocalRepository {
+) : MoviesRepository {
 
     override suspend fun insert(movie: MovieEntity) {
         dao.insert(movie = movie)

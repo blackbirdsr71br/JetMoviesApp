@@ -6,7 +6,9 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.jetmoviesapp.common.Resource
-import com.example.jetmoviesapp.domain.repository.LocalRepository
+import com.example.jetmoviesapp.data.local.entities.GenresEntity
+import com.example.jetmoviesapp.domain.repository.GenresRepository
+import com.example.jetmoviesapp.domain.repository.MoviesRepository
 import com.example.jetmoviesapp.domain.repository.NetworkRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -17,7 +19,8 @@ import javax.inject.Inject
 @HiltViewModel
 class MovieDetailViewModel @Inject constructor(
     private val networkRepository: NetworkRepository,
-    private val localRepository: LocalRepository,
+    private val moviesRepository: MoviesRepository,
+    private val genresRepository: GenresRepository,
     savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
 
@@ -37,23 +40,25 @@ class MovieDetailViewModel @Inject constructor(
         when (event) {
             is MoviesEvent.BookmarkMovie -> {
                 viewModelScope.launch(Dispatchers.IO) {
-                    localRepository.insert(event.movie)
+                    moviesRepository.insert(event.movie)
                     withContext(Dispatchers.Main) {
                         _isBookmarked.value = true
                     }
                 }
             }
+
             is MoviesEvent.DeleteMovie -> {
                 viewModelScope.launch(Dispatchers.IO) {
-                    localRepository.delete(event.movie)
+                    moviesRepository.delete(event.movie)
                     withContext(Dispatchers.Main) {
                         _isBookmarked.value = false
                     }
                 }
             }
+
             is MoviesEvent.IsBookmarked -> {
                 viewModelScope.launch(Dispatchers.IO) {
-                    val movie = localRepository.getMovieById(id = event.id)
+                    val movie = moviesRepository.getMovieById(id = event.id)
                     withContext(Dispatchers.Main) {
                         _isBookmarked.value = movie != null
                     }
@@ -70,9 +75,11 @@ class MovieDetailViewModel @Inject constructor(
                         is Resource.Success -> {
                             _state.value = MovieDetailState(movie = result.data)
                         }
+
                         is Resource.Loading -> {
                             _state.value = _state.value.copy(isLoading = true)
                         }
+
                         is Resource.Error -> {
                             _state.value = _state.value.copy(error = result.message ?: "Error!")
                         }

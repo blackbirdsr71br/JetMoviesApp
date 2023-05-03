@@ -191,7 +191,7 @@ class MainActivity : ComponentActivity() {
                     composable(route = "genres") {
                         GenresScreen(navController = navControllerMain)
                     }
-                    composable(route = "Room") {
+                    composable(route = "room") {
                         // SearchScreen(navController = navController)
                         WatchListScreen(
                             navController = navControllerMain,

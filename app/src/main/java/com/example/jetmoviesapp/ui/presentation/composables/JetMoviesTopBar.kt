@@ -27,9 +27,9 @@ fun JetMoviesTopBar(
                     navController.popBackStack(route = "movie_details", inclusive = true)
                     navController.popBackStack(route = "popular", inclusive = true)
                     navController.popBackStack(route = "latest", inclusive = true)
-                    popUpTo(route = "home") {
-                        inclusive = true
-                    }
+                    navController.popBackStack(route = "room", inclusive = true)
+                    navController.popBackStack(route = "genres", inclusive = true)
+                    navController.popBackStack(route = "play_now", inclusive = true)
                 }
             }) {
                 Icon(

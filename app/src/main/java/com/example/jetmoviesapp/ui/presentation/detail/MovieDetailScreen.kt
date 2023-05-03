@@ -100,6 +100,10 @@ fun MovieDetailScreen(
                 onClick = {
                     navController.popBackStack(route = "movie_details", inclusive = true)
                     navController.popBackStack(route = "popular", inclusive = true)
+                    navController.popBackStack(route = "latest", inclusive = true)
+                    navController.popBackStack(route = "room", inclusive = true)
+                    navController.popBackStack(route = "genres", inclusive = true)
+                    navController.popBackStack(route = "play_now", inclusive = true)
                     navController.navigate(route = "home")
                 },
                 modifier = Modifier.constrainAs(arrowBack) {

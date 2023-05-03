@@ -58,6 +58,9 @@ fun PopularMoviesScreen(
                     PopularMoviesItem(popular = popular) { navigated ->
                         navController.navigate(route = "movie_detail" + "/${navigated.id}")
                     }
+                    navController.popBackStack(route = "movie_details", inclusive = true)
+                    navController.popBackStack(route = "popular", inclusive = true)
+                    navController.navigate(route = "home")
                 }
             }
             popularMovies.apply {

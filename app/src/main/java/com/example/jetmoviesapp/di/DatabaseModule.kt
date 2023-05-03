@@ -2,6 +2,7 @@ package com.example.jetmoviesapp.di
 
 import android.content.Context
 import androidx.room.Room
+import com.example.jetmoviesapp.data.local.GenresListDao
 import com.example.jetmoviesapp.data.local.WatchListDao
 import com.example.jetmoviesapp.data.local.WatchListDatabase
 import dagger.Module
@@ -35,5 +36,13 @@ object DatabaseModule {
         db: WatchListDatabase,
     ): WatchListDao {
         return db.watchListDao()
+    }
+
+    @Singleton
+    @Provides
+    fun provideGenresListDao(
+        db: WatchListDatabase,
+    ): GenresListDao {
+        return db.genresListDao()
     }
 }
