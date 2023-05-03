@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.example.jetmoviesapp.ui.presentation.navigation.Screen
 
 @Composable
 fun JetMoviesTopBar(
@@ -24,12 +25,12 @@ fun JetMoviesTopBar(
         navigationIcon = {
             IconButton(onClick = {
                 navController.navigate(route = "home") {
-                    navController.popBackStack(route = "movie_details", inclusive = true)
-                    navController.popBackStack(route = "popular", inclusive = true)
-                    navController.popBackStack(route = "latest", inclusive = true)
-                    navController.popBackStack(route = "room", inclusive = true)
-                    navController.popBackStack(route = "genres", inclusive = true)
-                    navController.popBackStack(route = "play_now", inclusive = true)
+                    navController.popBackStack(route = Screen.MovieDetail.route, inclusive = true)
+                    navController.popBackStack(route = Screen.Popular.route, inclusive = true)
+                    navController.popBackStack(route = Screen.Latest.route, inclusive = true)
+                    navController.popBackStack(route = Screen.Room.route, inclusive = true)
+                    navController.popBackStack(route = Screen.Genres.route, inclusive = true)
+                    navController.popBackStack(route = Screen.PlayNow.route, inclusive = true)
                 }
             }) {
                 Icon(

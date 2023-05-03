@@ -18,6 +18,7 @@ import com.example.jetmoviesapp.ui.presentation.genres.GenresViewModel
 import com.example.jetmoviesapp.ui.presentation.home.components.Header
 import com.example.jetmoviesapp.ui.presentation.home.components.PopularHomeItem
 import com.example.jetmoviesapp.ui.presentation.home.components.TopRatedHomeItem
+import com.example.jetmoviesapp.ui.presentation.navigation.Screen
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
@@ -48,7 +49,7 @@ fun HomeScreen(
                             LazyRow {
                                 items(homeType.topRated) { topRated ->
                                     TopRatedHomeItem(topRated = topRated) { navigatedItem ->
-                                        navController.navigate(route = "movie_detail" + "/${navigatedItem.id}")
+                                        navController.navigate(route = Screen.MovieDetail.route + "/${navigatedItem.id}")
                                     }
                                 }
                             }
@@ -58,7 +59,7 @@ fun HomeScreen(
                     is HomeType.Popular -> {
                         item {
                             Header(header = "Popular", onClickSeeMore = {
-                                navController.navigate(route = "popular")
+                                navController.navigate(route = Screen.Popular.route)
                             })
                         }
                         items(items = homeType.popular) { popular ->
@@ -66,7 +67,7 @@ fun HomeScreen(
                                 popular = popular,
                                 genres = genres,
                             ) { navigatedItem ->
-                                navController.navigate(route = "movie_detail" + "/${navigatedItem.id}")
+                                navController.navigate(route = Screen.MovieDetail.route + "/${navigatedItem.id}")
                             }
                         }
                     }
@@ -74,10 +75,14 @@ fun HomeScreen(
             }
         }
         if (state.error.isNotBlank()) {
-            Text(text = "${state.error} ds")
+            Text(text = "${state.error}")
         }
         if (state.isLoading) {
-            CircularProgressIndicator()
+            Column(
+                modifier = Modifier.fillMaxWidth(),
+            ) {
+                CircularProgressIndicator()
+            }
         }
     }
     // }

@@ -62,6 +62,7 @@ import com.example.jetmoviesapp.ui.presentation.loginauth.signin.SignInScreen
 import com.example.jetmoviesapp.ui.presentation.loginauth.signin.SignInViewmodel
 import com.example.jetmoviesapp.ui.presentation.movie_genres.MovieWithGenres
 import com.example.jetmoviesapp.ui.presentation.navigation.AppBottomNavigation
+import com.example.jetmoviesapp.ui.presentation.navigation.Screen
 import com.example.jetmoviesapp.ui.presentation.now_play.NowPlayScreen
 import com.example.jetmoviesapp.ui.presentation.popular.PopularMoviesScreen
 import com.example.jetmoviesapp.ui.presentation.top_rated.TopRatedScreen
@@ -99,14 +100,19 @@ class MainActivity : ComponentActivity() {
                     )
                 }
                 val navControllerMain = rememberNavController()
-                NavHost(navController = navControllerMain, startDestination = "sign_in") {
-                    composable("sign_in") {
+                NavHost(
+                    navController = navControllerMain,
+                    startDestination = Screen.SignIn.route,
+                ) {
+                    composable(
+                        Screen.SignIn.route,
+                    ) {
                         val viewModel = viewModel<SignInViewmodel>()
                         val state by viewModel.state.collectAsStateWithLifecycle()
 
                         LaunchedEffect(key1 = Unit) {
                             if (googleAuthUiClient.signedInUser() != null) {
-                                navControllerMain.navigate("home")
+                                navControllerMain.navigate(Screen.Home.route)
                                 viewModel.resetState()
                             }
                         }
@@ -130,7 +136,7 @@ class MainActivity : ComponentActivity() {
                                     "Sign In Succesful",
                                     Toast.LENGTH_LONG,
                                 ).show()
-                                navControllerMain.navigate("home")
+                                navControllerMain.navigate(Screen.Home.route)
                                 viewModel.resetState()
                             }
                         }
@@ -149,7 +155,7 @@ class MainActivity : ComponentActivity() {
                         )
                     }
                     composable(
-                        route = "home",
+                        route = Screen.Home.route,
                     ) {
                         // Main Screen
                         val showBottomBar = rememberSaveable { mutableStateOf(true) }
@@ -161,7 +167,7 @@ class MainActivity : ComponentActivity() {
                         )
                     }
                     composable(
-                        route = "profile",
+                        Screen.Profile.route,
                     ) {
                         ProfileScreen(
                             userData = googleAuthUiClient.signedInUser(),
@@ -179,36 +185,50 @@ class MainActivity : ComponentActivity() {
                             navController1 = navControllerMain,
                         )
                     }
-                    composable(route = "top_rated") {
+                    composable(
+                        Screen.TopRated.route,
+                    ) {
                         TopRatedScreen(navController = navControllerMain)
                     }
-                    composable(route = "popular") {
+                    composable(
+                        Screen.Popular.route,
+                    ) {
                         PopularMoviesScreen(navController = navControllerMain)
                     }
-                    composable(route = "movie_detail" + "/{movie_id}") {
+                    composable(
+                        Screen.MovieDetail.route + "/{movie_id}",
+                    ) {
                         MovieDetailScreen(navController = navControllerMain)
                     }
-                    composable(route = "genres") {
+                    composable(
+                        Screen.Genres.route,
+                    ) {
                         GenresScreen(navController = navControllerMain)
                     }
-                    composable(route = "room") {
+                    composable(
+                        Screen.Room.route,
+                    ) {
                         // SearchScreen(navController = navController)
                         WatchListScreen(
                             navController = navControllerMain,
                         )
                     }
-                    composable(route = "play_now") {
+                    composable(
+                        Screen.PlayNow.route,
+                    ) {
                         NowPlayScreen(
                             navController = navControllerMain,
                         )
                     }
-                    composable(route = "latest") {
+                    composable(
+                        Screen.Latest.route,
+                    ) {
                         LatestScreen(
                             navController = navControllerMain,
                         )
                     }
                     composable(
-                        route = "genres_detail" + "/{genreId}/{genreName}",
+                        route = Screen.GenresDetail.route + "/{genreId}/{genreName}",
                         arguments = listOf(
                             navArgument("genreId") { type = NavType.IntType },
                             navArgument("genreName") { type = NavType.StringType },
@@ -293,8 +313,8 @@ fun MainScreen(
                     "Signed Out",
                     Toast.LENGTH_LONG,
                 ).show()
-                navController.navigate(route = "sign_in")
-                navController.popBackStack("home", true)
+                navController.navigate(route = Screen.SignIn.route)
+                navController.popBackStack(Screen.Home.route, true)
             }
         },
         bottomBar = {

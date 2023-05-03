@@ -31,6 +31,7 @@ import com.example.jetmoviesapp.ui.presentation.detail.components.MovieCast
 import com.example.jetmoviesapp.ui.presentation.detail.components.MovieDescription
 import com.example.jetmoviesapp.ui.presentation.detail.components.MovieGenres
 import com.example.jetmoviesapp.ui.presentation.detail.components.SimilarMovies
+import com.example.jetmoviesapp.ui.presentation.navigation.Screen
 import com.example.jetmoviesapp.ui.theme.ratingStarColor
 import com.skydoves.landscapist.CircularReveal
 import com.skydoves.landscapist.ShimmerParams
@@ -98,13 +99,13 @@ fun MovieDetailScreen(
             )
             IconButton(
                 onClick = {
-                    navController.popBackStack(route = "movie_details", inclusive = true)
-                    navController.popBackStack(route = "popular", inclusive = true)
-                    navController.popBackStack(route = "latest", inclusive = true)
-                    navController.popBackStack(route = "room", inclusive = true)
-                    navController.popBackStack(route = "genres", inclusive = true)
-                    navController.popBackStack(route = "play_now", inclusive = true)
-                    navController.navigate(route = "home")
+                    navController.popBackStack(route = Screen.MovieDetail.route, inclusive = true)
+                    navController.popBackStack(route = Screen.Popular.route, inclusive = true)
+                    navController.popBackStack(route = Screen.Latest.route, inclusive = true)
+                    navController.popBackStack(route = Screen.Room.route, inclusive = true)
+                    navController.popBackStack(route = Screen.Genres.route, inclusive = true)
+                    navController.popBackStack(route = Screen.PlayNow.route, inclusive = true)
+                    navController.navigate(route = Screen.Home.route)
                 },
                 modifier = Modifier.constrainAs(arrowBack) {
                     linkTo(start = parent.start, end = poster.start)
@@ -224,7 +225,7 @@ fun MovieDetailScreen(
                     linkTo(start = parent.start, end = parent.end)
                 },
             ) { similarMovie ->
-                navController.navigate(route = "movie_detail" + "/${similarMovie.id}")
+                navController.navigate(route = Screen.MovieDetail.route + "/${similarMovie.id}")
             }
         }
         val (circularProgress, errorString) = createRefs()

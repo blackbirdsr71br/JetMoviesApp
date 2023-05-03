@@ -23,6 +23,7 @@ import androidx.navigation.NavController
 import com.example.jetmoviesapp.R
 import com.example.jetmoviesapp.data.remote.genre.Genre
 import com.example.jetmoviesapp.ui.presentation.composables.JetMoviesTopBar
+import com.example.jetmoviesapp.ui.presentation.navigation.Screen
 import com.example.jetmoviesapp.ui.theme.genreBgColor
 import com.example.jetmoviesapp.ui.theme.genreColor
 
@@ -48,7 +49,7 @@ fun GenresScreen(
         ) {
             items(genres) { genre ->
                 GenresItem(genre = genre, onClick = {
-                    navController.navigate(route = "genres_detail" + "/${genre.id}/${genre.name}")
+                    navController.navigate(route = Screen.GenresDetail.route + "/${genre.id}/${genre.name}")
                 })
             }
         }

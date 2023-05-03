@@ -23,6 +23,7 @@ import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import com.example.jetmoviesapp.R
 import com.example.jetmoviesapp.ui.presentation.loginauth.signin.UserData
+import com.example.jetmoviesapp.ui.presentation.navigation.Screen
 import com.example.jetmoviesapp.ui.theme.Purple500
 import com.example.jetmoviesapp.ui.theme.spacing
 import kotlinx.coroutines.CoroutineScope
@@ -88,7 +89,7 @@ fun DrawerCompose(
                 R.string.logout,
             ) {
                 onSignOut()
-                navController.popBackStack("home", true)
+                navController.popBackStack(Screen.Home.route, true)
             }
         }
     }

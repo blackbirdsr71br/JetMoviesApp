@@ -29,6 +29,7 @@ import com.example.jetmoviesapp.R
 import com.example.jetmoviesapp.common.Constants
 import com.example.jetmoviesapp.data.remote.movie.Movie
 import com.example.jetmoviesapp.ui.presentation.composables.JetMoviesTopBar
+import com.example.jetmoviesapp.ui.presentation.navigation.Screen
 import com.example.jetmoviesapp.ui.theme.ratingStarColor
 import com.skydoves.landscapist.CircularReveal
 import com.skydoves.landscapist.ShimmerParams
@@ -57,7 +58,7 @@ fun NowPlayScreen(
             items(nowPlayList) { item ->
                 item?.let { topRated ->
                     NowPlayItem(topRated = topRated) { navigatedItem ->
-                        navController.navigate(route = "movie_detail" + "/${navigatedItem.id}")
+                        navController.navigate(route = Screen.MovieDetail.route + "/${navigatedItem.id}")
                     }
                 }
             }

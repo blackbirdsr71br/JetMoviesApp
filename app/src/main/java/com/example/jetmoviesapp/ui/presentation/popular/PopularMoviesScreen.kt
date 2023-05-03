@@ -27,6 +27,7 @@ import androidx.paging.compose.items
 import com.example.jetmoviesapp.common.Constants
 import com.example.jetmoviesapp.data.remote.movie.Movie
 import com.example.jetmoviesapp.ui.presentation.composables.JetMoviesTopBar
+import com.example.jetmoviesapp.ui.presentation.navigation.Screen
 import com.example.jetmoviesapp.ui.theme.ratingStarColor
 import com.skydoves.landscapist.CircularReveal
 import com.skydoves.landscapist.ShimmerParams
@@ -56,18 +57,18 @@ fun PopularMoviesScreen(
             items(popularMovies) { popular ->
                 popular?.let {
                     PopularMoviesItem(popular = popular) { navigated ->
-                        navController.navigate(route = "movie_detail" + "/${navigated.id}")
+                        navController.navigate(route = Screen.MovieDetail.route + "/${navigated.id}"){
+                            navController.popBackStack(route = Screen.MovieDetail.route, inclusive = true)
+                            navController.popBackStack(route = Screen.Popular.route, inclusive = true)
+                        }
                     }
-                    navController.popBackStack(route = "movie_details", inclusive = true)
-                    navController.popBackStack(route = "popular", inclusive = true)
-                    navController.navigate(route = "home")
                 }
             }
             popularMovies.apply {
                 when {
                     loadState.refresh is LoadState.Loading -> {
                         item {
-                            Column(modifier = Modifier.fillMaxSize()) {
+                            Column(modifier = Modifier.fillMaxWidth()) {
                                 CircularProgressIndicator(color = Color.DarkGray)
                                 Text(text = "Cargado información de Peliculas...")
                             }
@@ -76,7 +77,7 @@ fun PopularMoviesScreen(
 
                     loadState.append is LoadState.Loading -> {
                         item {
-                            Column(modifier = Modifier.fillMaxSize()) {
+                            Column(modifier = Modifier.fillMaxWidth()) {
                                 LinearProgressIndicator(
                                     color = Color.Red,
                                     modifier = Modifier
@@ -90,7 +91,7 @@ fun PopularMoviesScreen(
 
                     loadState.refresh is LoadState.Error -> {
                         item {
-                            Text(text = "Error: Bağlantınızı kontrol ediniz!")
+                            Text(text = "Error: !")
                         }
                     }
                 }

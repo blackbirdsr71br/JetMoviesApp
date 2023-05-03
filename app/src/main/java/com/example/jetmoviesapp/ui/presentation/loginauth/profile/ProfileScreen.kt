@@ -21,6 +21,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import com.example.jetmoviesapp.ui.presentation.loginauth.signin.UserData
+import com.example.jetmoviesapp.ui.presentation.navigation.Screen
 
 @Composable
 fun ProfileScreen(
@@ -55,7 +56,7 @@ fun ProfileScreen(
         }
         Button(onClick = {
             onSignOut.invoke()
-            navController1.popBackStack("main_movies", true)
+            navController1.popBackStack(Screen.Home.route, true)
         }) {
             Text(text = "Sign Out")
         }

@@ -27,11 +27,11 @@ fun AppBottomNavigation(
         backgroundColor = Color.White,
     ) {
         val items = listOf(
-            "home" to Icons.Filled.Home,
-            "room" to Icons.Filled.Create,
-            "genres" to Icons.Filled.Category,
-            "play_now" to Icons.Filled.VideoLibrary,
-            "latest" to Icons.Filled.AccessTime,
+            Screen.Home.route to Icons.Filled.Home,
+            Screen.Room.route to Icons.Filled.Create,
+            Screen.Genres.route to Icons.Filled.Category,
+            Screen.PlayNow.route to Icons.Filled.VideoLibrary,
+            Screen.Latest.route to Icons.Filled.AccessTime,
         )
 
         items.forEach { pair: Pair<String, ImageVector> ->

@@ -119,11 +119,6 @@ fun SignInScreen(
                 backgroundColor = Color.White,
                 fontColor = Color.Black,
             )
-            /*GoogleSignInButtonUi(
-                text = "Sign Up With Google",
-                loadingText = "Signing In....",
-                onClicked = onSignInClick,
-            )*/
         }
     }
 }

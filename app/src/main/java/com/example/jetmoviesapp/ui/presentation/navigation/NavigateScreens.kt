@@ -52,7 +52,7 @@ fun NavigateScreens(
         composable(Screen.TopRated.route) {
             TopRatedScreen(navController = navController)
         }
-        composable(Screen.Popular.route) {
+        composable(Screen.Home.route) {
             PopularMoviesScreen(navController = navController)
         }
         composable(Screen.MovieDetail.route + "/{movie_id}") {
@@ -61,7 +61,7 @@ fun NavigateScreens(
         composable(Screen.Genres.route) {
             GenresScreen(navController = navController)
         }
-        composable(Screen.Search.route) {
+        composable(Screen.Home.route) {
             // SearchScreen(navController = navController)
             // WatchListScreen()
         }
