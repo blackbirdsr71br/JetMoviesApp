@@ -6,7 +6,6 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.jetmoviesapp.common.Resource
-import com.example.jetmoviesapp.data.local.entities.GenresEntity
 import com.example.jetmoviesapp.domain.repository.GenresRepository
 import com.example.jetmoviesapp.domain.repository.MoviesRepository
 import com.example.jetmoviesapp.domain.repository.NetworkRepository

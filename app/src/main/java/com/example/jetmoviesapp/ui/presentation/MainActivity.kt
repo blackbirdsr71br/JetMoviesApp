@@ -4,10 +4,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.BackHandler
-import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
-import androidx.activity.result.IntentSenderRequest
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
@@ -28,7 +25,6 @@ import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.rememberDrawerState
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.*
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawWithCache
 import androidx.compose.ui.graphics.BlendMode
@@ -41,35 +37,18 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.view.WindowCompat
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
-import androidx.navigation.NavType
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navArgument
 import com.example.jetmoviesapp.ui.presentation.composables.drawer.DrawerCompose
-import com.example.jetmoviesapp.ui.presentation.detail.MovieDetailScreen
-import com.example.jetmoviesapp.ui.presentation.genres.GenresScreen
 import com.example.jetmoviesapp.ui.presentation.home.HomeScreen
-import com.example.jetmoviesapp.ui.presentation.latest.LatestScreen
-import com.example.jetmoviesapp.ui.presentation.loginauth.profile.ProfileScreen
 import com.example.jetmoviesapp.ui.presentation.loginauth.signin.GoogleAuthUiClient
-import com.example.jetmoviesapp.ui.presentation.loginauth.signin.SignInScreen
-import com.example.jetmoviesapp.ui.presentation.loginauth.signin.SignInViewmodel
-import com.example.jetmoviesapp.ui.presentation.movie_genres.MovieWithGenres
 import com.example.jetmoviesapp.ui.presentation.navigation.AppBottomNavigation
+import com.example.jetmoviesapp.ui.presentation.navigation.NavigateScreens
 import com.example.jetmoviesapp.ui.presentation.navigation.Screen
-import com.example.jetmoviesapp.ui.presentation.now_play.NowPlayScreen
-import com.example.jetmoviesapp.ui.presentation.popular.PopularMoviesScreen
-import com.example.jetmoviesapp.ui.presentation.top_rated.TopRatedScreen
-import com.example.jetmoviesapp.ui.presentation.watch_list.WatchListScreen
 import com.example.jetmoviesapp.ui.theme.JetMoviesAppTheme
 import com.example.jetmoviesapp.ui.theme.RainbowColors
-import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.google.android.gms.auth.api.identity.Identity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -90,17 +69,16 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             JetMoviesAppTheme {
-                val systemUiController = rememberSystemUiController()
-                val useDarkIcons = MaterialTheme.colors.isLight
-
-                SideEffect {
-                    systemUiController.setSystemBarsColor(
-                        color = Color.Transparent,
-                        darkIcons = useDarkIcons,
-                    )
-                }
                 val navControllerMain = rememberNavController()
-                NavHost(
+                val lifecycleScope = lifecycleScope
+                NavigateScreens(
+                    googleAuthUiClient = googleAuthUiClient,
+                    navControllerMain = navControllerMain,
+                    context = LocalContext.current,
+                    lifecycle = lifecycleScope,
+                )
+
+                /*NavHost(
                     navController = navControllerMain,
                     startDestination = Screen.SignIn.route,
                 ) {
@@ -242,7 +220,7 @@ class MainActivity : ComponentActivity() {
                             genreName = genreName,
                         )
                     }
-                }
+                }*/
             }
         }
     }
