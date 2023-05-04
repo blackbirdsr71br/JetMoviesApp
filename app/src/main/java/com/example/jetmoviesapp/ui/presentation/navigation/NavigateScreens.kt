@@ -10,7 +10,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.lifecycle.LifecycleCoroutineScope
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -24,7 +23,6 @@ import com.example.jetmoviesapp.ui.presentation.MainScreen
 import com.example.jetmoviesapp.ui.presentation.detail.MovieDetailScreen
 import com.example.jetmoviesapp.ui.presentation.genres.GenresScreen
 import com.example.jetmoviesapp.ui.presentation.latest.LatestScreen
-import com.example.jetmoviesapp.ui.presentation.loginauth.profile.ProfileScreen
 import com.example.jetmoviesapp.ui.presentation.loginauth.signin.GoogleAuthUiClient
 import com.example.jetmoviesapp.ui.presentation.loginauth.signin.SignInScreen
 import com.example.jetmoviesapp.ui.presentation.loginauth.signin.SignInViewmodel
@@ -106,26 +104,6 @@ fun NavigateScreens(
                 navController = navControllerMain,
                 showBottomBar = showBottomBar,
                 googleAuthUiClient = googleAuthUiClient,
-            )
-        }
-        composable(
-            Screen.Profile.route,
-        ) {
-            val scope = rememberCoroutineScope()
-            ProfileScreen(
-                userData = googleAuthUiClient.signedInUser(),
-                onSignOut = {
-                    scope.launch {
-                        googleAuthUiClient.signOut()
-                        Toast.makeText(
-                            context,
-                            "Signed Out",
-                            Toast.LENGTH_LONG,
-                        ).show()
-                        navControllerMain.navigate(route = "sign_in")
-                    }
-                },
-                navController1 = navControllerMain,
             )
         }
         composable(

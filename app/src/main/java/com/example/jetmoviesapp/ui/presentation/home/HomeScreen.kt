@@ -75,7 +75,7 @@ fun HomeScreen(
             }
         }
         if (state.error.isNotBlank()) {
-            Text(text = "${state.error}")
+            Text(text = state.error)
         }
         if (state.isLoading) {
             Column(

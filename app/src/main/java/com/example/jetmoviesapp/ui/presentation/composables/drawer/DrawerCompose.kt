@@ -50,6 +50,7 @@ fun DrawerCompose(
                     .fillMaxWidth()
                     .background(Purple500),
             ) {
+                Spacer(modifier = Modifier.height(30.dp))
                 if (userData?.profilePicture != null) {
                     AsyncImage(
                         model = userData.profilePicture,
@@ -65,7 +66,7 @@ fun DrawerCompose(
                     Text(
                         text = userData.userName,
                         textAlign = TextAlign.Center,
-                        fontSize = 30.sp,
+                        fontSize = 25.sp,
                         fontWeight = FontWeight.Bold,
                     )
                     Spacer(modifier = Modifier.height(16.dp))
