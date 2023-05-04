@@ -4,11 +4,32 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.jetmoviesapp.data.remote.movie.Movie
 import com.example.jetmoviesapp.domain.repository.NetworkRepository
+import com.example.jetmoviesapp.domain.usecases.useCaseNetwork
 import retrofit2.HttpException
 import java.io.IOException
 
+class GetTopRatedMovies(private val repository: NetworkRepository) {
+    suspend operator fun invoke(page: Int) = repository.getTopRatedMovies(page)
+}
+
+class GetNowPlayMovies(private val repository: NetworkRepository) {
+    suspend operator fun invoke(page: Int) = repository.getNowPlayingMovies(page)
+}
+
+class GetPopularMovies(private val repository: NetworkRepository) {
+    suspend operator fun invoke(page: Int) = repository.getPopularMovies(page)
+}
+
+class GetLatestMovies(private val repository: NetworkRepository) {
+    suspend operator fun invoke(page: Int) = repository.getLatestMovies(page)
+}
+
+class GetByGenderMovies(private val repository: NetworkRepository) {
+    suspend operator fun invoke(page: Int, genreId: Int) = repository.getMovieWithGenres(page, genreId)
+}
+
 class MoviePagingSource(
-    private val networkRepository: NetworkRepository,
+    private val useCase: useCaseNetwork,
     private val source: Source,
 ) : PagingSource<Int, Movie>() {
     override fun getRefreshKey(state: PagingState<Int, Movie>): Int? {
@@ -23,11 +44,11 @@ class MoviePagingSource(
             val nextPageNumber = params.key ?: 1
 
             val response = when (source) {
-                is Source.TopRated -> networkRepository.getTopRatedMovies(page = nextPageNumber)
-                is Source.NowPlay -> networkRepository.getNowPlayingMovies(page = nextPageNumber)
-                is Source.Popular -> networkRepository.getPopularMovies(page = nextPageNumber)
-                is Source.Latest -> networkRepository.getLatestMovies(page = nextPageNumber)
-                is Source.MovieWithGenres -> networkRepository.getMovieWithGenres(
+                is Source.TopRated -> useCase.getTopRatedMovies.invoke(page = nextPageNumber)
+                is Source.NowPlay -> useCase.getNowPlayMovies.invoke(page = nextPageNumber)
+                is Source.Popular -> useCase.getPopularMovies(page = nextPageNumber)
+                is Source.Latest -> useCase.getLatestMovies(page = nextPageNumber)
+                is Source.MovieWithGenres -> useCase.getMoviesByGenderMovies.invoke(
                     page = nextPageNumber,
                     genreId = source.genreId ?: 0,
                 )

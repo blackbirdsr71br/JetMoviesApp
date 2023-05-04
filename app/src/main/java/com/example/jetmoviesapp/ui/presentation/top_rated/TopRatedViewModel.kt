@@ -8,14 +8,14 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.example.jetmoviesapp.data.paging.MoviePagingSource
 import com.example.jetmoviesapp.data.remote.movie.Movie
-import com.example.jetmoviesapp.domain.repository.NetworkRepository
+import com.example.jetmoviesapp.domain.usecases.useCaseNetwork
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 @HiltViewModel
 class TopRatedViewModel @Inject constructor(
-    private val networkRepository: NetworkRepository,
+    private val networkRepository: useCaseNetwork,
 ) : ViewModel() {
 
     val topRated: Flow<PagingData<Movie>> = Pager(

@@ -9,7 +9,7 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.example.jetmoviesapp.data.paging.SearchPagingSource
 import com.example.jetmoviesapp.data.remote.movie.Movie
-import com.example.jetmoviesapp.domain.repository.NetworkRepository
+import com.example.jetmoviesapp.domain.usecases.useCaseNetwork
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
@@ -17,7 +17,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SearchViewModel @Inject constructor(
-    private val networkRepository: NetworkRepository,
+    private val networkRepository: useCaseNetwork,
 ) : ViewModel() {
 
     private val _searchedMovies = MutableStateFlow<PagingData<Movie>>(PagingData.empty())

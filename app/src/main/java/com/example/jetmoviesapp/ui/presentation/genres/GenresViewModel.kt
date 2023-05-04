@@ -6,13 +6,18 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.jetmoviesapp.data.remote.genre.Genre
 import com.example.jetmoviesapp.domain.repository.NetworkRepository
+import com.example.jetmoviesapp.domain.usecases.useCaseNetwork
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+class GetGenresMovies(private val repository: NetworkRepository) {
+    suspend operator fun invoke() = repository.getGenres().genres
+}
+
 @HiltViewModel
 class GenresViewModel @Inject constructor(
-    private val networkRepository: NetworkRepository,
+    private val useCase: useCaseNetwork,
 ) : ViewModel() {
 
     private val _stateGenres = mutableStateOf<List<Genre>>(emptyList())
@@ -24,7 +29,7 @@ class GenresViewModel @Inject constructor(
 
     private fun getGenres() {
         viewModelScope.launch {
-            _stateGenres.value = networkRepository.getGenres().genres
+            _stateGenres.value = useCase.getGenresMovies.invoke()
         }
     }
 }

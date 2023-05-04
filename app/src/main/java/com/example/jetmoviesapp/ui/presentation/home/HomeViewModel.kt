@@ -5,15 +5,22 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.jetmoviesapp.common.Resource
 import com.example.jetmoviesapp.domain.repository.NetworkRepository
+import com.example.jetmoviesapp.domain.usecases.useCaseNetwork
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 import javax.inject.Inject
+
+class getHomeMovies(private val repository: NetworkRepository) {
+    suspend operator fun invoke() = repository.getHomeMovies()
+}
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
 
-    private val networkRepository: NetworkRepository
+    private val useCases: useCaseNetwork,
+    private val networkRepository: NetworkRepository,
 ) : ViewModel() {
 
     private val _state = mutableStateOf(HomeState())
@@ -24,19 +31,20 @@ class HomeViewModel @Inject constructor(
     }
 
     private fun getHomeUc() {
-        networkRepository.getHomeMovies().onEach { result ->
-            when (result) {
-                is Resource.Success -> {
-                    _state.value = HomeState(homeList = result.data ?: emptyList())
+        viewModelScope.launch {
+            useCases.getMoviesHome.invoke().onEach { result ->
+                when (result) {
+                    is Resource.Success -> {
+                        _state.value = HomeState(homeList = result.data ?: emptyList())
+                    }
+                    is Resource.Loading -> {
+                        _state.value = HomeState(isLoading = true)
+                    }
+                    is Resource.Error -> {
+                        _state.value = HomeState(error = result.message ?: "An unexpected error occured.")
+                    }
                 }
-                is Resource.Loading -> {
-                    _state.value = HomeState(isLoading = true)
-                }
-                is Resource.Error -> {
-                    _state.value = HomeState(error = result.message ?: "An unexpected error occured.")
-                }
-            }
-        }.launchIn(viewModelScope)
+            }.launchIn(viewModelScope)
+        }
     }
-
 }

@@ -19,7 +19,7 @@ interface NetworkRepository {
 
     suspend fun getPopularMovies(page: Int): MovieResponse
 
-    fun getMovieById(id: Int): Flow<Resource<MovieDetail>>
+    fun getMovieByIdN(id: Int): Flow<Resource<MovieDetail>>
 
     suspend fun getMovieWithGenres(page: Int, genreId: Int): MovieResponse
 

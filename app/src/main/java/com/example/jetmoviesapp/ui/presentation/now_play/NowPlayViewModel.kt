@@ -8,21 +8,21 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.example.jetmoviesapp.data.paging.MoviePagingSource
 import com.example.jetmoviesapp.data.remote.movie.Movie
-import com.example.jetmoviesapp.domain.repository.NetworkRepository
+import com.example.jetmoviesapp.domain.usecases.useCaseNetwork
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 @HiltViewModel
 class NowPlayViewModel @Inject constructor(
-    private val networkRepository: NetworkRepository,
+    private val useCaseNetwork: useCaseNetwork,
 ) : ViewModel() {
 
     val nowPlay: Flow<PagingData<Movie>> = Pager(
         config = PagingConfig(pageSize = 20),
         pagingSourceFactory = {
             MoviePagingSource(
-                networkRepository,
+                useCaseNetwork,
                 MoviePagingSource.Source.NowPlay,
             )
         },

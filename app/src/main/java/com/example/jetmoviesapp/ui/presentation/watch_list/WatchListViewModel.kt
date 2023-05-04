@@ -5,7 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.jetmoviesapp.data.local.entities.MovieEntity
-import com.example.jetmoviesapp.domain.repository.MoviesRepository
+import com.example.jetmoviesapp.domain.usecases.useCaseMovie
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.catch
@@ -16,7 +16,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class WatchListViewModel @Inject constructor(
-    private val moviesRepository: MoviesRepository,
+    private val moviesRepository: useCaseMovie,
 ) : ViewModel() {
 
     private val _state = mutableStateOf(WatchListState())
@@ -32,7 +32,7 @@ class WatchListViewModel @Inject constructor(
         when (event) {
             is WatchListEvent.DeleteMovie -> {
                 viewModelScope.launch(Dispatchers.IO) {
-                    moviesRepository.delete(movie = event.movie)
+                    moviesRepository.deleteMovie.invoke(movie = event.movie)
                     deletedMovie = event.movie
                 }
             }
@@ -50,7 +50,8 @@ class WatchListViewModel @Inject constructor(
         _state.value = _state.value.copy(
             isLoading = true,
         )
-        moviesRepository.getWatchList().onEach {
+
+        moviesRepository.getWatchList.invoke().onEach {
             _state.value = _state.value.copy(
                 list = it.toMutableList(),
                 isLoading = false,

@@ -6,9 +6,8 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.jetmoviesapp.common.Resource
-import com.example.jetmoviesapp.domain.repository.GenresRepository
-import com.example.jetmoviesapp.domain.repository.MoviesRepository
-import com.example.jetmoviesapp.domain.repository.NetworkRepository
+import com.example.jetmoviesapp.domain.usecases.useCaseMovie
+import com.example.jetmoviesapp.domain.usecases.useCaseNetwork
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -17,9 +16,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MovieDetailViewModel @Inject constructor(
-    private val networkRepository: NetworkRepository,
-    private val moviesRepository: MoviesRepository,
-    private val genresRepository: GenresRepository,
+    private val networkRepository: useCaseNetwork,
+    private val moviesRepository: useCaseMovie,
     savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
 
@@ -48,7 +46,7 @@ class MovieDetailViewModel @Inject constructor(
 
             is MoviesEvent.DeleteMovie -> {
                 viewModelScope.launch(Dispatchers.IO) {
-                    moviesRepository.delete(event.movie)
+                    moviesRepository.deleteMovie.invoke(event.movie)
                     withContext(Dispatchers.Main) {
                         _isBookmarked.value = false
                     }
@@ -57,7 +55,7 @@ class MovieDetailViewModel @Inject constructor(
 
             is MoviesEvent.IsBookmarked -> {
                 viewModelScope.launch(Dispatchers.IO) {
-                    val movie = moviesRepository.getMovieById(id = event.id)
+                    val movie = moviesRepository.getMoviebyId.invoke(id = event.id)
                     withContext(Dispatchers.Main) {
                         _isBookmarked.value = movie != null
                     }
@@ -68,7 +66,7 @@ class MovieDetailViewModel @Inject constructor(
 
     private fun getMovieById(id: Int) {
         viewModelScope.launch {
-            networkRepository.getMovieById(id = id)
+            networkRepository.getMoviebyId.invoke(id = id)
                 .collect { result ->
                     when (result) {
                         is Resource.Success -> {

@@ -46,7 +46,7 @@ class NetworkRepositoryImpl @Inject constructor(
         return api.searchMovie(query = query, page = page)
     }
 
-    override fun getMovieById(id: Int): Flow<Resource<MovieDetail>> = flow {
+    override fun getMovieByIdN(id: Int): Flow<Resource<MovieDetail>> = flow {
         emit(Resource.Loading())
         try {
             val movie = api.getMovieDetail(movieId = id).toMovieDetail()
