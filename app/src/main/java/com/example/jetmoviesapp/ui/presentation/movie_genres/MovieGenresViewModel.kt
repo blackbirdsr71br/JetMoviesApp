@@ -8,14 +8,14 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.example.jetmoviesapp.data.paging.MoviePagingSource
 import com.example.jetmoviesapp.data.remote.movie.Movie
-import com.example.jetmoviesapp.domain.usecases.useCaseNetwork
+import com.example.jetmoviesapp.domain.usecases.UseCaseNetwork
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 @HiltViewModel
 class MovieGenresViewModel @Inject constructor(
-    private val networkRepository: useCaseNetwork,
+    private val networkRepository: UseCaseNetwork,
 ) : ViewModel() {
 
     fun moviesWithGenres(genreId: Int): Flow<PagingData<Movie>> {

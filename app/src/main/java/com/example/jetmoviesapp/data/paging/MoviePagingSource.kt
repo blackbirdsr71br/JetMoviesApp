@@ -4,7 +4,7 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.jetmoviesapp.data.remote.movie.Movie
 import com.example.jetmoviesapp.domain.repository.NetworkRepository
-import com.example.jetmoviesapp.domain.usecases.useCaseNetwork
+import com.example.jetmoviesapp.domain.usecases.UseCaseNetwork
 import retrofit2.HttpException
 import java.io.IOException
 
@@ -29,7 +29,7 @@ class GetByGenderMovies(private val repository: NetworkRepository) {
 }
 
 class MoviePagingSource(
-    private val useCase: useCaseNetwork,
+    private val useCase: UseCaseNetwork,
     private val source: Source,
 ) : PagingSource<Int, Movie>() {
     override fun getRefreshKey(state: PagingState<Int, Movie>): Int? {

@@ -21,7 +21,7 @@ import dagger.hilt.components.SingletonComponent
 class UseCasesNetworkModule {
 
     @Provides
-    fun usecases(repository: NetworkRepository) = useCaseNetwork(
+    fun usecases(repository: NetworkRepository) = UseCaseNetwork(
         getMoviesHome = getHomeMovies(repository),
         getGenresMovies = GetGenresMovies(repository),
         getNowPlayMovies = GetNowPlayMovies(repository),
@@ -37,24 +37,24 @@ class UseCasesNetworkModule {
 
 @Module
 @InstallIn(SingletonComponent::class)
-class useCasesMovies {
+class UseCasesMovies {
     @Provides
-    fun usecases(repository: MoviesRepository) = useCaseMovie(
-        insertMovie(repository),
-        deleteMovie(repository),
-        getWatchList(repository),
-        getMovieById(repository),
+    fun usecases(repository: MoviesRepository) = UseCaseMovie(
+        InsertMovie(repository),
+        DeleteMovie(repository),
+        GetWatchList(repository),
+        GetMovieById(repository),
     )
 }
 
-data class useCaseMovie(
-    val insert: insertMovie,
-    val deleteMovie: deleteMovie,
-    val getWatchList: getWatchList,
-    val getMoviebyId: getMovieById,
+data class UseCaseMovie(
+    val insert: InsertMovie,
+    val deleteMovie: DeleteMovie,
+    val getWatchList: GetWatchList,
+    val getMoviebyId: GetMovieById,
 )
 
-data class useCaseNetwork(
+data class UseCaseNetwork(
     val getLatestMovies: GetLatestMovies,
     val getMoviesHome: getHomeMovies,
     val getGenresMovies: GetGenresMovies,
@@ -66,19 +66,19 @@ data class useCaseNetwork(
     val getMoviebyId: GetMovieByIdN,
 )
 
-class insertMovie(private val repository: MoviesRepository) {
+class InsertMovie(private val repository: MoviesRepository) {
     suspend operator fun invoke(movie: MovieEntity) = repository.insert(movie)
 }
 
-class deleteMovie(private val repository: MoviesRepository) {
+class DeleteMovie(private val repository: MoviesRepository) {
     suspend operator fun invoke(movie: MovieEntity) = repository.delete(movie)
 }
 
-class getWatchList(private val repository: MoviesRepository) {
+class GetWatchList(private val repository: MoviesRepository) {
     operator fun invoke() = repository.getWatchList()
 }
 
-class getMovieById(private val repository: MoviesRepository) {
+class GetMovieById(private val repository: MoviesRepository) {
     suspend operator fun invoke(id: Int) = repository.getMovieById(id)
 }
 

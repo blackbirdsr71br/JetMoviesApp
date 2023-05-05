@@ -4,7 +4,7 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.jetmoviesapp.data.remote.movie.Movie
 import com.example.jetmoviesapp.domain.repository.NetworkRepository
-import com.example.jetmoviesapp.domain.usecases.useCaseNetwork
+import com.example.jetmoviesapp.domain.usecases.UseCaseNetwork
 import retrofit2.HttpException
 import java.io.IOException
 
@@ -12,7 +12,7 @@ class SearchMovie(private val repository: NetworkRepository) {
     suspend operator fun invoke(page: Int, query: String) = repository.searchMovie(page, query)
 }
 class SearchPagingSource(
-    private val networkRepository: useCaseNetwork,
+    private val networkRepository: UseCaseNetwork,
     private val query: String,
 ) : PagingSource<Int, Movie>() {
     override fun getRefreshKey(state: PagingState<Int, Movie>): Int? {

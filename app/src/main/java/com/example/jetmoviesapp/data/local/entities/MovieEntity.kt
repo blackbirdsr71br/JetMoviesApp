@@ -3,7 +3,6 @@ package com.example.jetmoviesapp.data.local.entities
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.jetmoviesapp.data.remote.genre.Genre
 
 @Entity(tableName = "tbl_movie")
 data class MovieEntity(
@@ -15,4 +14,3 @@ data class MovieEntity(
     val runtime: Int?,
     val overview: String?,
 )
-

@@ -6,8 +6,8 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.jetmoviesapp.common.Resource
-import com.example.jetmoviesapp.domain.usecases.useCaseMovie
-import com.example.jetmoviesapp.domain.usecases.useCaseNetwork
+import com.example.jetmoviesapp.domain.usecases.UseCaseMovie
+import com.example.jetmoviesapp.domain.usecases.UseCaseNetwork
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -16,8 +16,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MovieDetailViewModel @Inject constructor(
-    private val networkRepository: useCaseNetwork,
-    private val moviesRepository: useCaseMovie,
+    private val networkRepository: UseCaseNetwork,
+    private val moviesRepository: UseCaseMovie,
     savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
 

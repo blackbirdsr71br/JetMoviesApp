@@ -5,7 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.jetmoviesapp.data.local.entities.MovieEntity
-import com.example.jetmoviesapp.domain.usecases.useCaseMovie
+import com.example.jetmoviesapp.domain.usecases.UseCaseMovie
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.catch
@@ -16,7 +16,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class WatchListViewModel @Inject constructor(
-    private val moviesRepository: useCaseMovie,
+    private val moviesRepository: UseCaseMovie,
 ) : ViewModel() {
 
     private val _state = mutableStateOf(WatchListState())

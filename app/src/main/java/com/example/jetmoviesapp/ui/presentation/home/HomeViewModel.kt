@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.jetmoviesapp.common.Resource
 import com.example.jetmoviesapp.domain.repository.NetworkRepository
-import com.example.jetmoviesapp.domain.usecases.useCaseNetwork
+import com.example.jetmoviesapp.domain.usecases.UseCaseNetwork
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -19,7 +19,7 @@ class getHomeMovies(private val repository: NetworkRepository) {
 @HiltViewModel
 class HomeViewModel @Inject constructor(
 
-    private val useCases: useCaseNetwork,
+    private val useCases: UseCaseNetwork,
     private val networkRepository: NetworkRepository,
 ) : ViewModel() {
 
