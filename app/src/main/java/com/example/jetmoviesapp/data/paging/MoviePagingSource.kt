@@ -8,25 +8,6 @@ import com.example.jetmoviesapp.domain.usecases.UseCaseNetwork
 import retrofit2.HttpException
 import java.io.IOException
 
-class GetTopRatedMovies(private val repository: NetworkRepository) {
-    suspend operator fun invoke(page: Int) = repository.getTopRatedMovies(page)
-}
-
-class GetNowPlayMovies(private val repository: NetworkRepository) {
-    suspend operator fun invoke(page: Int) = repository.getNowPlayingMovies(page)
-}
-
-class GetPopularMovies(private val repository: NetworkRepository) {
-    suspend operator fun invoke(page: Int) = repository.getPopularMovies(page)
-}
-
-class GetLatestMovies(private val repository: NetworkRepository) {
-    suspend operator fun invoke(page: Int) = repository.getLatestMovies(page)
-}
-
-class GetByGenderMovies(private val repository: NetworkRepository) {
-    suspend operator fun invoke(page: Int, genreId: Int) = repository.getMovieWithGenres(page, genreId)
-}
 
 class MoviePagingSource(
     private val useCase: UseCaseNetwork,

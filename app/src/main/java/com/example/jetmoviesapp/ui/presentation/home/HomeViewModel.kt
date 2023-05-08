@@ -12,9 +12,6 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class getHomeMovies(private val repository: NetworkRepository) {
-    suspend operator fun invoke() = repository.getHomeMovies()
-}
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(

@@ -1,16 +1,9 @@
 package com.example.jetmoviesapp.domain.usecases
 
 import com.example.jetmoviesapp.data.local.entities.MovieEntity
-import com.example.jetmoviesapp.data.paging.GetByGenderMovies
-import com.example.jetmoviesapp.data.paging.GetLatestMovies
-import com.example.jetmoviesapp.data.paging.GetNowPlayMovies
-import com.example.jetmoviesapp.data.paging.GetPopularMovies
-import com.example.jetmoviesapp.data.paging.GetTopRatedMovies
 import com.example.jetmoviesapp.data.paging.SearchMovie
 import com.example.jetmoviesapp.domain.repository.MoviesRepository
 import com.example.jetmoviesapp.domain.repository.NetworkRepository
-import com.example.jetmoviesapp.ui.presentation.genres.GetGenresMovies
-import com.example.jetmoviesapp.ui.presentation.home.getHomeMovies
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -22,7 +15,7 @@ class UseCasesNetworkModule {
 
     @Provides
     fun usecases(repository: NetworkRepository) = UseCaseNetwork(
-        getMoviesHome = getHomeMovies(repository),
+        getMoviesHome = GetHomeMovies(repository),
         getGenresMovies = GetGenresMovies(repository),
         getNowPlayMovies = GetNowPlayMovies(repository),
         getTopRatedMovies = GetTopRatedMovies(repository),
@@ -56,7 +49,7 @@ data class UseCaseMovie(
 
 data class UseCaseNetwork(
     val getLatestMovies: GetLatestMovies,
-    val getMoviesHome: getHomeMovies,
+    val getMoviesHome: GetHomeMovies,
     val getGenresMovies: GetGenresMovies,
     val getTopRatedMovies: GetTopRatedMovies,
     val getNowPlayMovies: GetNowPlayMovies,
