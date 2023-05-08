@@ -33,6 +33,7 @@ import com.example.jetmoviesapp.ui.presentation.top_rated.TopRatedScreen
 import com.example.jetmoviesapp.ui.presentation.watch_list.WatchListScreen
 import kotlinx.coroutines.launch
 
+
 @Composable
 fun NavigateScreens(
     navControllerMain: NavHostController,
