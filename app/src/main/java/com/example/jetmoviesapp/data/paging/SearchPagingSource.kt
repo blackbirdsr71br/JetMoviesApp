@@ -11,6 +11,8 @@ import java.io.IOException
 class SearchMovie(private val repository: NetworkRepository) {
     suspend operator fun invoke(page: Int, query: String) = repository.searchMovie(page, query)
 }
+
+
 class SearchPagingSource(
     private val networkRepository: UseCaseNetwork,
     private val query: String,
