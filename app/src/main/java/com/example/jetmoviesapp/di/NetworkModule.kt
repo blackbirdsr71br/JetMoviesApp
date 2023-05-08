@@ -21,7 +21,7 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideAuthenticationInterceptor(): Interceptor {
+    fun provideApiKeyInterceptor(): Interceptor {
         return Interceptor { chain ->
             val request = chain.request()
             val requestUrl = request.url
@@ -51,15 +51,13 @@ object NetworkModule {
     @Provides
     @Singleton
     fun provideOkHttpClinet(
-        authenticationInterceptor: Interceptor,
+        apiKeyInterceptor: Interceptor,
     ): OkHttpClient {
         val loggingInterceptor = HttpLoggingInterceptor()
-        //val apiKeyInterceptor = Interceptor
         loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
         return OkHttpClient.Builder()
-            .addInterceptor(authenticationInterceptor)
+            .addInterceptor(apiKeyInterceptor)
             .addInterceptor(loggingInterceptor)
             .build()
     }
-
 }
