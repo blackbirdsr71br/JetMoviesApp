@@ -1,23 +1,22 @@
-package com.example.jetmoviesapp.ui.presentation.watch_list
+package com.example.jetmoviesapp.data.local
 
 import android.content.Context
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.example.jetmoviesapp.data.local.WatchListDao
-import com.example.jetmoviesapp.data.local.WatchListDatabase
 import com.example.jetmoviesapp.data.local.entities.MovieEntity
-import com.google.common.truth.Truth.assertThat
+import com.google.common.truth.Truth
 import junit.framework.TestCase
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.runBlocking
 import org.junit.After
+import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
-class WatchListDatabaseTest : TestCase() {
+class WatchGetMoviesListDatabaseTest : TestCase() {
 
     private lateinit var db: WatchListDatabase
     private lateinit var dao: WatchListDao
@@ -52,6 +51,6 @@ class WatchListDatabaseTest : TestCase() {
         val movies = dao.getWatchList()
         val moviesL = movies.toList()
 
-        assertThat(moviesL.contains<Any>(movie)).isTrue()
+        Truth.assertThat(moviesL.contains<Any>(movie)).isTrue()
     }
 }
