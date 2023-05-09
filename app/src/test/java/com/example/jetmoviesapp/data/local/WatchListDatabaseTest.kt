@@ -45,6 +45,7 @@ class WatchListDatabaseTest : TestCase() {
 
         dao.insert(movie)
 
+
         val movies = dao.getMovieByIdFromLocal(10000)
 
         if (movies != null) {
