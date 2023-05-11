@@ -56,10 +56,12 @@ class GetTopRatedMoviesTest {
         coEvery { repository.getTopRatedMovies(page = 1) } returns movieResponse
 
         // When
-        val respuesta = getTopRatedMovies(page = 1)
+        val response = getTopRatedMovies(page = 1)
 
         // Then
 
         coVerify(exactly = 1) { repository.getTopRatedMovies(page = 1) }
+
+        assert(movieResponse == response)
     }
 }
