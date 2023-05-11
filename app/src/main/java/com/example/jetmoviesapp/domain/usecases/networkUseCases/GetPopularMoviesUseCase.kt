@@ -1,4 +1,4 @@
-package com.example.jetmoviesapp.domain.usecases
+package com.example.jetmoviesapp.domain.usecases.networkUseCases
 
 import com.example.jetmoviesapp.domain.repository.NetworkRepository
 

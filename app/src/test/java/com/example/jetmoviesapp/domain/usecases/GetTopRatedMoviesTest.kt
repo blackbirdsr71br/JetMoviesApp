@@ -3,6 +3,7 @@ package com.example.jetmoviesapp.domain.usecases
 import com.example.jetmoviesapp.data.remote.movie.Movie
 import com.example.jetmoviesapp.data.remote.movie.MovieResponse
 import com.example.jetmoviesapp.domain.repository.NetworkRepository
+import com.example.jetmoviesapp.domain.usecases.networkUseCases.GetTopRatedMovies
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.coVerify

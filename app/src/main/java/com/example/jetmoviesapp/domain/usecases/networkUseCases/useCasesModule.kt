@@ -1,9 +1,12 @@
-package com.example.jetmoviesapp.domain.usecases
+package com.example.jetmoviesapp.domain.usecases.networkUseCases
 
-import com.example.jetmoviesapp.data.local.entities.MovieEntity
 import com.example.jetmoviesapp.data.paging.SearchMovie
 import com.example.jetmoviesapp.domain.repository.MoviesRepository
 import com.example.jetmoviesapp.domain.repository.NetworkRepository
+import com.example.jetmoviesapp.domain.usecases.dataBaseUseCases.DeleteMovie
+import com.example.jetmoviesapp.domain.usecases.dataBaseUseCases.GetMovieById
+import com.example.jetmoviesapp.domain.usecases.dataBaseUseCases.GetWatchList
+import com.example.jetmoviesapp.domain.usecases.dataBaseUseCases.InsertMovie
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -59,22 +62,5 @@ data class UseCaseNetwork(
     val getMoviebyId: GetMovieByIdN,
 )
 
-class InsertMovie(private val repository: MoviesRepository) {
-    suspend operator fun invoke(movie: MovieEntity) = repository.insert(movie)
-}
 
-class DeleteMovie(private val repository: MoviesRepository) {
-    suspend operator fun invoke(movie: MovieEntity) = repository.delete(movie)
-}
 
-class GetWatchList(private val repository: MoviesRepository) {
-    operator fun invoke() = repository.getWatchList()
-}
-
-class GetMovieById(private val repository: MoviesRepository) {
-    suspend operator fun invoke(id: Int) = repository.getMovieById(id)
-}
-
-class GetMovieByIdN(private val repository: NetworkRepository) {
-    suspend operator fun invoke(id: Int) = repository.getMovieByIdN(id)
-}
