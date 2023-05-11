@@ -132,7 +132,7 @@ dependencies {
     //JUnit
     testImplementation 'androidx.test.ext:junit:1.1.5'
     //Mockk
-    testImplementation "io.mockk:mockk:1.13.4"
+    testImplementation "io.mockk:mockk:1.13.5"
     //Google Thruth
     testImplementation "com.google.truth:truth:1.1.3"
     //Coroutines
