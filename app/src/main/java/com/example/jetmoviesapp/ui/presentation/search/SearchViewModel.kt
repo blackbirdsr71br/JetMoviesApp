@@ -17,7 +17,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SearchViewModel @Inject constructor(
-    private val networkRepository: UseCaseNetwork,
+    private val useCaseNetwork: UseCaseNetwork,
 ) : ViewModel() {
 
     private val _searchedMovies = MutableStateFlow<PagingData<Movie>>(PagingData.empty())
@@ -28,7 +28,7 @@ class SearchViewModel @Inject constructor(
     fun searchMovie(query: String) {
         viewModelScope.launch {
             Pager(config = PagingConfig(pageSize = 20), pagingSourceFactory = {
-                SearchPagingSource(networkRepository = networkRepository, query = query)
+                SearchPagingSource(networkRepository = useCaseNetwork, query = query)
             }).flow.cachedIn(viewModelScope).collect { pagingData ->
                 _searchedMovies.value = pagingData
             }

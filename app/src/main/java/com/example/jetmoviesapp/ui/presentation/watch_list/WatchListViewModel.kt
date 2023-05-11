@@ -16,7 +16,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class WatchListViewModel @Inject constructor(
-    private val moviesRepository: UseCaseMovie,
+    private val useCaseMovies: UseCaseMovie,
 ) : ViewModel() {
 
     private val _state = mutableStateOf(WatchListState())
@@ -32,14 +32,14 @@ class WatchListViewModel @Inject constructor(
         when (event) {
             is WatchListEvent.DeleteMovie -> {
                 viewModelScope.launch(Dispatchers.IO) {
-                    moviesRepository.deleteMovie.invoke(movie = event.movie)
+                    useCaseMovies.deleteMovie.invoke(movie = event.movie)
                     deletedMovie = event.movie
                 }
             }
 
             is WatchListEvent.RestoreMovie -> {
                 viewModelScope.launch(Dispatchers.IO) {
-                    moviesRepository.insert(deletedMovie ?: return@launch)
+                    useCaseMovies.insert(deletedMovie ?: return@launch)
                     deletedMovie = null
                 }
             }
@@ -51,7 +51,7 @@ class WatchListViewModel @Inject constructor(
             isLoading = true,
         )
 
-        moviesRepository.getWatchList.invoke().onEach {
+        useCaseMovies.getWatchList.invoke().onEach {
             _state.value = _state.value.copy(
                 list = it.toMutableList(),
                 isLoading = false,

@@ -16,8 +16,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MovieDetailViewModel @Inject constructor(
-    private val networkRepository: UseCaseNetwork,
-    private val moviesRepository: UseCaseMovie,
+    private val useCaseNetwork: UseCaseNetwork,
+    private val useCaseMovies: UseCaseMovie,
     savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
 
@@ -37,7 +37,7 @@ class MovieDetailViewModel @Inject constructor(
         when (event) {
             is MoviesEvent.BookmarkMovie -> {
                 viewModelScope.launch(Dispatchers.IO) {
-                    moviesRepository.insert(event.movie)
+                    useCaseMovies.insert(event.movie)
                     withContext(Dispatchers.Main) {
                         _isBookmarked.value = true
                     }
@@ -46,7 +46,7 @@ class MovieDetailViewModel @Inject constructor(
 
             is MoviesEvent.DeleteMovie -> {
                 viewModelScope.launch(Dispatchers.IO) {
-                    moviesRepository.deleteMovie.invoke(event.movie)
+                    useCaseMovies.deleteMovie.invoke(event.movie)
                     withContext(Dispatchers.Main) {
                         _isBookmarked.value = false
                     }
@@ -55,7 +55,7 @@ class MovieDetailViewModel @Inject constructor(
 
             is MoviesEvent.IsBookmarked -> {
                 viewModelScope.launch(Dispatchers.IO) {
-                    val movie = moviesRepository.getMoviebyId.invoke(id = event.id)
+                    val movie = useCaseMovies.getMoviebyId.invoke(id = event.id)
                     withContext(Dispatchers.Main) {
                         _isBookmarked.value = movie != null
                     }
@@ -66,7 +66,7 @@ class MovieDetailViewModel @Inject constructor(
 
     private fun getMovieById(id: Int) {
         viewModelScope.launch {
-            networkRepository.getMoviebyId.invoke(id = id)
+            useCaseNetwork.getMoviebyId.invoke(id = id)
                 .collect { result ->
                     when (result) {
                         is Resource.Success -> {

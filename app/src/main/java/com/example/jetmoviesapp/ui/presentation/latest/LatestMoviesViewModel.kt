@@ -15,14 +15,14 @@ import javax.inject.Inject
 
 @HiltViewModel
 class LatestMoviesViewModel @Inject constructor(
-    private val networkRepository: UseCaseNetwork,
+    private val useCaseNetwork: UseCaseNetwork,
 ) : ViewModel() {
 
     val latest: Flow<PagingData<Movie>> = Pager(
         config = PagingConfig(pageSize = 20),
         pagingSourceFactory = {
             MoviePagingSource(
-                networkRepository,
+                useCaseNetwork,
                 MoviePagingSource.Source.Latest,
             )
         },

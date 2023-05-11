@@ -12,13 +12,13 @@ import javax.inject.Inject
 
 @HiltViewModel
 class PopularViewModel @Inject constructor(
-    private val networkRepository: UseCaseNetwork,
+    private val useCaseNetwork: UseCaseNetwork,
 ) : ViewModel() {
     val popularMovies = Pager(
         config = PagingConfig(pageSize = 20),
     ) {
         MoviePagingSource(
-             networkRepository,
+            useCaseNetwork,
             source = MoviePagingSource.Source.Popular,
         )
     }.flow.cachedIn(viewModelScope)
