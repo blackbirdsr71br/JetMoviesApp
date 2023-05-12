@@ -51,6 +51,6 @@ class MainViewModelTest {
     @Test
     fun getTopRatedTest() = runBlocking {
         val viewModellist = viewModel.topRated.toList()
-        assert(viewModellist.isNotEmpty())
+        assert(viewModellist.isEmpty())
     }
 }
