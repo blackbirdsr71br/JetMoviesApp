@@ -28,7 +28,7 @@ fun Header(
     Row(
         modifier = Modifier.fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceBetween,
+        horizontalArrangement = Arrangement.SpaceBetween
     ) {
         Text(
             text = header,
@@ -45,12 +45,14 @@ fun Header(
                     onClickSeeMore(Unit)
                 },
             border = BorderStroke(
-                width = 1.dp, color = Color.LightGray
+                width = 1.dp,
+                color = Color.LightGray
             ),
             shape = RoundedCornerShape(32.dp)
         ) {
             Text(
-                text = "See More", color = Color.LightGray,
+                text = "See More",
+                color = Color.LightGray,
                 modifier = Modifier.padding(4.dp),
                 fontSize = 12.sp
             )
@@ -60,8 +62,7 @@ fun Header(
 
 @Preview(showBackground = true)
 @Composable
-fun HeaderPreview()
-{
+fun HeaderPreview() {
     Header(
         header = "Hola",
         onClickSeeMore = {}

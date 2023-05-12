@@ -17,7 +17,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.jetmoviesapp.common.Constants
-import com.example.jetmoviesapp.data.remote.movie_detail.Cast
+import com.example.jetmoviesapp.data.remote.moviedetail.Cast
 import com.example.jetmoviesapp.ui.theme.categoryColor
 import com.skydoves.landscapist.CircularReveal
 import com.skydoves.landscapist.coil.CoilImage
@@ -25,7 +25,7 @@ import com.skydoves.landscapist.coil.CoilImage
 @Composable
 fun MovieCast(
     cast: List<Cast>,
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier
 ) {
     Column(modifier = modifier) {
         Text(
@@ -34,12 +34,12 @@ fun MovieCast(
             modifier = Modifier
                 .padding(start = 16.dp, top = 12.dp),
             fontWeight = FontWeight.Bold,
-            style = MaterialTheme.typography.h6,
+            style = MaterialTheme.typography.h6
         )
         LazyRow(modifier = modifier.padding(8.dp)) {
             items(cast) { castItem ->
                 Column(
-                    modifier = modifier.height(150.dp).width(120.dp).padding(4.dp),
+                    modifier = modifier.height(150.dp).width(120.dp).padding(4.dp)
                 ) {
                     CoilImage(
                         imageModel = Constants.IMAGE_URL + castItem.profilePath,
@@ -48,13 +48,13 @@ fun MovieCast(
                         modifier = modifier
                             .size(85.dp)
                             .clip(shape = CircleShape),
-                        alignment = Alignment.Center,
+                        alignment = Alignment.Center
                     )
                     Text(text = castItem.name, overflow = TextOverflow.Ellipsis)
                     Text(
                         text = castItem.character,
                         color = Color.LightGray,
-                        fontSize = 12.sp,
+                        fontSize = 12.sp
                     )
                 }
             }

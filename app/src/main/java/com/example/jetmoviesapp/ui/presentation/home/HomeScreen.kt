@@ -25,7 +25,7 @@ import com.example.jetmoviesapp.ui.presentation.navigation.Screen
 fun HomeScreen(
     viewModel: HomeViewModel = hiltViewModel(),
     genresViewModel: GenresViewModel = hiltViewModel(),
-    navController: NavController,
+    navController: NavController
 ) {
     val genres = genresViewModel.stateGenres.value
     val state = viewModel.state.value
@@ -34,7 +34,7 @@ fun HomeScreen(
         modifier = Modifier
             .background(Color.White),
         verticalArrangement = Arrangement.Top,
-        horizontalAlignment = Alignment.Start,
+        horizontalAlignment = Alignment.Start
     ) {
         LazyColumn(modifier = Modifier.fillMaxHeight()) {
             homeItems.forEach { homeType ->
@@ -65,7 +65,7 @@ fun HomeScreen(
                         items(items = homeType.popular) { popular ->
                             PopularHomeItem(
                                 popular = popular,
-                                genres = genres,
+                                genres = genres
                             ) { navigatedItem ->
                                 navController.navigate(route = Screen.MovieDetail.route + "/${navigatedItem.id}")
                             }
@@ -79,7 +79,7 @@ fun HomeScreen(
         }
         if (state.isLoading) {
             Column(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth()
             ) {
                 CircularProgressIndicator()
             }

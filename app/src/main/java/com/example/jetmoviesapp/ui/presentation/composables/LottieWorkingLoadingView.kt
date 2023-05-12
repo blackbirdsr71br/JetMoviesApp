@@ -13,6 +13,6 @@ fun LottieWorkingLoadingView() {
         file = R.raw.working,
         modifier = Modifier
             .fillMaxWidth()
-            .height(250.dp),
+            .height(250.dp)
     )
 }

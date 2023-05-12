@@ -1,4 +1,4 @@
-package com.example.jetmoviesapp.ui.presentation.watch_list
+package com.example.jetmoviesapp.ui.presentation.watchlist
 
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
@@ -16,7 +16,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class WatchListViewModel @Inject constructor(
-    private val useCaseMovies: UseCaseMovie,
+    private val useCaseMovies: UseCaseMovie
 ) : ViewModel() {
 
     private val _state = mutableStateOf(WatchListState())
@@ -48,14 +48,14 @@ class WatchListViewModel @Inject constructor(
 
     private fun getWatchList() {
         _state.value = _state.value.copy(
-            isLoading = true,
+            isLoading = true
         )
 
         useCaseMovies.getWatchList.invoke().onEach {
             _state.value = _state.value.copy(
                 list = it.toMutableList(),
                 isLoading = false,
-                isEmpty = it.isEmpty(),
+                isEmpty = it.isEmpty()
             )
         }
             .catch { e ->
@@ -63,7 +63,7 @@ class WatchListViewModel @Inject constructor(
                     list = arrayListOf(),
                     isLoading = false,
                     isEmpty = false,
-                    error = e.message ?: e.localizedMessage,
+                    error = e.message ?: e.localizedMessage
                 )
             }
             .launchIn(viewModelScope)

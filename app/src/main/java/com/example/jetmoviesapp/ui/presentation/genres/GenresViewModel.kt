@@ -12,7 +12,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class GenresViewModel @Inject constructor(
-    private val useCase: UseCaseNetwork,
+    private val useCase: UseCaseNetwork
 ) : ViewModel() {
 
     private val _stateGenres = mutableStateOf<List<Genre>>(emptyList())

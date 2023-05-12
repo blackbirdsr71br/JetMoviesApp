@@ -26,11 +26,11 @@ import com.example.jetmoviesapp.ui.presentation.latest.LatestScreen
 import com.example.jetmoviesapp.ui.presentation.loginauth.signin.GoogleAuthUiClient
 import com.example.jetmoviesapp.ui.presentation.loginauth.signin.SignInScreen
 import com.example.jetmoviesapp.ui.presentation.loginauth.signin.SignInViewmodel
-import com.example.jetmoviesapp.ui.presentation.movie_genres.MovieWithGenres
-import com.example.jetmoviesapp.ui.presentation.now_play.NowPlayScreen
+import com.example.jetmoviesapp.ui.presentation.moviegenres.MovieWithGenres
+import com.example.jetmoviesapp.ui.presentation.nowplay.NowPlayScreen
 import com.example.jetmoviesapp.ui.presentation.popular.PopularMoviesScreen
-import com.example.jetmoviesapp.ui.presentation.top_rated.TopRatedScreen
-import com.example.jetmoviesapp.ui.presentation.watch_list.WatchListScreen
+import com.example.jetmoviesapp.ui.presentation.toprated.TopRatedScreen
+import com.example.jetmoviesapp.ui.presentation.watchlist.WatchListScreen
 import kotlinx.coroutines.launch
 
 @Composable
@@ -38,14 +38,14 @@ fun NavigateScreens(
     navControllerMain: NavHostController,
     googleAuthUiClient: GoogleAuthUiClient,
     context: Context,
-    lifecycle: LifecycleCoroutineScope,
+    lifecycle: LifecycleCoroutineScope
 ) {
     NavHost(
         navController = navControllerMain,
-        startDestination = Screen.SignIn.route,
+        startDestination = Screen.SignIn.route
     ) {
         composable(
-            Screen.SignIn.route,
+            Screen.SignIn.route
         ) {
             val viewModel = viewModel<SignInViewmodel>()
             val state by viewModel.state.collectAsStateWithLifecycle()
@@ -62,12 +62,12 @@ fun NavigateScreens(
                     if (result.resultCode == ComponentActivity.RESULT_OK) {
                         lifecycle.launch {
                             val signInResult = googleAuthUiClient.signInWithIntent(
-                                intent = result.data ?: return@launch,
+                                intent = result.data ?: return@launch
                             )
                             viewModel.onSignInResult(signInResult)
                         }
                     }
-                },
+                }
             )
 
             LaunchedEffect(key1 = state.isSignInSuccesful) {
@@ -75,7 +75,7 @@ fun NavigateScreens(
                     Toast.makeText(
                         context,
                         "Sign In Succesful",
-                        Toast.LENGTH_LONG,
+                        Toast.LENGTH_LONG
                     ).show()
                     navControllerMain.navigate(Screen.Home.route)
                     viewModel.resetState()
@@ -88,79 +88,79 @@ fun NavigateScreens(
                         val signInIntentSender = googleAuthUiClient.signIn()
                         launcher.launch(
                             IntentSenderRequest.Builder(
-                                signInIntentSender ?: return@launch,
-                            ).build(),
+                                signInIntentSender ?: return@launch
+                            ).build()
                         )
                     }
-                },
+                }
             )
         }
         composable(
-            route = Screen.Home.route,
+            route = Screen.Home.route
         ) {
             // Main Screen
             val showBottomBar = rememberSaveable { mutableStateOf(true) }
             MainScreen(
                 navController = navControllerMain,
                 showBottomBar = showBottomBar,
-                googleAuthUiClient = googleAuthUiClient,
+                googleAuthUiClient = googleAuthUiClient
             )
         }
         composable(
-            Screen.TopRated.route,
+            Screen.TopRated.route
         ) {
             TopRatedScreen(navController = navControllerMain)
         }
         composable(
-            Screen.Popular.route,
+            Screen.Popular.route
         ) {
             PopularMoviesScreen(navController = navControllerMain)
         }
         composable(
-            Screen.MovieDetail.route + "/{movie_id}",
+            Screen.MovieDetail.route + "/{movie_id}"
         ) {
             MovieDetailScreen(navController = navControllerMain)
         }
         composable(
-            Screen.Genres.route,
+            Screen.Genres.route
         ) {
             GenresScreen(navController = navControllerMain)
         }
         composable(
-            Screen.Room.route,
+            Screen.Room.route
         ) {
             // SearchScreen(navController = navController)
             WatchListScreen(
-                navController = navControllerMain,
+                navController = navControllerMain
             )
         }
         composable(
-            Screen.PlayNow.route,
+            Screen.PlayNow.route
         ) {
             NowPlayScreen(
-                navController = navControllerMain,
+                navController = navControllerMain
             )
         }
         composable(
-            Screen.Latest.route,
+            Screen.Latest.route
         ) {
             LatestScreen(
-                navController = navControllerMain,
+                navController = navControllerMain
             )
         }
         composable(
             route = Screen.GenresDetail.route + "/{genreId}/{genreName}",
             arguments = listOf(
                 navArgument("genreId") { type = NavType.IntType },
-                navArgument("genreName") { type = NavType.StringType },
-            ),
+                navArgument("genreName") { type = NavType.StringType }
+            )
         ) { backStackEntry ->
             val genreId = backStackEntry.arguments?.getInt("genreId")
             val genreName = backStackEntry.arguments?.getString("genreName")
             MovieWithGenres(
                 navController = navControllerMain,
                 genreId = genreId,
-                genreName = genreName,
+                genreName = genreName
             )
         }
     }

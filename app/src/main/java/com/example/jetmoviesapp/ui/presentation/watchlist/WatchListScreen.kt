@@ -1,4 +1,4 @@
-package com.example.jetmoviesapp.ui.presentation.watch_list
+package com.example.jetmoviesapp.ui.presentation.watchlist
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -15,13 +15,13 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.jetmoviesapp.R
 import com.example.jetmoviesapp.ui.presentation.composables.JetMoviesTopBar
-import com.example.jetmoviesapp.ui.presentation.watch_list.components.WatchListItem
+import com.example.jetmoviesapp.ui.presentation.watchlist.components.WatchListItem
 import kotlinx.coroutines.launch
 
 @Composable
 fun WatchListScreen(
     viewModel: WatchListViewModel = hiltViewModel(),
-    navController: NavController,
+    navController: NavController
 ) {
     val state = viewModel.state.value
     val scaffoldState = rememberScaffoldState()
@@ -35,15 +35,15 @@ fun WatchListScreen(
             JetMoviesTopBar(
                 title = "Watching List",
                 backGroundColor = Color.Transparent,
-                navController = navController,
+                navController = navController
             )
         },
-        scaffoldState = scaffoldState,
+        scaffoldState = scaffoldState
     ) {
         Column(
             modifier = Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Top,
+            verticalArrangement = Arrangement.Top
         ) {
             LazyColumn(modifier = Modifier.padding(it)) {
                 items(items = state.list) { item ->
@@ -52,7 +52,7 @@ fun WatchListScreen(
                         scope.launch {
                             val result = scaffoldState.snackbarHostState.showSnackbar(
                                 message = "Movie deleted",
-                                actionLabel = "Undo",
+                                actionLabel = "Undo"
                             )
                             if (result == SnackbarResult.ActionPerformed) {
                                 viewModel.onEvent(WatchListEvent.RestoreMovie)
@@ -64,11 +64,11 @@ fun WatchListScreen(
             if (state.isEmpty) {
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Center,
+                    verticalArrangement = Arrangement.Center
                 ) {
                     Icon(
                         painter = painterResource(id = R.drawable.ic_no_data),
-                        contentDescription = "",
+                        contentDescription = ""
                     )
                     Spacer(modifier = Modifier.height(8.dp))
                     Text(text = "There is no movie in your Watch List")

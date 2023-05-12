@@ -27,5 +27,5 @@ val RainbowColors = listOf(
     RainbowGreen,
     RainbowBlue,
     RainbowIndigo,
-    RainbowViolet,
+    RainbowViolet
 )

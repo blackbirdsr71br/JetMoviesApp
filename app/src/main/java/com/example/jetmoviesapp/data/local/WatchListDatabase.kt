@@ -10,9 +10,9 @@ import com.example.jetmoviesapp.data.local.entities.MoviesGenres
     entities = [
         MovieEntity::class,
         GenresEntity::class,
-        MoviesGenres::class,
+        MoviesGenres::class
     ],
-    version = 5,
+    version = 5
 )
 abstract class WatchListDatabase : RoomDatabase() {
 

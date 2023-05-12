@@ -14,7 +14,7 @@ class SignInViewmodel : ViewModel() {
         _state.update {
             it.copy(
                 isSignInSuccesful = result.data != null,
-                signInError = result.errorMessage,
+                signInError = result.errorMessage
             )
         }
     }

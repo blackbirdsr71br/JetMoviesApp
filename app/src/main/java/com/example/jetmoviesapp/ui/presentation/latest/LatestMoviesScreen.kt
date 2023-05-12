@@ -38,7 +38,7 @@ import com.skydoves.landscapist.coil.CoilImage
 @Composable
 fun LatestScreen(
     viewModel: LatestMoviesViewModel = hiltViewModel(),
-    navController: NavController,
+    navController: NavController
 ) {
     val latestlist = viewModel.latest.collectAsLazyPagingItems()
     Scaffold(
@@ -46,14 +46,14 @@ fun LatestScreen(
             JetMoviesTopBar(
                 title = "Lates movies",
                 backGroundColor = Color.Transparent,
-                navController = navController,
+                navController = navController
             )
         },
-        modifier = Modifier.statusBarsPadding(),
+        modifier = Modifier.statusBarsPadding()
     ) {
         LazyColumn(
             modifier = Modifier
-                .padding(paddingValues = it),
+                .padding(paddingValues = it)
         ) {
             items(latestlist) { item ->
                 item?.let { topRated ->
@@ -81,7 +81,7 @@ fun LatestScreen(
                                 color = Color.Red,
                                 modifier = Modifier
                                     .fillMaxWidth()
-                                    .statusBarsPadding(),
+                                    .statusBarsPadding()
                             )
                         }
                     }
@@ -105,12 +105,12 @@ fun LatesMovietItem(topRated: Movie, onClick: (Movie) -> Unit) {
             .padding(12.dp)
             .clickable {
                 onClick(topRated)
-            },
+            }
     ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(8.dp),
+                .padding(8.dp)
         ) {
             CoilImage(
                 imageModel = Constants.IMAGE_URL + topRated.posterPath,
@@ -120,20 +120,20 @@ fun LatesMovietItem(topRated: Movie, onClick: (Movie) -> Unit) {
                     highlightColor = Color.LightGray.copy(alpha = 0.6f),
                     durationMillis = 350,
                     dropOff = 0.65f,
-                    tilt = 20f,
+                    tilt = 20f
                 ),
                 circularReveal = CircularReveal(duration = 350),
                 failure = { Text(text = "Image request failed!") },
                 modifier = Modifier
                     .height(200.dp)
                     .width(120.dp)
-                    .shadow(elevation = 8.dp, shape = RoundedCornerShape(12.dp)),
+                    .shadow(elevation = 8.dp, shape = RoundedCornerShape(12.dp))
             )
             Column(
                 modifier = Modifier
                     .padding(start = 12.dp)
                     .height(200.dp),
-                verticalArrangement = Arrangement.SpaceBetween,
+                verticalArrangement = Arrangement.SpaceBetween
             ) {
                 val annotatedString = buildAnnotatedString {
                     withStyle(style = SpanStyle(color = Color.Black)) {
@@ -143,8 +143,8 @@ fun LatesMovietItem(topRated: Movie, onClick: (Movie) -> Unit) {
                         style = SpanStyle(
                             color = Color.Gray,
                             fontSize = 16.sp,
-                            fontWeight = FontWeight.Light,
-                        ),
+                            fontWeight = FontWeight.Light
+                        )
                     ) {
                         append(" (${topRated.title}) ")
                     }
@@ -155,7 +155,7 @@ fun LatesMovietItem(topRated: Movie, onClick: (Movie) -> Unit) {
                         imageVector = Icons.Default.Star,
                         contentDescription = "",
                         modifier = Modifier.size(24.dp),
-                        tint = ratingStarColor,
+                        tint = ratingStarColor
                     )
                     Text(text = "${topRated.voteAverage}/10", color = Color.LightGray)
                 }
@@ -163,7 +163,7 @@ fun LatesMovietItem(topRated: Movie, onClick: (Movie) -> Unit) {
                     text = topRated.overview,
                     maxLines = 5,
                     overflow = TextOverflow.Ellipsis,
-                    style = MaterialTheme.typography.subtitle2,
+                    style = MaterialTheme.typography.subtitle2
                 )
             }
         }

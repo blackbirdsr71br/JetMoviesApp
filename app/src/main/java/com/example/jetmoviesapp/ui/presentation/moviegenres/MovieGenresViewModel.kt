@@ -1,4 +1,4 @@
-package com.example.jetmoviesapp.ui.presentation.movie_genres
+package com.example.jetmoviesapp.ui.presentation.moviegenres
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -15,7 +15,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MovieGenresViewModel @Inject constructor(
-    private val useCaseNetwork: UseCaseNetwork,
+    private val useCaseNetwork: UseCaseNetwork
 ) : ViewModel() {
 
     fun moviesWithGenres(genreId: Int): Flow<PagingData<Movie>> {
@@ -24,9 +24,9 @@ class MovieGenresViewModel @Inject constructor(
             pagingSourceFactory = {
                 MoviePagingSource(
                     useCaseNetwork,
-                    MoviePagingSource.Source.MovieWithGenres(genreId = genreId),
+                    MoviePagingSource.Source.MovieWithGenres(genreId = genreId)
                 )
-            },
+            }
         ).flow.cachedIn(viewModelScope)
     }
 }

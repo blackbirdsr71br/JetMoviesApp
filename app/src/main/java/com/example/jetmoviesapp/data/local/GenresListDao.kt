@@ -19,5 +19,4 @@ interface GenresListDao {
 
     @Query("SELECT * FROM tbl_genres")
     fun getGenres(): Flow<List<GenresEntity>>
-
 }

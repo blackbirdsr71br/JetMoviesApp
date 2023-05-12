@@ -43,7 +43,7 @@ class WatchGetMoviesListDatabaseTest : TestCase() {
             posterPath = "Pagina Web",
             voteAverage = 85.0,
             runtime = 1,
-            overview = "Pelicula Dedicada a los Unit test",
+            overview = "Pelicula Dedicada a los Unit test"
         )
 
         dao.insert(movie)

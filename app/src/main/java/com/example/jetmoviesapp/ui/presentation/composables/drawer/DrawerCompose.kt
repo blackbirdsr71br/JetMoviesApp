@@ -35,20 +35,20 @@ fun DrawerCompose(
     scope: CoroutineScope,
     scaffoldState: ScaffoldState,
     navController: NavHostController,
-    onSignOut: () -> Unit,
+    onSignOut: () -> Unit
 ) {
     Column(
         Modifier
             .testTag(stringResource(R.string.drawer_test_tag))
             .fillMaxSize()
-            .background(Color.White),
+            .background(Color.White)
     ) {
         Box(contentAlignment = Alignment.Center) {
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(Purple500),
+                    .background(Purple500)
             ) {
                 Spacer(modifier = Modifier.height(30.dp))
                 if (userData?.profilePicture != null) {
@@ -58,7 +58,7 @@ fun DrawerCompose(
                         modifier = Modifier
                             .size(150.dp)
                             .clip(CircleShape),
-                        contentScale = ContentScale.Crop,
+                        contentScale = ContentScale.Crop
                     )
                     Spacer(modifier = Modifier.height(16.dp))
                 }
@@ -67,7 +67,7 @@ fun DrawerCompose(
                         text = userData.userName,
                         textAlign = TextAlign.Center,
                         fontSize = 25.sp,
-                        fontWeight = FontWeight.Bold,
+                        fontWeight = FontWeight.Bold
                     )
                     Spacer(modifier = Modifier.height(16.dp))
                 }
@@ -78,7 +78,7 @@ fun DrawerCompose(
         Column(Modifier.padding(spacing.medium20)) {
             DrawerItem(
                 R.drawable.ic_home,
-                R.string.dashboard,
+                R.string.dashboard
             ) {
                 scope.launch {
                     scaffoldState.drawerState.close()
@@ -87,7 +87,7 @@ fun DrawerCompose(
 
             DrawerItem(
                 R.drawable.ic_logout,
-                R.string.logout,
+                R.string.logout
             ) {
                 onSignOut()
                 navController.popBackStack(Screen.Home.route, true)
@@ -103,19 +103,19 @@ fun DrawerItem(icon: Int, title: Int, onClick: () -> Unit) {
             .fillMaxWidth()
             .height(spacing.extraLarge60)
             .clickable { onClick() },
-        verticalAlignment = Alignment.CenterVertically,
+        verticalAlignment = Alignment.CenterVertically
     ) {
         Image(
             modifier = Modifier
                 .width(spacing.medium25)
                 .height(spacing.medium25),
             painter = painterResource(icon),
-            contentDescription = "",
+            contentDescription = ""
         )
         Spacer(modifier = Modifier.width(spacing.extraLarge60))
         Text(
             text = stringResource(title),
-            style = MaterialTheme.typography.h6,
+            style = MaterialTheme.typography.h6
         )
     }
 

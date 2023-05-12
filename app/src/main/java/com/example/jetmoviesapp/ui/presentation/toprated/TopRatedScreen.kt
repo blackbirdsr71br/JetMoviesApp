@@ -1,4 +1,4 @@
-package com.example.jetmoviesapp.ui.presentation.now_play
+package com.example.jetmoviesapp.ui.presentation.toprated
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -8,6 +8,7 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
@@ -36,47 +37,59 @@ import com.skydoves.landscapist.ShimmerParams
 import com.skydoves.landscapist.coil.CoilImage
 
 @Composable
-fun NowPlayScreen(
-    viewModel: NowPlayViewModel = hiltViewModel(),
-    navController: NavController,
+fun TopRatedScreen(
+    viewModel: TopRatedViewModel = hiltViewModel(),
+    navController: NavController
 ) {
-    val nowPlayList = viewModel.nowPlay.collectAsLazyPagingItems()
+    val topRatedList = viewModel.topRated.collectAsLazyPagingItems()
+
     Scaffold(
         topBar = {
             JetMoviesTopBar(
-                title = "Now Playing",
+                title = "Top Rated",
                 backGroundColor = Color.Transparent,
-                navController = navController,
+                navController = navController
             )
         },
-        modifier = Modifier.statusBarsPadding(),
+        modifier = Modifier.statusBarsPadding()
     ) {
         LazyColumn(
             modifier = Modifier
-                .padding(paddingValues = it),
+                .padding(paddingValues = it)
         ) {
-            items(nowPlayList) { item ->
+            items(topRatedList) { item ->
                 item?.let { topRated ->
-                    NowPlayItem(topRated = topRated) { navigatedItem ->
+                    TopRatedItem(topRated = topRated) { navigatedItem ->
                         navController.navigate(route = Screen.MovieDetail.route + "/${navigatedItem.id}")
                     }
                 }
             }
-            nowPlayList.apply {
+            topRatedList.apply {
                 when {
                     loadState.refresh is LoadState.Loading -> {
                         // when first time response page is loading
-                        item { CircularProgressIndicator(color = Color.DarkGray) }
+                        item {
+                            Column(
+                                modifier = Modifier.fillMaxWidth(),
+                                horizontalAlignment = Alignment.CenterHorizontally
+                            ) {
+                                CircularProgressIndicator(color = Color.DarkGray)
+                                Text(text = "Cargado información de Peliculas...")
+                            }
+                        }
                     }
 
                     loadState.append is LoadState.Loading -> {
                         item {
-                            LinearProgressIndicator(
-                                color = Color.Red,
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .statusBarsPadding(),
-                            )
+                            Column() {
+                                LinearProgressIndicator(
+                                    color = Color.Red,
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .statusBarsPadding()
+                                )
+                                Text(text = "Cargado información de Peliculas...")
+                            }
                         }
                     }
 
@@ -90,7 +103,7 @@ fun NowPlayScreen(
 }
 
 @Composable
-fun NowPlayItem(topRated: Movie, onClick: (Movie) -> Unit) {
+fun TopRatedItem(topRated: Movie, onClick: (Movie) -> Unit) {
     Card(
         shape = RoundedCornerShape(12.dp),
         elevation = 4.dp,
@@ -99,12 +112,12 @@ fun NowPlayItem(topRated: Movie, onClick: (Movie) -> Unit) {
             .padding(12.dp)
             .clickable {
                 onClick(topRated)
-            },
+            }
     ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(8.dp),
+                .padding(8.dp)
         ) {
             CoilImage(
                 imageModel = Constants.IMAGE_URL + topRated.posterPath,
@@ -114,20 +127,20 @@ fun NowPlayItem(topRated: Movie, onClick: (Movie) -> Unit) {
                     highlightColor = Color.LightGray.copy(alpha = 0.6f),
                     durationMillis = 350,
                     dropOff = 0.65f,
-                    tilt = 20f,
+                    tilt = 20f
                 ),
                 circularReveal = CircularReveal(duration = 350),
                 failure = { Text(text = "Image request failed!") },
                 modifier = Modifier
                     .height(200.dp)
                     .width(120.dp)
-                    .shadow(elevation = 8.dp, shape = RoundedCornerShape(12.dp)),
+                    .shadow(elevation = 8.dp, shape = RoundedCornerShape(12.dp))
             )
             Column(
                 modifier = Modifier
                     .padding(start = 12.dp)
                     .height(200.dp),
-                verticalArrangement = Arrangement.SpaceBetween,
+                verticalArrangement = Arrangement.SpaceBetween
             ) {
                 val annotatedString = buildAnnotatedString {
                     withStyle(style = SpanStyle(color = Color.Black)) {
@@ -137,8 +150,8 @@ fun NowPlayItem(topRated: Movie, onClick: (Movie) -> Unit) {
                         style = SpanStyle(
                             color = Color.Gray,
                             fontSize = 16.sp,
-                            fontWeight = FontWeight.Light,
-                        ),
+                            fontWeight = FontWeight.Light
+                        )
                     ) {
                         append(" (${topRated.title}) ")
                     }
@@ -149,7 +162,7 @@ fun NowPlayItem(topRated: Movie, onClick: (Movie) -> Unit) {
                         imageVector = Icons.Default.Star,
                         contentDescription = "",
                         modifier = Modifier.size(24.dp),
-                        tint = ratingStarColor,
+                        tint = ratingStarColor
                     )
                     Text(text = "${topRated.voteAverage}/10", color = Color.LightGray)
                 }
@@ -157,7 +170,7 @@ fun NowPlayItem(topRated: Movie, onClick: (Movie) -> Unit) {
                     text = topRated.overview,
                     maxLines = 5,
                     overflow = TextOverflow.Ellipsis,
-                    style = MaterialTheme.typography.subtitle2,
+                    style = MaterialTheme.typography.subtitle2
                 )
             }
         }

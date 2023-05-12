@@ -33,7 +33,7 @@ import com.example.jetmoviesapp.R
 @Composable
 fun SignInScreen(
     state: SignInState,
-    onSignInClick: () -> Unit,
+    onSignInClick: () -> Unit
 ) {
     val context = LocalContext.current
     var userEmail by remember { mutableStateOf("") }
@@ -43,7 +43,7 @@ fun SignInScreen(
             Toast.makeText(
                 context,
                 error,
-                Toast.LENGTH_LONG,
+                Toast.LENGTH_LONG
             ).show()
         }
     }
@@ -51,25 +51,25 @@ fun SignInScreen(
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp),
-        contentAlignment = Alignment.Center,
+        contentAlignment = Alignment.Center
     ) {
         Column(
             modifier = Modifier
                 .padding(start = 8.dp, end = 8.dp)
                 .fillMaxSize(),
             verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally,
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
             LottieWorkingLoadingView()
             Text(
                 text = "Welcome Back",
                 style = MaterialTheme.typography.headlineMedium.copy(fontWeight = FontWeight.ExtraBold),
-                modifier = Modifier.padding(top = 8.dp),
+                modifier = Modifier.padding(top = 8.dp)
             )
             Text(
                 text = "We have missed you, Let's start by Sign In!",
                 style = MaterialTheme.typography.labelMedium,
-                modifier = Modifier.padding(bottom = 12.dp),
+                modifier = Modifier.padding(bottom = 12.dp)
             )
 
             Spacer(modifier = Modifier.height(8.dp))
@@ -82,7 +82,7 @@ fun SignInScreen(
                 },
                 onValueChange = {
                     userEmail = it
-                },
+                }
             )
 
             OutlinedTextField(
@@ -94,7 +94,7 @@ fun SignInScreen(
                 },
                 onValueChange = {
                     userPassword = it
-                },
+                }
             )
             Spacer(modifier = Modifier.height(8.dp))
 
@@ -108,7 +108,7 @@ fun SignInScreen(
                 },
                 onClick = {
                     onSignInClick.invoke()
-                },
+                }
             )
             Spacer(modifier = Modifier.height(8.dp))
 
@@ -117,7 +117,7 @@ fun SignInScreen(
                 buttonText = "Sign In with Google",
                 onClick = onSignInClick,
                 backgroundColor = Color.White,
-                fontColor = Color.Black,
+                fontColor = Color.Black
             )
         }
     }

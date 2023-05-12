@@ -22,7 +22,7 @@ import com.example.jetmoviesapp.ui.presentation.search.components.SearchedList
 @Composable
 fun SearchScreen(
     viewModel: SearchViewModel = hiltViewModel(),
-    navController: NavController,
+    navController: NavController
 ) {
     val movies = viewModel.searchedMovies.collectAsLazyPagingItems()
     val text = viewModel.searchQuery
@@ -39,14 +39,14 @@ fun SearchScreen(
                     keyboardController?.hide()
                     manager.clearFocus()
                 })
-            },
+            }
     ) {
         Column {
             SearchBar(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(16.dp),
-                textState = text,
+                textState = text
             ) {
                 viewModel.searchMovie(it)
             }

@@ -8,9 +8,8 @@ import androidx.room.Relation
 @Entity(primaryKeys = ["playlistId", "songId"])
 data class GenresMovies(
     val idGenre: Int,
-    val idMovie: Int,
+    val idMovie: Int
 )
-
 
 data class BookWiMoviesGenresRelation(
     @Embedded
@@ -23,9 +22,8 @@ data class BookWiMoviesGenresRelation(
         associateBy = Junction(
             value = GenresEntity::class,
             parentColumn = "movieId",
-            entityColumn = "Id",
-        ),
+            entityColumn = "Id"
+        )
     )
-    var genresMovies: List<MovieEntity>,
+    var genresMovies: List<MovieEntity>
 )
-

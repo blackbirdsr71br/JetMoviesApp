@@ -4,7 +4,7 @@ import com.example.jetmoviesapp.common.Resource
 import com.example.jetmoviesapp.data.remote.ApiService
 import com.example.jetmoviesapp.data.remote.genre.GenreResponse
 import com.example.jetmoviesapp.data.remote.movie.MovieResponse
-import com.example.jetmoviesapp.data.remote.movie_detail.toMovieDetail
+import com.example.jetmoviesapp.data.remote.moviedetail.toMovieDetail
 import com.example.jetmoviesapp.domain.model.HomeType
 import com.example.jetmoviesapp.domain.model.MovieDetail
 import com.example.jetmoviesapp.domain.repository.NetworkRepository
@@ -15,7 +15,7 @@ import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
 class NetworkRepositoryImpl @Inject constructor(
-    private val api: ApiService,
+    private val api: ApiService
 ) : NetworkRepository {
 
     override suspend fun getTopRatedMovies(page: Int): MovieResponse {

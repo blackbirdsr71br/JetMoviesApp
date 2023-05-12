@@ -1,4 +1,4 @@
-package com.example.jetmoviesapp.ui.presentation.top_rated
+package com.example.jetmoviesapp.ui.presentation.toprated
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -15,7 +15,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class TopRatedViewModel @Inject constructor(
-    private val useCaseNetwork: UseCaseNetwork,
+    private val useCaseNetwork: UseCaseNetwork
 ) : ViewModel() {
 
     val topRated: Flow<PagingData<Movie>> = Pager(
@@ -23,8 +23,8 @@ class TopRatedViewModel @Inject constructor(
         pagingSourceFactory = {
             MoviePagingSource(
                 useCaseNetwork,
-                MoviePagingSource.Source.TopRated,
+                MoviePagingSource.Source.TopRated
             )
-        },
+        }
     ).flow.cachedIn(viewModelScope)
 }

@@ -33,12 +33,12 @@ import com.skydoves.landscapist.coil.CoilImage
 @Composable
 fun SearchedList(
     movies: LazyPagingItems<Movie>,
-    navController: NavController,
+    navController: NavController
 ) {
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally,
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         items(movies) { item ->
             item?.let { movie ->
@@ -64,7 +64,7 @@ fun SearchedList(
                             color = Color.Red,
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .statusBarsPadding(),
+                                .statusBarsPadding()
                         )
                     }
                 }
@@ -87,11 +87,11 @@ fun SearchedItem(movie: Movie, onClick: (Movie) -> Unit) {
             .padding(12.dp)
             .clickable {
                 onClick(movie)
-            },
+            }
     ) {
         Box(
             modifier = Modifier
-                .fillMaxWidth(),
+                .fillMaxWidth()
 
         ) {
             CoilImage(
@@ -102,13 +102,13 @@ fun SearchedItem(movie: Movie, onClick: (Movie) -> Unit) {
                     highlightColor = Color.LightGray.copy(alpha = 0.6f),
                     durationMillis = 350,
                     dropOff = 0.65f,
-                    tilt = 20f,
+                    tilt = 20f
                 ),
                 circularReveal = CircularReveal(duration = 350),
                 failure = { Text(text = "Image request failed!") },
                 modifier = Modifier
                     .height(250.dp)
-                    .shadow(elevation = 8.dp, shape = RoundedCornerShape(12.dp)),
+                    .shadow(elevation = 8.dp, shape = RoundedCornerShape(12.dp))
             )
             Text(
                 movie.originalTitle,
@@ -119,14 +119,14 @@ fun SearchedItem(movie: Movie, onClick: (Movie) -> Unit) {
                         brush = Brush.verticalGradient(
                             colors = listOf(
                                 Color.Transparent,
-                                Color.LightGray,
-                            ),
+                                Color.LightGray
+                            )
                         ),
-                        shape = RoundedCornerShape(8.dp),
+                        shape = RoundedCornerShape(8.dp)
                     ),
                 color = Color.White,
                 textAlign = TextAlign.Center,
-                style = MaterialTheme.typography.h6,
+                style = MaterialTheme.typography.h6
             )
             Text(
                 text = "${movie.voteAverage}",
@@ -135,7 +135,7 @@ fun SearchedItem(movie: Movie, onClick: (Movie) -> Unit) {
                     .padding(8.dp)
                     .background(color = Color(0xFF5B5E6D), shape = RoundedCornerShape(8.dp))
                     .padding(4.dp),
-                color = Color.White,
+                color = Color.White
             )
         }
     }

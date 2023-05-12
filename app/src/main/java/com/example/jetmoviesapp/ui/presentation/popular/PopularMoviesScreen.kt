@@ -36,7 +36,7 @@ import com.skydoves.landscapist.coil.CoilImage
 @Composable
 fun PopularMoviesScreen(
     viewModel: PopularViewModel = hiltViewModel(),
-    navController: NavController,
+    navController: NavController
 ) {
     val popularMovies = viewModel.popularMovies.collectAsLazyPagingItems()
 
@@ -45,19 +45,19 @@ fun PopularMoviesScreen(
             JetMoviesTopBar(
                 title = "Popular",
                 backGroundColor = Color.Transparent,
-                navController = navController,
+                navController = navController
             )
         },
-        modifier = Modifier.statusBarsPadding(),
+        modifier = Modifier.statusBarsPadding()
     ) {
         LazyColumn(
             modifier = Modifier
-                .padding(paddingValues = it),
+                .padding(paddingValues = it)
         ) {
             items(popularMovies) { popular ->
                 popular?.let {
                     PopularMoviesItem(popular = popular) { navigated ->
-                        navController.navigate(route = Screen.MovieDetail.route + "/${navigated.id}"){
+                        navController.navigate(route = Screen.MovieDetail.route + "/${navigated.id}") {
                             navController.popBackStack(route = Screen.MovieDetail.route, inclusive = true)
                             navController.popBackStack(route = Screen.Popular.route, inclusive = true)
                         }
@@ -82,7 +82,7 @@ fun PopularMoviesScreen(
                                     color = Color.Red,
                                     modifier = Modifier
                                         .fillMaxWidth()
-                                        .statusBarsPadding(),
+                                        .statusBarsPadding()
                                 )
                                 Text(text = "Cargado información de Peliculas...")
                             }
@@ -110,12 +110,12 @@ fun PopularMoviesItem(popular: Movie, onClick: (Movie) -> Unit) {
             .padding(12.dp)
             .clickable {
                 onClick(popular)
-            },
+            }
     ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(8.dp),
+                .padding(8.dp)
         ) {
             CoilImage(
                 imageModel = Constants.IMAGE_URL + popular.posterPath,
@@ -125,20 +125,20 @@ fun PopularMoviesItem(popular: Movie, onClick: (Movie) -> Unit) {
                     highlightColor = Color.LightGray.copy(alpha = 0.6f),
                     durationMillis = 350,
                     dropOff = 0.65f,
-                    tilt = 20f,
+                    tilt = 20f
                 ),
                 circularReveal = CircularReveal(duration = 350),
                 failure = { Text(text = "Image request failed!") },
                 modifier = Modifier
                     .height(200.dp)
                     .width(120.dp)
-                    .shadow(elevation = 8.dp, shape = RoundedCornerShape(12.dp)),
+                    .shadow(elevation = 8.dp, shape = RoundedCornerShape(12.dp))
             )
             Column(
                 modifier = Modifier
                     .padding(start = 12.dp)
                     .height(200.dp),
-                verticalArrangement = Arrangement.SpaceBetween,
+                verticalArrangement = Arrangement.SpaceBetween
             ) {
                 val annotatedString = buildAnnotatedString {
                     withStyle(style = SpanStyle(color = Color.Black)) {
@@ -148,8 +148,8 @@ fun PopularMoviesItem(popular: Movie, onClick: (Movie) -> Unit) {
                         style = SpanStyle(
                             color = Color.Gray,
                             fontSize = 16.sp,
-                            fontWeight = FontWeight.Light,
-                        ),
+                            fontWeight = FontWeight.Light
+                        )
                     ) {
                         append(" (${popular.title}) ")
                     }
@@ -160,7 +160,7 @@ fun PopularMoviesItem(popular: Movie, onClick: (Movie) -> Unit) {
                         imageVector = Icons.Default.Star,
                         contentDescription = "",
                         modifier = Modifier.size(24.dp),
-                        tint = ratingStarColor,
+                        tint = ratingStarColor
                     )
                     Text(text = "${popular.voteAverage}/10", color = Color.LightGray)
                 }
@@ -168,7 +168,7 @@ fun PopularMoviesItem(popular: Movie, onClick: (Movie) -> Unit) {
                     text = popular.overview,
                     maxLines = 5,
                     overflow = TextOverflow.Ellipsis,
-                    style = MaterialTheme.typography.subtitle2,
+                    style = MaterialTheme.typography.subtitle2
                 )
             }
         }

@@ -1,4 +1,4 @@
-package com.example.jetmoviesapp.ui.presentation.now_play
+package com.example.jetmoviesapp.ui.presentation.nowplay
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -15,7 +15,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class NowPlayViewModel @Inject constructor(
-    private val useCaseNetwork: UseCaseNetwork,
+    private val useCaseNetwork: UseCaseNetwork
 ) : ViewModel() {
 
     val nowPlay: Flow<PagingData<Movie>> = Pager(
@@ -23,8 +23,8 @@ class NowPlayViewModel @Inject constructor(
         pagingSourceFactory = {
             MoviePagingSource(
                 useCaseNetwork,
-                MoviePagingSource.Source.NowPlay,
+                MoviePagingSource.Source.NowPlay
             )
-        },
+        }
     ).flow.cachedIn(viewModelScope)
 }

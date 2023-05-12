@@ -25,7 +25,7 @@ import com.skydoves.landscapist.coil.CoilImage
 @Composable
 fun TopRatedHomeItem(
     topRated: Movie,
-    onClick: (Movie) -> Unit,
+    onClick: (Movie) -> Unit
 ) {
     Column(
         modifier = Modifier
@@ -33,7 +33,7 @@ fun TopRatedHomeItem(
             .width(150.dp)
             .clickable {
                 onClick(topRated)
-            },
+            }
     ) {
         CoilImage(
             imageModel = Constants.IMAGE_URL + topRated.posterPath,
@@ -43,17 +43,17 @@ fun TopRatedHomeItem(
                 highlightColor = Color.LightGray.copy(alpha = 0.6f),
                 durationMillis = 350,
                 dropOff = 0.65f,
-                tilt = 20f,
+                tilt = 20f
             ),
             circularReveal = CircularReveal(duration = 350),
             failure = { Text(text = "Resim yüklenemedi!") },
             modifier = Modifier
                 .width(150.dp)
                 .height(220.dp)
-                .shadow(elevation = 8.dp, shape = RoundedCornerShape(12.dp)),
+                .shadow(elevation = 8.dp, shape = RoundedCornerShape(12.dp))
         )
         Column(
-            modifier = Modifier.padding(top = 12.dp),
+            modifier = Modifier.padding(top = 12.dp)
         ) {
             Text(text = topRated.originalTitle, fontWeight = FontWeight.Bold)
             Row {
@@ -61,7 +61,7 @@ fun TopRatedHomeItem(
                     imageVector = Icons.Filled.Star,
                     contentDescription = "",
                     tint = ratingStarColor,
-                    modifier = Modifier.padding(end = 4.dp),
+                    modifier = Modifier.padding(end = 4.dp)
                 )
                 Text(text = "${topRated.voteAverage}/10", color = Color.LightGray)
             }

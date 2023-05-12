@@ -38,7 +38,7 @@ import com.skydoves.landscapist.coil.CoilImage
 fun PopularHomeItem(
     popular: Movie,
     genres: List<Genre>,
-    onClick: (Movie) -> Unit,
+    onClick: (Movie) -> Unit
 ) {
     Row(
         modifier = Modifier
@@ -46,7 +46,7 @@ fun PopularHomeItem(
             .fillMaxWidth()
             .clickable {
                 onClick(popular)
-            },
+            }
     ) {
         CoilImage(
             imageModel = Constants.IMAGE_URL + popular.backdropPath,
@@ -56,14 +56,14 @@ fun PopularHomeItem(
                 highlightColor = Color.LightGray.copy(alpha = 0.6f),
                 durationMillis = 350,
                 dropOff = 0.65f,
-                tilt = 20f,
+                tilt = 20f
             ),
             circularReveal = CircularReveal(duration = 350),
             failure = { Text(text = "Image request failed!") },
             modifier = Modifier
                 .width(150.dp)
                 .height(200.dp)
-                .clip(shape = RoundedCornerShape(12.dp)),
+                .clip(shape = RoundedCornerShape(12.dp))
         )
         Column {
             val annotatedString = buildAnnotatedString {
@@ -74,8 +74,8 @@ fun PopularHomeItem(
                     style = SpanStyle(
                         color = Color.Gray,
                         fontSize = 16.sp,
-                        fontWeight = FontWeight.Light,
-                    ),
+                        fontWeight = FontWeight.Light
+                    )
                 ) {
                     append(" (${popular.title}) ")
                 }
@@ -83,7 +83,7 @@ fun PopularHomeItem(
             Text(
                 text = annotatedString,
                 fontSize = 18.sp,
-                modifier = Modifier.padding(start = 8.dp),
+                modifier = Modifier.padding(start = 8.dp)
             )
 
             val genreIds = popular.genreIds
@@ -97,11 +97,11 @@ fun PopularHomeItem(
                                     .padding(4.dp)
                                     .background(
                                         color = genreBgColor,
-                                        shape = RoundedCornerShape(12.dp),
+                                        shape = RoundedCornerShape(12.dp)
                                     )
                                     .padding(4.dp),
                                 fontSize = 12.sp,
-                                color = genreColor,
+                                color = genreColor
                             )
                         }
                     }
@@ -109,7 +109,7 @@ fun PopularHomeItem(
             }
 
             Row(
-                verticalAlignment = Alignment.CenterVertically,
+                verticalAlignment = Alignment.CenterVertically
             ) {
                 Icon(
                     imageVector = Icons.Filled.Star,
@@ -117,14 +117,14 @@ fun PopularHomeItem(
                     tint = ratingStarColor,
                     modifier = Modifier
                         .padding(start = 8.dp, top = 8.dp)
-                        .size(16.dp),
+                        .size(16.dp)
                 )
                 Text(
                     text = "${popular.voteAverage}/10 IMDb",
                     modifier = Modifier.padding(top = 8.dp, start = 4.dp),
                     color = Color.LightGray,
                     fontSize = 16.sp,
-                    textAlign = TextAlign.Center,
+                    textAlign = TextAlign.Center
                 )
             }
             Row {
@@ -133,12 +133,12 @@ fun PopularHomeItem(
                     contentDescription = "Release date icon",
                     modifier = Modifier
                         .padding(start = 8.dp, top = 8.dp)
-                        .size(24.dp),
+                        .size(24.dp)
                 )
                 Text(
                     text = popular.releaseDate,
                     textAlign = TextAlign.Center,
-                    modifier = Modifier.padding(top = 8.dp, start = 4.dp),
+                    modifier = Modifier.padding(top = 8.dp, start = 4.dp)
                 )
             }
         }

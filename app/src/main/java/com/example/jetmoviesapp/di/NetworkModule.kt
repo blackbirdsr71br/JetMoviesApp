@@ -51,7 +51,7 @@ object NetworkModule {
     @Provides
     @Singleton
     fun provideOkHttpClinet(
-        apiKeyInterceptor: Interceptor,
+        apiKeyInterceptor: Interceptor
     ): OkHttpClient {
         val loggingInterceptor = HttpLoggingInterceptor()
         loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)

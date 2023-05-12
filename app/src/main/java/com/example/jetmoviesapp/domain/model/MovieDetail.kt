@@ -2,8 +2,8 @@ package com.example.jetmoviesapp.domain.model
 
 import com.example.jetmoviesapp.data.remote.genre.Genre
 import com.example.jetmoviesapp.data.remote.movie.MovieResponse
-import com.example.jetmoviesapp.data.remote.movie_detail.Credit
-import com.example.jetmoviesapp.data.remote.movie_detail.Language
+import com.example.jetmoviesapp.data.remote.moviedetail.Credit
+import com.example.jetmoviesapp.data.remote.moviedetail.Language
 
 data class MovieDetail(
     val id: Int,

@@ -1,4 +1,4 @@
-package com.example.jetmoviesapp.data.remote.movie_detail
+package com.example.jetmoviesapp.data.remote.moviedetail
 
 import com.example.jetmoviesapp.data.remote.genre.Genre
 import com.example.jetmoviesapp.data.remote.movie.MovieResponse
@@ -61,7 +61,7 @@ data class MovieDetailDto(
     val voteCount: Int,
 
     val similar: MovieResponse,
-    val credits: Credit,
+    val credits: Credit
 )
 
 fun MovieDetailDto.toMovieDetail(): MovieDetail {
@@ -83,6 +83,6 @@ fun MovieDetailDto.toMovieDetail(): MovieDetail {
         voteAverage = voteAverage,
         voteCount = voteCount,
         similar = similar,
-        credit = credits,
+        credit = credits
     )
 }

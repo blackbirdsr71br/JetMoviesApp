@@ -1,4 +1,4 @@
-package com.example.jetmoviesapp.ui.presentation.watch_list.components
+package com.example.jetmoviesapp.ui.presentation.watchlist.components
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.AlertDialog
@@ -13,7 +13,7 @@ import androidx.compose.ui.unit.dp
 fun DeleteAlertDialog(
     title: String,
     isOpendDialog: MutableState<Boolean>,
-    onDelete: () -> Unit,
+    onDelete: () -> Unit
 ) {
     AlertDialog(
         onDismissRequest = { isOpendDialog.value = false },
@@ -24,7 +24,7 @@ fun DeleteAlertDialog(
                 onClick = {
                     isOpendDialog.value = false
                     onDelete()
-                },
+                }
             ) {
                 Text(text = "Yes", color = Color.Red)
             }
@@ -33,12 +33,12 @@ fun DeleteAlertDialog(
             TextButton(
                 onClick = {
                     isOpendDialog.value = false
-                },
+                }
             ) {
                 Text(text = "Cancel", color = Color.Red)
             }
         },
-        shape = RoundedCornerShape(16.dp),
+        shape = RoundedCornerShape(16.dp)
 
     )
 }

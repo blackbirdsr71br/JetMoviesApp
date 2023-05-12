@@ -1,4 +1,4 @@
-package com.example.jetmoviesapp.ui.presentation.watch_list.components
+package com.example.jetmoviesapp.ui.presentation.watchlist.components
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.clickable
@@ -30,7 +30,7 @@ import kotlin.time.Duration.Companion.minutes
 @Composable
 fun WatchListItem(
     movie: MovieEntity,
-    onDelete: () -> Unit,
+    onDelete: () -> Unit
 ) {
     var expanded by remember { mutableStateOf(false) }
     val openDialog = remember { mutableStateOf(false) }
@@ -42,13 +42,13 @@ fun WatchListItem(
             .height(if (expanded) Int.MAX_VALUE.dp else 200.dp)
             .clickable { expanded = !expanded },
         elevation = 4.dp,
-        shape = RoundedCornerShape(12.dp),
+        shape = RoundedCornerShape(12.dp)
     ) {
         Column {
             Row(
                 modifier = Modifier
                     .padding(8.dp)
-                    .fillMaxWidth(),
+                    .fillMaxWidth()
             ) {
                 CoilImage(
                     imageModel = Constants.IMAGE_URL + movie.posterPath,
@@ -58,20 +58,20 @@ fun WatchListItem(
                         highlightColor = Color.LightGray.copy(alpha = 0.6f),
                         durationMillis = 350,
                         dropOff = 0.65f,
-                        tilt = 20f,
+                        tilt = 20f
                     ),
                     circularReveal = CircularReveal(duration = 350),
                     failure = { Text(text = "Image request failed!") },
                     modifier = Modifier
                         .height(200.dp)
                         .width(120.dp)
-                        .shadow(elevation = 8.dp, shape = RoundedCornerShape(12.dp)),
+                        .shadow(elevation = 8.dp, shape = RoundedCornerShape(12.dp))
                 )
                 Column(
                     modifier = Modifier
                         .padding(start = 12.dp)
                         .height(200.dp),
-                    verticalArrangement = Arrangement.spacedBy(8.dp),
+                    verticalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
                     val annotatedString = buildAnnotatedString {
                         withStyle(style = SpanStyle(color = Color.Black)) {
@@ -81,8 +81,8 @@ fun WatchListItem(
                             style = SpanStyle(
                                 color = Color.Gray,
                                 fontSize = 16.sp,
-                                fontWeight = FontWeight.Light,
-                            ),
+                                fontWeight = FontWeight.Light
+                            )
                         ) {
                             append(" (${movie.title}) ")
                         }
@@ -93,7 +93,7 @@ fun WatchListItem(
                             imageVector = Icons.Default.Star,
                             contentDescription = "",
                             modifier = Modifier.size(24.dp),
-                            tint = ratingStarColor,
+                            tint = ratingStarColor
                         )
                         Text(text = "${movie.voteAverage}/10", color = Color.LightGray)
                     }
@@ -103,7 +103,7 @@ fun WatchListItem(
                     }
                     IconButton(
                         onClick = { openDialog.value = true },
-                        modifier = Modifier.size(18.dp),
+                        modifier = Modifier.size(18.dp)
                     ) {
                         Icon(imageVector = Icons.Default.Delete, contentDescription = "")
                     }
@@ -114,14 +114,14 @@ fun WatchListItem(
                     text = "${movie.overview}",
                     style = MaterialTheme.typography.subtitle2,
                     maxLines = if (expanded) Int.MAX_VALUE else 1,
-                    modifier = Modifier.padding(12.dp),
+                    modifier = Modifier.padding(12.dp)
                 )
             }
             if (openDialog.value) {
                 DeleteAlertDialog(
                     title = movie.title,
                     isOpendDialog = openDialog,
-                    onDelete = onDelete,
+                    onDelete = onDelete
                 )
             }
         }

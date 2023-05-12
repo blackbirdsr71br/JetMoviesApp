@@ -16,11 +16,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.skydoves.landscapist.CircularReveal
-import com.skydoves.landscapist.coil.CoilImage
 import com.example.jetmoviesapp.common.Constants
 import com.example.jetmoviesapp.data.remote.movie.Movie
 import com.example.jetmoviesapp.ui.theme.categoryColor
+import com.skydoves.landscapist.CircularReveal
+import com.skydoves.landscapist.coil.CoilImage
 
 @Composable
 fun SimilarMovies(
@@ -30,11 +30,12 @@ fun SimilarMovies(
 ) {
     Column(modifier = modifier) {
         Text(
-            text = "Similar", color = categoryColor,
+            text = "Similar",
+            color = categoryColor,
             modifier = Modifier
                 .padding(start = 16.dp, top = 8.dp),
             fontWeight = FontWeight.Bold,
-            style = MaterialTheme.typography.h6,
+            style = MaterialTheme.typography.h6
         )
         LazyRow(modifier = modifier.padding(8.dp)) {
             items(similar) { similarMovie ->

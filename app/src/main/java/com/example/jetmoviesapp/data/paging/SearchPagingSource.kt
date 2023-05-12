@@ -12,10 +12,9 @@ class SearchMovie(private val repository: NetworkRepository) {
     suspend operator fun invoke(page: Int, query: String) = repository.searchMovie(page, query)
 }
 
-
 class SearchPagingSource(
     private val networkRepository: UseCaseNetwork,
-    private val query: String,
+    private val query: String
 ) : PagingSource<Int, Movie>() {
     override fun getRefreshKey(state: PagingState<Int, Movie>): Int? {
         return state.anchorPosition?.let { anchorPosition ->
@@ -31,7 +30,7 @@ class SearchPagingSource(
             LoadResult.Page(
                 data = response.results,
                 prevKey = null,
-                nextKey = response.page.plus(1),
+                nextKey = response.page.plus(1)
             )
         } catch (e: IOException) {
             LoadResult.Error(e)

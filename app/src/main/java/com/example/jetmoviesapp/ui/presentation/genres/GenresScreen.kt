@@ -10,17 +10,14 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.example.jetmoviesapp.R
 import com.example.jetmoviesapp.data.remote.genre.Genre
 import com.example.jetmoviesapp.ui.presentation.composables.JetMoviesTopBar
 import com.example.jetmoviesapp.ui.presentation.navigation.Screen
@@ -30,7 +27,7 @@ import com.example.jetmoviesapp.ui.theme.genreColor
 @Composable
 fun GenresScreen(
     viewModel: GenresViewModel = hiltViewModel(),
-    navController: NavController,
+    navController: NavController
 ) {
     val genres = viewModel.stateGenres.value
     Scaffold(
@@ -38,14 +35,14 @@ fun GenresScreen(
             JetMoviesTopBar(
                 title = "Genres List",
                 backGroundColor = Color.Transparent,
-                navController = navController,
+                navController = navController
             )
         },
-        modifier = Modifier.statusBarsPadding(),
+        modifier = Modifier.statusBarsPadding()
     ) {
         LazyVerticalGrid(
             columns = GridCells.Fixed(2),
-            modifier = Modifier.padding(it),
+            modifier = Modifier.padding(it)
         ) {
             items(genres) { genre ->
                 GenresItem(genre = genre, onClick = {
@@ -65,13 +62,13 @@ fun GenresItem(genre: Genre, onClick: (Genre) -> Unit) {
         contentColor = genreColor,
         modifier = Modifier
             .padding(8.dp)
-            .clickable { onClick(genre) },
+            .clickable { onClick(genre) }
     ) {
         Text(
             text = genre.name,
             textAlign = TextAlign.Center,
             modifier = Modifier.padding(vertical = 8.dp),
-            fontSize = 18.sp,
+            fontSize = 18.sp
         )
     }
 }

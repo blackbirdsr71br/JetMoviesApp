@@ -21,11 +21,11 @@ import com.google.accompanist.flowlayout.MainAxisAlignment
 fun MovieGenres(
     modifier: Modifier = Modifier,
     genres: List<Genre>,
-    navController: NavController,
+    navController: NavController
 ) {
     FlowRow(
         modifier = modifier,
-        mainAxisAlignment = MainAxisAlignment.Center,
+        mainAxisAlignment = MainAxisAlignment.Center
     ) {
         genres.forEach { genre ->
             TextButton(
@@ -36,9 +36,9 @@ fun MovieGenres(
                 shape = RoundedCornerShape(12.dp),
                 colors = ButtonDefaults.buttonColors(
                     backgroundColor = genreBgColor,
-                    contentColor = genreColor,
+                    contentColor = genreColor
                 ),
-                modifier = Modifier.padding(vertical = 4.dp, horizontal = 16.dp),
+                modifier = Modifier.padding(vertical = 4.dp, horizontal = 16.dp)
             ) {
                 Text(text = genre.name, fontSize = 12.sp)
             }

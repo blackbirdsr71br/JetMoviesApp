@@ -11,7 +11,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import com.example.jetmoviesapp.ui.theme.genreColor
 
-
 @Composable
 fun SearchBar(
     textState: MutableState<String>,
@@ -47,8 +46,7 @@ fun SearchBar(
             cursorColor = Color.DarkGray,
             backgroundColor = Color.Transparent,
             focusedLabelColor = genreColor,
-            unfocusedLabelColor = Color.Gray,
-        ),
+            unfocusedLabelColor = Color.Gray
+        )
     )
-
 }

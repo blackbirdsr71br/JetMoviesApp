@@ -16,7 +16,7 @@ import com.example.jetmoviesapp.ui.presentation.navigation.Screen
 fun JetMoviesTopBar(
     title: String,
     backGroundColor: Color,
-    navController: NavController,
+    navController: NavController
 ) {
     TopAppBar(
         title = { Text(text = title) },
@@ -36,9 +36,9 @@ fun JetMoviesTopBar(
                 Icon(
                     Icons.Default.ArrowBack,
                     "",
-                    tint = Color.Black,
+                    tint = Color.Black
                 )
             }
-        },
+        }
     )
 }

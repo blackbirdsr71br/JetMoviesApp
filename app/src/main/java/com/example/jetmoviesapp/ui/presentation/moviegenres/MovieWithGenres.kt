@@ -1,4 +1,4 @@
-package com.example.jetmoviesapp.ui.presentation.movie_genres
+package com.example.jetmoviesapp.ui.presentation.moviegenres
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -38,7 +38,7 @@ fun MovieWithGenres(
     viewModel: MovieGenresViewModel = hiltViewModel(),
     navController: NavController,
     genreId: Int?,
-    genreName: String?,
+    genreName: String?
 ) {
     val movies = viewModel.moviesWithGenres(genreId = genreId ?: 0).collectAsLazyPagingItems()
 
@@ -47,13 +47,13 @@ fun MovieWithGenres(
             JetMoviesTopBar(
                 title = "Movie Genres",
                 backGroundColor = Color.Transparent,
-                navController = navController,
+                navController = navController
             )
         },
-        modifier = Modifier.statusBarsPadding(),
+        modifier = Modifier.statusBarsPadding()
     ) {
         LazyColumn(
-            modifier = Modifier.padding(it),
+            modifier = Modifier.padding(it)
         ) {
             items(movies) { item ->
                 item?.let { movie ->
@@ -75,7 +75,7 @@ fun MovieWithGenres(
                                 color = Color.Red,
                                 modifier = Modifier
                                     .fillMaxWidth()
-                                    .statusBarsPadding(),
+                                    .statusBarsPadding()
                             )
                         }
                     }
@@ -99,12 +99,12 @@ fun MovieWithGenresItem(movie: Movie, onClick: (Movie) -> Unit) {
             .padding(12.dp)
             .clickable {
                 onClick(movie)
-            },
+            }
     ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(8.dp),
+                .padding(8.dp)
         ) {
             CoilImage(
                 imageModel = Constants.IMAGE_URL + movie.posterPath,
@@ -114,20 +114,20 @@ fun MovieWithGenresItem(movie: Movie, onClick: (Movie) -> Unit) {
                     highlightColor = Color.LightGray.copy(alpha = 0.6f),
                     durationMillis = 350,
                     dropOff = 0.65f,
-                    tilt = 20f,
+                    tilt = 20f
                 ),
                 circularReveal = CircularReveal(duration = 350),
                 failure = { Text(text = "Resim yüklenemedi!") },
                 modifier = Modifier
                     .height(200.dp)
                     .width(120.dp)
-                    .shadow(elevation = 8.dp, shape = RoundedCornerShape(12.dp)),
+                    .shadow(elevation = 8.dp, shape = RoundedCornerShape(12.dp))
             )
             Column(
                 modifier = Modifier
                     .padding(start = 12.dp)
                     .height(200.dp),
-                verticalArrangement = Arrangement.SpaceBetween,
+                verticalArrangement = Arrangement.SpaceBetween
             ) {
                 val annotatedString = buildAnnotatedString {
                     withStyle(style = SpanStyle(color = Color.Black)) {
@@ -137,8 +137,8 @@ fun MovieWithGenresItem(movie: Movie, onClick: (Movie) -> Unit) {
                         style = SpanStyle(
                             color = Color.Gray,
                             fontSize = 16.sp,
-                            fontWeight = FontWeight.Light,
-                        ),
+                            fontWeight = FontWeight.Light
+                        )
                     ) {
                         append(" (${movie.title}) ")
                     }
@@ -149,7 +149,7 @@ fun MovieWithGenresItem(movie: Movie, onClick: (Movie) -> Unit) {
                         imageVector = Icons.Default.Star,
                         contentDescription = "",
                         modifier = Modifier.size(24.dp),
-                        tint = ratingStarColor,
+                        tint = ratingStarColor
                     )
                     Text(text = "${movie.voteAverage}/10", color = Color.LightGray)
                 }
@@ -157,7 +157,7 @@ fun MovieWithGenresItem(movie: Movie, onClick: (Movie) -> Unit) {
                     text = movie.overview,
                     maxLines = 5,
                     overflow = TextOverflow.Ellipsis,
-                    style = MaterialTheme.typography.subtitle2,
+                    style = MaterialTheme.typography.subtitle2
                 )
             }
         }

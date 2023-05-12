@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
 class MoviesRepositoryImpl @Inject constructor(
-    private val dao: WatchListDao,
+    private val dao: WatchListDao
 ) : MoviesRepository {
 
     override suspend fun insert(movie: MovieEntity) {

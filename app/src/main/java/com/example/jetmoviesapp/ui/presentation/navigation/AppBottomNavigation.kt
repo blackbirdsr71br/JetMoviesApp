@@ -20,18 +20,18 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 @Composable
 fun AppBottomNavigation(
     navController: NavController,
-    currentDestination: NavDestination?,
+    currentDestination: NavDestination?
 ) {
     BottomNavigation(
         modifier = Modifier.navigationBarsPadding(),
-        backgroundColor = Color.White,
+        backgroundColor = Color.White
     ) {
         val items = listOf(
             Screen.Home.route to Icons.Filled.Home,
             Screen.Room.route to Icons.Filled.Create,
             Screen.Genres.route to Icons.Filled.Category,
             Screen.PlayNow.route to Icons.Filled.VideoLibrary,
-            Screen.Latest.route to Icons.Filled.AccessTime,
+            Screen.Latest.route to Icons.Filled.AccessTime
         )
 
         items.forEach { pair: Pair<String, ImageVector> ->
@@ -42,7 +42,7 @@ fun AppBottomNavigation(
                     Text(
                         text = pair.first.uppercase(),
                         color = Color.Black,
-                        fontSize = 10.sp,
+                        fontSize = 10.sp
                     )
                 },
                 alwaysShowLabel = true,
@@ -57,7 +57,7 @@ fun AppBottomNavigation(
                     }
                 },
                 selectedContentColor = Color.Black,
-                unselectedContentColor = Color.Black,
+                unselectedContentColor = Color.Black
             )
         }
     }

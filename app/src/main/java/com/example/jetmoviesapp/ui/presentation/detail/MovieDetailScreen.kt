@@ -41,7 +41,7 @@ import kotlin.time.Duration.Companion.minutes
 @Composable
 fun MovieDetailScreen(
     viewModel: MovieDetailViewModel = hiltViewModel(),
-    navController: NavController,
+    navController: NavController
 
 ) {
     val state = viewModel.state.value
@@ -51,7 +51,7 @@ fun MovieDetailScreen(
             .fillMaxSize()
             .background(color = MaterialTheme.colors.surface)
             .verticalScroll(rememberScrollState())
-            .navigationBarsPadding(),
+            .navigationBarsPadding()
     ) {
         state.movie?.let { movie ->
 
@@ -79,10 +79,10 @@ fun MovieDetailScreen(
                     highlightColor = Color.LightGray.copy(alpha = 0.6f),
                     durationMillis = 350,
                     dropOff = 0.65f,
-                    tilt = 20f,
+                    tilt = 20f
                 ),
                 circularReveal = CircularReveal(duration = 350),
-                failure = { Text(text = "Cargando Información!") },
+                failure = { Text(text = "Cargando Información!") }
             )
 
             CoilImage(
@@ -95,7 +95,7 @@ fun MovieDetailScreen(
                         centerAround(backdrop.bottom)
                         linkTo(start = parent.start, end = parent.end)
                     },
-                circularReveal = CircularReveal(duration = 350),
+                circularReveal = CircularReveal(duration = 350)
             )
             IconButton(
                 onClick = {
@@ -110,11 +110,11 @@ fun MovieDetailScreen(
                 modifier = Modifier.constrainAs(arrowBack) {
                     linkTo(start = parent.start, end = poster.start)
                     linkTo(top = backdrop.bottom, bottom = poster.bottom)
-                },
+                }
             ) {
                 Icon(
                     imageVector = Icons.Filled.ArrowBack,
-                    contentDescription = "Arrow Back Icon",
+                    contentDescription = "Arrow Back Icon"
                 )
             }
 
@@ -127,7 +127,7 @@ fun MovieDetailScreen(
                         posterPath = movie.posterPath,
                         voteAverage = movie.voteAverage,
                         runtime = movie.runtime,
-                        overview = movie.overview,
+                        overview = movie.overview
                     )
                     if (viewModel.isBookmarked.value) {
                         viewModel.onEvent(MoviesEvent.DeleteMovie(movie = addingMovie))
@@ -138,7 +138,7 @@ fun MovieDetailScreen(
                 modifier = Modifier.constrainAs(save) {
                     linkTo(start = poster.end, end = parent.end)
                     linkTo(top = backdrop.bottom, bottom = poster.bottom)
-                },
+                }
             ) {
                 Icon(
                     imageVector =
@@ -147,7 +147,7 @@ fun MovieDetailScreen(
                     } else {
                         Icons.Outlined.BookmarkAdd
                     },
-                    contentDescription = "Add Watchlist Icon",
+                    contentDescription = "Add Watchlist Icon"
 
                 )
             }
@@ -156,19 +156,19 @@ fun MovieDetailScreen(
                 modifier = Modifier.constrainAs(originalTitle) {
                     linkTo(start = parent.start, end = parent.end)
                     top.linkTo(poster.bottom, margin = 4.dp)
-                },
+                }
             )
             Row(
                 modifier = Modifier.constrainAs(rateScore) {
                     top.linkTo(originalTitle.bottom, margin = 4.dp)
                     linkTo(start = parent.start, end = parent.end)
                 },
-                verticalAlignment = Alignment.CenterVertically,
+                verticalAlignment = Alignment.CenterVertically
             ) {
                 Icon(
                     imageVector = Icons.Filled.StarRate,
                     contentDescription = "",
-                    tint = ratingStarColor,
+                    tint = ratingStarColor
                 )
                 Text(text = "${movie.voteAverage} / 10 IMDb", color = Color.LightGray)
             }
@@ -179,7 +179,7 @@ fun MovieDetailScreen(
                     linkTo(start = parent.start, end = parent.end)
                     top.linkTo(rateScore.bottom, margin = 4.dp)
                 },
-                navController = navController,
+                navController = navController
             )
             Row(
                 modifier = Modifier
@@ -189,7 +189,7 @@ fun MovieDetailScreen(
                     .fillMaxWidth()
                     .padding(horizontal = 16.dp),
                 horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically,
+                verticalAlignment = Alignment.CenterVertically
             ) {
                 Column {
                     Text(text = "Time", color = Color.LightGray, fontSize = 16.sp)
@@ -209,21 +209,21 @@ fun MovieDetailScreen(
                 modifier = Modifier.constrainAs(description) {
                     top.linkTo(row.bottom, margin = 8.dp)
                     linkTo(start = parent.start, end = parent.end)
-                },
+                }
             )
             MovieCast(
                 cast = movie.credit.cast,
                 modifier = Modifier.constrainAs(cast) {
                     top.linkTo(description.bottom, margin = 8.dp)
                     linkTo(start = parent.start, end = parent.end)
-                },
+                }
             )
             SimilarMovies(
                 similar = movie.similar.results,
                 modifier = Modifier.constrainAs(similar) {
                     top.linkTo(cast.bottom, margin = 8.dp)
                     linkTo(start = parent.start, end = parent.end)
-                },
+                }
             ) { similarMovie ->
                 navController.navigate(route = Screen.MovieDetail.route + "/${similarMovie.id}")
             }
@@ -235,7 +235,7 @@ fun MovieDetailScreen(
                     linkTo(start = parent.start, end = parent.end)
                     linkTo(top = parent.top, bottom = parent.bottom)
                 },
-                color = Color.DarkGray,
+                color = Color.DarkGray
             )
         }
         if (state.error.isNotBlank()) {
@@ -244,7 +244,7 @@ fun MovieDetailScreen(
                 modifier = Modifier.constrainAs(errorString) {
                     linkTo(start = parent.start, end = parent.end)
                     linkTo(top = parent.top, bottom = parent.bottom)
-                },
+                }
             )
         }
     }

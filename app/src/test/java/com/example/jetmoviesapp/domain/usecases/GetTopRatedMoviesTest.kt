@@ -3,7 +3,7 @@ package com.example.jetmoviesapp.domain.usecases
 import com.example.jetmoviesapp.data.remote.movie.Movie
 import com.example.jetmoviesapp.data.remote.movie.MovieResponse
 import com.example.jetmoviesapp.domain.repository.NetworkRepository
-import com.example.jetmoviesapp.domain.usecases.networkUseCases.GetTopRatedMovies
+import com.example.jetmoviesapp.domain.usecases.networkUseCases.GetTopRatedMoviesUseCase
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.coVerify
@@ -18,12 +18,12 @@ class GetTopRatedMoviesTest {
     @RelaxedMockK
     private lateinit var repository: NetworkRepository
 
-    lateinit var getTopRatedMovies: GetTopRatedMovies
+    lateinit var getTopRatedMovies: GetTopRatedMoviesUseCase
 
     @Before
     fun onBefore() {
         MockKAnnotations.init(this)
-        getTopRatedMovies = GetTopRatedMovies(repository)
+        getTopRatedMovies = GetTopRatedMoviesUseCase(repository)
     }
 
     @Test
@@ -45,14 +45,14 @@ class GetTopRatedMoviesTest {
                 popularity = 80.0,
                 voteCount = 100,
                 video = false,
-                voteAverage = 101.0,
-            ),
+                voteAverage = 101.0
+            )
         )
         val movieResponse = MovieResponse(
             page = 1,
             results = movieList,
             total_pages = 1,
-            total_results = 1,
+            total_results = 1
         )
 
         coEvery { repository.getTopRatedMovies(page = 1) } returns movieResponse

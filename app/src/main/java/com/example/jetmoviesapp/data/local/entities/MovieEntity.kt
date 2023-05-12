@@ -12,5 +12,5 @@ data class MovieEntity(
     @ColumnInfo(name = "poster_path") val posterPath: String?,
     @ColumnInfo(name = "vote_average") val voteAverage: Double,
     val runtime: Int?,
-    val overview: String?,
+    val overview: String?
 )

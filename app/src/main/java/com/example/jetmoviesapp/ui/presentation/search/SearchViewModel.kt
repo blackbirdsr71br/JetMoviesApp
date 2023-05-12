@@ -17,7 +17,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SearchViewModel @Inject constructor(
-    private val useCaseNetwork: UseCaseNetwork,
+    private val useCaseNetwork: UseCaseNetwork
 ) : ViewModel() {
 
     private val _searchedMovies = MutableStateFlow<PagingData<Movie>>(PagingData.empty())

@@ -15,5 +15,5 @@ data class Latest(
     val popularity: Double,
     @SerializedName("vote_count") val voteCount: Int,
     val video: Boolean,
-    @SerializedName("vote_average") val voteAverage: Double,
+    @SerializedName("vote_average") val voteAverage: Double
 )

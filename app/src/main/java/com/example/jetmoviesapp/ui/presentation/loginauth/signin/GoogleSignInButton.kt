@@ -29,14 +29,14 @@ import com.example.jetmoviesapp.ui.theme.Shapes
 fun GoogleSignInButtonUi(
     text: String = "",
     loadingText: String = "",
-    onClicked: () -> Unit,
+    onClicked: () -> Unit
 ) {
     var clicked by remember { mutableStateOf(false) }
     Surface(
         onClick = { clicked = !clicked },
         shape = Shapes.medium,
         border = BorderStroke(width = 1.dp, color = Color.LightGray),
-        color = MaterialTheme.colors.surface,
+        color = MaterialTheme.colors.surface
     ) {
         Row(
             modifier = Modifier
@@ -44,18 +44,18 @@ fun GoogleSignInButtonUi(
                     start = 12.dp,
                     end = 16.dp,
                     top = 12.dp,
-                    bottom = 12.dp,
+                    bottom = 12.dp
                 )
                 .animateContentSize(
-                    animationSpec = tween(durationMillis = 200, easing = LinearOutSlowInEasing),
+                    animationSpec = tween(durationMillis = 200, easing = LinearOutSlowInEasing)
                 ),
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.Center,
+            horizontalArrangement = Arrangement.Center
         ) {
             Icon(
                 painter = painterResource(id = R.drawable.ic_google_logo),
                 contentDescription = "Google sign button",
-                tint = Color.Unspecified,
+                tint = Color.Unspecified
             )
             Spacer(modifier = Modifier.width(8.dp))
             Text(text = if (clicked) loadingText else text)
@@ -66,7 +66,7 @@ fun GoogleSignInButtonUi(
                     modifier = Modifier.height(16.dp)
                         .width(16.dp),
                     strokeWidth = 2.dp,
-                    color = MaterialTheme.colors.primary,
+                    color = MaterialTheme.colors.primary
                 )
                 onClicked()
             }
@@ -81,7 +81,7 @@ fun GoogleButton(
     buttonText: String,
     onClick: () -> Unit,
     backgroundColor: Color,
-    fontColor: Color,
+    fontColor: Color
 ) {
     Button(
         onClick = { onClick() },
@@ -92,25 +92,25 @@ fun GoogleButton(
             defaultElevation = 0.dp,
             pressedElevation = 0.dp,
             hoveredElevation = 0.dp,
-            focusedElevation = 0.dp,
+            focusedElevation = 0.dp
         ),
         shape = RoundedCornerShape(28.dp),
         contentPadding = PaddingValues(15.dp),
         colors = ButtonDefaults.buttonColors(
             backgroundColor = backgroundColor,
-            contentColor = fontColor,
+            contentColor = fontColor
         ),
-        border = BorderStroke(1.dp, MaterialTheme.colors.primary),
+        border = BorderStroke(1.dp, MaterialTheme.colors.primary)
     ) {
         Box(
             modifier = Modifier
                 .fillMaxWidth(),
-            contentAlignment = Alignment.Center,
+            contentAlignment = Alignment.Center
         ) {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .align(Alignment.CenterStart),
+                    .align(Alignment.CenterStart)
             ) {
                 Spacer(modifier = Modifier.width(4.dp))
                 Icon(
@@ -118,7 +118,7 @@ fun GoogleButton(
                     modifier = Modifier
                         .size(18.dp),
                     contentDescription = "drawable_icons",
-                    tint = Color.Unspecified,
+                    tint = Color.Unspecified
                 )
             }
             Text(
@@ -126,7 +126,7 @@ fun GoogleButton(
                 text = buttonText,
                 color = Color.Black,
                 textAlign = TextAlign.Center,
-                fontSize = 16.sp,
+                fontSize = 16.sp
             )
         }
     }
@@ -139,6 +139,6 @@ fun GoogleButtonPreview() {
     GoogleSignInButtonUi(
         text = "Sign Up With Google",
         loadingText = "Signing In....",
-        onClicked = {},
+        onClicked = {}
     )
 }

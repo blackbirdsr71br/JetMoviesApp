@@ -59,7 +59,7 @@ class MainActivity : ComponentActivity() {
     private val googleAuthUiClient by lazy {
         GoogleAuthUiClient(
             context = applicationContext,
-            oneTapClient = Identity.getSignInClient(applicationContext),
+            oneTapClient = Identity.getSignInClient(applicationContext)
         )
     }
 
@@ -74,7 +74,7 @@ class MainActivity : ComponentActivity() {
                     googleAuthUiClient = googleAuthUiClient,
                     navControllerMain = navControllerMain,
                     context = LocalContext.current,
-                    lifecycle = lifecycleScope,
+                    lifecycle = lifecycleScope
                 )
             }
         }
@@ -85,7 +85,7 @@ class MainActivity : ComponentActivity() {
 fun MainScreen(
     showBottomBar: MutableState<Boolean>,
     navController: NavHostController,
-    googleAuthUiClient: GoogleAuthUiClient,
+    googleAuthUiClient: GoogleAuthUiClient
 ) {
     val context = LocalContext.current
     val navBackStackEntry by navController.currentBackStackEntryAsState()
@@ -113,7 +113,7 @@ fun MainScreen(
                             },
                         fontWeight = FontWeight.ExtraBold,
                         fontSize = 24.sp,
-                        textAlign = TextAlign.Center,
+                        textAlign = TextAlign.Center
                     )
                 },
                 navigationIcon = {
@@ -123,13 +123,13 @@ fun MainScreen(
                         Icon(
                             Icons.Default.Menu,
                             "",
-                            tint = Color.White,
+                            tint = Color.White
                         )
                     }
                 },
                 modifier = Modifier
                     .padding(top = 30.dp)
-                    .height(50.dp),
+                    .height(50.dp)
             )
         },
         drawerShape = RoundedCornerShape(0.dp),
@@ -138,13 +138,13 @@ fun MainScreen(
                 userData = googleAuthUiClient.signedInUser(),
                 scope = scope,
                 scaffoldState = scaffoldState,
-                navController = navController,
+                navController = navController
             ) {
                 googleAuthUiClient.signOut()
                 Toast.makeText(
                     context,
                     "Signed Out",
-                    Toast.LENGTH_LONG,
+                    Toast.LENGTH_LONG
                 ).show()
                 navController.navigate(route = Screen.SignIn.route)
                 navController.popBackStack(Screen.Home.route, true)
@@ -155,23 +155,23 @@ fun MainScreen(
             AnimatedVisibility(
                 visible = showBottomBar.value,
                 enter = slideInVertically(initialOffsetY = { it }),
-                exit = slideOutVertically(targetOffsetY = { it }),
+                exit = slideOutVertically(targetOffsetY = { it })
             ) {
                 AppBottomNavigation(
                     navController = navController,
-                    currentDestination = currentDestination,
+                    currentDestination = currentDestination
                 )
             }
         },
         modifier = Modifier
             .fillMaxSize()
             .imePadding(),
-        backgroundColor = MaterialTheme.colors.surface,
+        backgroundColor = MaterialTheme.colors.surface
     ) { innerPadding ->
         val padd = innerPadding
 
         HomeScreen(
-            navController = navController,
+            navController = navController
         )
     }
 }

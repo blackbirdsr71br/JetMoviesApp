@@ -14,13 +14,13 @@ import com.airbnb.lottie.compose.rememberLottieComposition
 fun LottieLoadingView(
     file: Int,
     modifier: Modifier = Modifier,
-    iterations: Int = LottieConstants.IterateForever,
+    iterations: Int = LottieConstants.IterateForever
 ) {
     val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(file))
     LottieAnimation(
         composition,
         modifier = modifier.defaultMinSize(300.dp),
-        iterations = iterations,
+        iterations = iterations
     )
 
     // OLD ANDROID VIEW IMPLEMENTATION

@@ -1,4 +1,4 @@
-package com.example.jetmoviesapp.ui.presentation.watch_list
+package com.example.jetmoviesapp.ui.presentation.watchlist
 
 import com.example.jetmoviesapp.data.local.entities.MovieEntity
 

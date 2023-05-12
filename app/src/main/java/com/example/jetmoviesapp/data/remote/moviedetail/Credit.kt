@@ -1,11 +1,11 @@
-package com.example.jetmoviesapp.data.remote.movie_detail
+package com.example.jetmoviesapp.data.remote.moviedetail
 
 import com.google.gson.annotations.SerializedName
 
 data class Credit(
-    val cast: List<Cast>,
+    val cast: List<Cast>
 
-    )
+)
 data class Cast(
     val adult: Boolean,
     val gender: Int?,

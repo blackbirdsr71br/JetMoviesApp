@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
 class GenresRepositoryImpl @Inject constructor(
-    private val dao: GenresListDao,
+    private val dao: GenresListDao
 ) : GenresRepository {
 
     override suspend fun insert(genre: GenresEntity) {

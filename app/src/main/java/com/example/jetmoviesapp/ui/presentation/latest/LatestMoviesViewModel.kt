@@ -15,7 +15,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class LatestMoviesViewModel @Inject constructor(
-    private val useCaseNetwork: UseCaseNetwork,
+    private val useCaseNetwork: UseCaseNetwork
 ) : ViewModel() {
 
     val latest: Flow<PagingData<Movie>> = Pager(
@@ -23,8 +23,8 @@ class LatestMoviesViewModel @Inject constructor(
         pagingSourceFactory = {
             MoviePagingSource(
                 useCaseNetwork,
-                MoviePagingSource.Source.Latest,
+                MoviePagingSource.Source.Latest
             )
-        },
+        }
     ).flow.cachedIn(viewModelScope)
 }

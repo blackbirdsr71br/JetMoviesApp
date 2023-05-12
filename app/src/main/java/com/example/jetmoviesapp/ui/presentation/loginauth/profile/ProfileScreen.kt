@@ -27,12 +27,12 @@ import com.example.jetmoviesapp.ui.presentation.navigation.Screen
 fun ProfileScreen(
     userData: UserData?,
     onSignOut: () -> Unit,
-    navController1: NavHostController,
+    navController1: NavHostController
 ) {
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally,
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         if (userData?.profilePicture != null) {
             AsyncImage(
@@ -41,7 +41,7 @@ fun ProfileScreen(
                 modifier = Modifier
                     .size(150.dp)
                     .clip(CircleShape),
-                contentScale = ContentScale.Crop,
+                contentScale = ContentScale.Crop
             )
             Spacer(modifier = Modifier.height(16.dp))
         }
@@ -50,7 +50,7 @@ fun ProfileScreen(
                 text = userData.userName,
                 textAlign = TextAlign.Center,
                 fontSize = 36.sp,
-                fontWeight = FontWeight.Bold,
+                fontWeight = FontWeight.Bold
             )
             Spacer(modifier = Modifier.height(16.dp))
         }
