@@ -17,6 +17,7 @@ class GetTopRatedMoviesTest {
 
     @RelaxedMockK
     private lateinit var repository: NetworkRepository
+
     lateinit var getTopRatedMovies: GetTopRatedMovies
 
     @Before
