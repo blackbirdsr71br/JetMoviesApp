@@ -1,12 +1,12 @@
-package com.example.jetmoviesapp.domain.usecases.networkUseCases
+package com.example.jetmoviesapp.domain.usecases.remote.networkUseCases
 
 import com.example.jetmoviesapp.data.paging.SearchMovie
-import com.example.jetmoviesapp.domain.repository.MoviesRepository
+import com.example.local.domain.repository.MoviesRepository
 import com.example.jetmoviesapp.domain.repository.NetworkRepository
-import com.example.jetmoviesapp.domain.usecases.dataBaseUseCases.DeleteMovieUseCase
-import com.example.jetmoviesapp.domain.usecases.dataBaseUseCases.GetMovieByIdUseCase
-import com.example.jetmoviesapp.domain.usecases.dataBaseUseCases.GetWatchListUseCase
-import com.example.jetmoviesapp.domain.usecases.dataBaseUseCases.InsertMovieUseCase
+import com.example.jetmoviesapp.domain.usecases.local.dataBaseUseCases.DeleteMovieUseCase
+import com.example.jetmoviesapp.domain.usecases.local.dataBaseUseCases.GetMovieByIdUseCase
+import com.example.jetmoviesapp.domain.usecases.local.dataBaseUseCases.GetWatchListUseCase
+import com.example.jetmoviesapp.domain.usecases.local.dataBaseUseCases.InsertMovieUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

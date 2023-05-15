@@ -1,7 +1,7 @@
-package com.example.jetmoviesapp.domain.usecases.dataBaseUseCases
+package com.example.jetmoviesapp.domain.usecases.local.dataBaseUseCases
 
 import com.example.local.data.local.entities.MovieEntity
-import com.example.jetmoviesapp.domain.repository.MoviesRepository
+import com.example.local.domain.repository.MoviesRepository
 
 class DeleteMovieUseCase(private val repository: MoviesRepository) {
     suspend operator fun invoke(movie: MovieEntity) = repository.delete(movie)

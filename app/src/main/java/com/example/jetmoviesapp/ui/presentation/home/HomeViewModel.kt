@@ -4,7 +4,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.jetmoviesapp.common.Resource
-import com.example.jetmoviesapp.domain.usecases.networkUseCases.UseCaseNetwork
+import com.example.jetmoviesapp.domain.usecases.remote.networkUseCases.UseCaseNetwork
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach

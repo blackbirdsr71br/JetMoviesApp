@@ -1,4 +1,4 @@
-package com.example.jetmoviesapp.domain.repository
+package com.example.local.domain.repository
 
 import com.example.local.data.local.entities.MovieEntity
 import kotlinx.coroutines.flow.Flow

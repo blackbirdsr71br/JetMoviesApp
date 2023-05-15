@@ -6,7 +6,7 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
 import com.example.jetmoviesapp.data.paging.MoviePagingSource
-import com.example.jetmoviesapp.domain.usecases.networkUseCases.UseCaseNetwork
+import com.example.jetmoviesapp.domain.usecases.remote.networkUseCases.UseCaseNetwork
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

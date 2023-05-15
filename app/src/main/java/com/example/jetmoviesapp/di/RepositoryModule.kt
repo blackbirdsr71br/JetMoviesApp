@@ -1,10 +1,10 @@
 package com.example.jetmoviesapp.di
 
 import com.example.jetmoviesapp.data.repository.GenresRepositoryImpl
-import com.example.jetmoviesapp.data.repository.MoviesRepositoryImpl
+import com.example.local.domain.repository.MoviesRepositoryImpl
 import com.example.jetmoviesapp.data.repository.NetworkRepositoryImpl
 import com.example.jetmoviesapp.domain.repository.GenresRepository
-import com.example.jetmoviesapp.domain.repository.MoviesRepository
+import com.example.local.domain.repository.MoviesRepository
 import com.example.jetmoviesapp.domain.repository.NetworkRepository
 import dagger.Binds
 import dagger.Module
