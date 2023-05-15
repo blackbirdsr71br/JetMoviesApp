@@ -1,6 +1,6 @@
 package com.example.jetmoviesapp.ui.presentation.watchlist
 
-import com.example.jetmoviesapp.data.local.entities.MovieEntity
+import com.example.local.data.local.entities.MovieEntity
 
 data class WatchListState(
     val list: MutableList<MovieEntity> = mutableListOf(),

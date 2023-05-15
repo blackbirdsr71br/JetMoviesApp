@@ -1,6 +1,6 @@
 package com.example.jetmoviesapp.domain.repository
 
-import com.example.jetmoviesapp.data.local.entities.GenresEntity
+import com.example.local.data.local.entities.GenresEntity
 import kotlinx.coroutines.flow.Flow
 
 interface GenresRepository {

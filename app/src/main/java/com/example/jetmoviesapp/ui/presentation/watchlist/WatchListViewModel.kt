@@ -4,7 +4,7 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.jetmoviesapp.data.local.entities.MovieEntity
+import com.example.local.data.local.entities.MovieEntity
 import com.example.jetmoviesapp.domain.usecases.networkUseCases.UseCaseMovie
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers

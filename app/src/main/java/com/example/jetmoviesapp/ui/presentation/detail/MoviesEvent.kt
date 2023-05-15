@@ -1,6 +1,6 @@
 package com.example.jetmoviesapp.ui.presentation.detail
 
-import com.example.jetmoviesapp.data.local.entities.MovieEntity
+import com.example.local.data.local.entities.MovieEntity
 
 sealed class MoviesEvent {
     data class BookmarkMovie(val movie: MovieEntity) : MoviesEvent()

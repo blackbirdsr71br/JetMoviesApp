@@ -2,9 +2,9 @@ package com.example.jetmoviesapp.di
 
 import android.content.Context
 import androidx.room.Room
-import com.example.jetmoviesapp.data.local.GenresListDao
-import com.example.jetmoviesapp.data.local.WatchListDao
-import com.example.jetmoviesapp.data.local.WatchListDatabase
+import com.example.local.data.local.GenresListDao
+import com.example.local.data.local.WatchListDao
+import com.example.local.data.local.WatchListDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

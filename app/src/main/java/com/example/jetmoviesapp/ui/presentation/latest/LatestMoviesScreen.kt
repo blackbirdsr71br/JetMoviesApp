@@ -3,6 +3,7 @@ package com.example.jetmoviesapp.ui.presentation.latest
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyItemScope
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -24,6 +25,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
+import androidx.paging.compose.itemContentType
+import androidx.paging.compose.itemKey
 import androidx.paging.compose.items
 import com.example.jetmoviesapp.R
 import com.example.jetmoviesapp.common.Constants
@@ -55,12 +58,18 @@ fun LatestScreen(
             modifier = Modifier
                 .padding(paddingValues = it)
         ) {
-            items(latestlist) { item ->
-                item?.let { topRated ->
-                    LatesMovietItem(topRated = topRated) { navigatedItem ->
-                        navController.navigate(route = Screen.MovieDetail.route + "/${navigatedItem.id}")
-                    }
-                }
+            items(
+        count = latestlist.itemCount,
+        key = latestlist.itemKey(),
+        contentType = latestlist.itemContentType(
+            )
+    ) { index ->
+        val item = latestlist[index]
+        item?.let { topRated ->
+            LatesMovietItem(topRated = topRated) { navigatedItem ->
+                navController.navigate(route = Screen.MovieDetail.route + "/${navigatedItem.id}")
+            }
+        }
             }
             latestlist.apply {
                 when {

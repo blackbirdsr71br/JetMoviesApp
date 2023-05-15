@@ -1,7 +1,7 @@
 package com.example.jetmoviesapp.data.repository
 
-import com.example.jetmoviesapp.data.local.WatchListDao
-import com.example.jetmoviesapp.data.local.entities.MovieEntity
+import com.example.local.data.local.WatchListDao
+import com.example.local.data.local.entities.MovieEntity
 import com.example.jetmoviesapp.domain.repository.MoviesRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
