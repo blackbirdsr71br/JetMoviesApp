@@ -29,6 +29,7 @@ import androidx.paging.compose.itemKey
 import com.example.common.Constants
 import com.example.jetmoviesapp.R
 import com.example.jetmoviesapp.ui.presentation.composables.JetMoviesTopBar
+import com.example.jetmoviesapp.ui.presentation.composables.MovieItem
 import com.example.jetmoviesapp.ui.presentation.navigation.Screen
 import com.example.jetmoviesapp.ui.theme.ratingStarColor
 import com.skydoves.landscapist.CircularReveal
@@ -37,8 +38,8 @@ import com.skydoves.landscapist.coil.CoilImage
 
 @Composable
 fun LatestScreen(
-    viewModel: LatestMoviesViewModel = hiltViewModel(),
-    navController: NavController
+    viewModel : LatestMoviesViewModel = hiltViewModel(),
+    navController : NavController,
 ) {
     val latestlist = viewModel.latest.collectAsLazyPagingItems()
     Scaffold(
@@ -62,7 +63,7 @@ fun LatestScreen(
             ) { index ->
                 val item = latestlist[index]
                 item?.let { topRated ->
-                    LatesMovietItem(topRated = topRated) { navigatedItem ->
+                    MovieItem(movie = topRated) { navigatedItem ->
                         navController.navigate(route = Screen.MovieDetail.route + "/${navigatedItem.id}")
                     }
                 }
@@ -95,81 +96,6 @@ fun LatestScreen(
                         item { Text(text = "Error: " + stringResource(R.string.app_error)) }
                     }
                 }
-            }
-        }
-    }
-}
-
-@Composable
-fun LatesMovietItem(topRated: com.example.remote.data.remote.movie.Movie, onClick: (com.example.remote.data.remote.movie.Movie) -> Unit) {
-    Card(
-        shape = RoundedCornerShape(12.dp),
-        elevation = 4.dp,
-        modifier = Modifier
-            .height(220.dp)
-            .padding(12.dp)
-            .clickable {
-                onClick(topRated)
-            }
-    ) {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(8.dp)
-        ) {
-            CoilImage(
-                imageModel = Constants.IMAGE_URL + topRated.posterPath,
-                contentScale = ContentScale.Crop,
-                shimmerParams = ShimmerParams(
-                    baseColor = MaterialTheme.colors.background,
-                    highlightColor = Color.LightGray.copy(alpha = 0.6f),
-                    durationMillis = 350,
-                    dropOff = 0.65f,
-                    tilt = 20f
-                ),
-                circularReveal = CircularReveal(duration = 350),
-                failure = { Text(text = "Image request failed!") },
-                modifier = Modifier
-                    .height(200.dp)
-                    .width(120.dp)
-                    .shadow(elevation = 8.dp, shape = RoundedCornerShape(12.dp))
-            )
-            Column(
-                modifier = Modifier
-                    .padding(start = 12.dp)
-                    .height(200.dp),
-                verticalArrangement = Arrangement.SpaceBetween
-            ) {
-                val annotatedString = buildAnnotatedString {
-                    withStyle(style = SpanStyle(color = Color.Black)) {
-                        append(topRated.originalTitle)
-                    }
-                    withStyle(
-                        style = SpanStyle(
-                            color = Color.Gray,
-                            fontSize = 16.sp,
-                            fontWeight = FontWeight.Light
-                        )
-                    ) {
-                        append(" (${topRated.title}) ")
-                    }
-                }
-                Text(text = annotatedString, style = MaterialTheme.typography.h6)
-                Row {
-                    Icon(
-                        imageVector = Icons.Default.Star,
-                        contentDescription = "",
-                        modifier = Modifier.size(24.dp),
-                        tint = ratingStarColor
-                    )
-                    Text(text = "${topRated.voteAverage}/10", color = Color.LightGray)
-                }
-                Text(
-                    text = topRated.overview,
-                    maxLines = 5,
-                    overflow = TextOverflow.Ellipsis,
-                    style = MaterialTheme.typography.subtitle2
-                )
             }
         }
     }

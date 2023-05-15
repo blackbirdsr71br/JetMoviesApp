@@ -1,42 +1,25 @@
 package com.example.jetmoviesapp.ui.presentation.toprated
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Star
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.buildAnnotatedString
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.text.withStyle
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemContentType
 import androidx.paging.compose.itemKey
-import androidx.paging.compose.items
-import com.example.common.Constants
 import com.example.jetmoviesapp.R
 import com.example.jetmoviesapp.ui.presentation.composables.JetMoviesTopBar
+import com.example.jetmoviesapp.ui.presentation.composables.MovieItem
 import com.example.jetmoviesapp.ui.presentation.navigation.Screen
-import com.example.jetmoviesapp.ui.theme.ratingStarColor
 import com.example.remote.data.remote.movie.Movie
-import com.skydoves.landscapist.CircularReveal
-import com.skydoves.landscapist.ShimmerParams
-import com.skydoves.landscapist.coil.CoilImage
 
 @Composable
 fun TopRatedScreen(
@@ -66,7 +49,7 @@ fun TopRatedScreen(
             ) { index ->
                 val item = topRatedList[index]
                 item?.let { topRated ->
-                    TopRatedItem(topRated = topRated) { navigatedItem ->
+                    MovieItem(movie = topRated) { navigatedItem ->
                         navController.navigate(route = Screen.MovieDetail.route + "/${navigatedItem.id}")
                     }
                 }
@@ -109,80 +92,27 @@ fun TopRatedScreen(
     }
 }
 
+
+@Preview(showBackground = true)
 @Composable
-fun TopRatedItem(
-    topRated: com.example.remote.data.remote.movie.Movie,
-    onClick: (com.example.remote.data.remote.movie.Movie) -> Unit
-) {
-    Card(
-        shape = RoundedCornerShape(12.dp),
-        elevation = 4.dp,
-        modifier = Modifier
-            .height(220.dp)
-            .padding(12.dp)
-            .clickable {
-                onClick(topRated)
-            }
-    ) {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(8.dp)
-        ) {
-            CoilImage(
-                imageModel = Constants.IMAGE_URL + topRated.posterPath,
-                contentScale = ContentScale.Crop,
-                shimmerParams = ShimmerParams(
-                    baseColor = MaterialTheme.colors.background,
-                    highlightColor = Color.LightGray.copy(alpha = 0.6f),
-                    durationMillis = 350,
-                    dropOff = 0.65f,
-                    tilt = 20f
-                ),
-                circularReveal = CircularReveal(duration = 350),
-                failure = { Text(text = "Image request failed!") },
-                modifier = Modifier
-                    .height(200.dp)
-                    .width(120.dp)
-                    .shadow(elevation = 8.dp, shape = RoundedCornerShape(12.dp))
-            )
-            Column(
-                modifier = Modifier
-                    .padding(start = 12.dp)
-                    .height(200.dp),
-                verticalArrangement = Arrangement.SpaceBetween
-            ) {
-                val annotatedString = buildAnnotatedString {
-                    withStyle(style = SpanStyle(color = Color.Black)) {
-                        append(topRated.originalTitle)
-                    }
-                    withStyle(
-                        style = SpanStyle(
-                            color = Color.Gray,
-                            fontSize = 16.sp,
-                            fontWeight = FontWeight.Light
-                        )
-                    ) {
-                        append(" (${topRated.title}) ")
-                    }
-                }
-                Text(text = annotatedString, style = MaterialTheme.typography.h6)
-                Row {
-                    Icon(
-                        imageVector = Icons.Default.Star,
-                        contentDescription = "",
-                        modifier = Modifier.size(24.dp),
-                        tint = ratingStarColor
-                    )
-                    Text(text = "${topRated.voteAverage}/10", color = Color.LightGray)
-                }
-                Text(
-                    text = topRated.overview,
-                    maxLines = 5,
-                    overflow = TextOverflow.Ellipsis,
-                    style = MaterialTheme.typography.subtitle2
-                )
-            }
-        }
-    }
+fun ShowTopRatedItem(){
+    MovieItem(
+        movie = Movie(
+            posterPath = "https://api.themoviedb.org/tmU7GeKVybMWFButWEGl2M4GeiP.jpg",
+            adult = false,
+            overview = "Pelicula",
+            releaseDate = "01/01/2021",
+            genreIds = listOf(1000, 2000, 4000),
+            id = 10,
+            originalTitle = "Pelcula de Prueba",
+            originalLanguage = "Español",
+            title = "Pelicula de Prueba",
+            backdropPath = null,
+            popularity = 80.2,
+            voteCount = 8,
+            video = false,
+            voteAverage = 90.0
+        ),
+        onClick = {}
+    )
 }
