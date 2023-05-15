@@ -3,7 +3,6 @@ package com.example.jetmoviesapp.ui.presentation.moviegenres
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyItemScope
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -38,10 +37,10 @@ import com.skydoves.landscapist.coil.CoilImage
 
 @Composable
 fun MovieWithGenres(
-    viewModel : MovieGenresViewModel = hiltViewModel(),
-    navController : NavController,
-    genreId : Int?,
-    genreName : String?,
+    viewModel: MovieGenresViewModel = hiltViewModel(),
+    navController: NavController,
+    genreId: Int?,
+    genreName: String?
 ) {
     val movies = viewModel.moviesWithGenres(genreId = genreId ?: 0).collectAsLazyPagingItems()
 
@@ -61,8 +60,7 @@ fun MovieWithGenres(
             items(
                 count = movies.itemCount,
                 key = movies.itemKey(),
-                contentType = movies.itemContentType(
-                )
+                contentType = movies.itemContentType()
             ) { index ->
                 val item = movies[index]
                 item?.let { movie ->
@@ -100,8 +98,8 @@ fun MovieWithGenres(
 
 @Composable
 fun MovieWithGenresItem(
-    movie : com.example.remote.data.remote.movie.Movie,
-    onClick : (com.example.remote.data.remote.movie.Movie) -> Unit,
+    movie: com.example.remote.data.remote.movie.Movie,
+    onClick: (com.example.remote.data.remote.movie.Movie) -> Unit
 ) {
     Card(
         shape = RoundedCornerShape(12.dp),

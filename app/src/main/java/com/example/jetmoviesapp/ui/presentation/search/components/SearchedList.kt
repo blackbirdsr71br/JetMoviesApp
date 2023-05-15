@@ -4,7 +4,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyItemScope
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.LinearProgressIndicator
@@ -35,8 +34,8 @@ import com.skydoves.landscapist.coil.CoilImage
 
 @Composable
 fun SearchedList(
-    movies : LazyPagingItems<com.example.remote.data.remote.movie.Movie>,
-    navController : NavController,
+    movies: LazyPagingItems<com.example.remote.data.remote.movie.Movie>,
+    navController: NavController
 ) {
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
@@ -46,8 +45,7 @@ fun SearchedList(
         items(
             count = movies.itemCount,
             key = movies.itemKey(),
-            contentType = movies.itemContentType(
-            )
+            contentType = movies.itemContentType()
         ) { index ->
             val item = movies[index]
             item?.let { movie ->
@@ -88,8 +86,8 @@ fun SearchedList(
 
 @Composable
 fun SearchedItem(
-    movie : com.example.remote.data.remote.movie.Movie,
-    onClick : (com.example.remote.data.remote.movie.Movie) -> Unit,
+    movie: com.example.remote.data.remote.movie.Movie,
+    onClick: (com.example.remote.data.remote.movie.Movie) -> Unit
 ) {
     Card(
         shape = RoundedCornerShape(12.dp),

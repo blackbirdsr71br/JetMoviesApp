@@ -26,13 +26,13 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.common.Constants
-import com.example.local.data.local.entities.MovieEntity
 import com.example.jetmoviesapp.ui.presentation.detail.components.MovieCast
 import com.example.jetmoviesapp.ui.presentation.detail.components.MovieDescription
 import com.example.jetmoviesapp.ui.presentation.detail.components.MovieGenres
 import com.example.jetmoviesapp.ui.presentation.detail.components.SimilarMovies
 import com.example.jetmoviesapp.ui.presentation.navigation.Screen
 import com.example.jetmoviesapp.ui.theme.ratingStarColor
+import com.example.local.data.local.entities.MovieEntity
 import com.skydoves.landscapist.CircularReveal
 import com.skydoves.landscapist.ShimmerParams
 import com.skydoves.landscapist.coil.CoilImage

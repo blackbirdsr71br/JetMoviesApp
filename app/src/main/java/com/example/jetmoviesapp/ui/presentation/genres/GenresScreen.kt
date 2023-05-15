@@ -18,11 +18,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.example.remote.data.remote.genre.Genre
 import com.example.jetmoviesapp.ui.presentation.composables.JetMoviesTopBar
 import com.example.jetmoviesapp.ui.presentation.navigation.Screen
 import com.example.jetmoviesapp.ui.theme.genreBgColor
 import com.example.jetmoviesapp.ui.theme.genreColor
+import com.example.remote.data.remote.genre.Genre
 
 @Composable
 fun GenresScreen(

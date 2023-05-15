@@ -3,7 +3,6 @@ package com.example.jetmoviesapp.ui.presentation.toprated
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyItemScope
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -41,8 +40,8 @@ import com.skydoves.landscapist.coil.CoilImage
 
 @Composable
 fun TopRatedScreen(
-    viewModel : TopRatedViewModel = hiltViewModel(),
-    navController : NavController,
+    viewModel: TopRatedViewModel = hiltViewModel(),
+    navController: NavController
 ) {
     val topRatedList = viewModel.topRated.collectAsLazyPagingItems()
 
@@ -63,8 +62,7 @@ fun TopRatedScreen(
             items(
                 count = topRatedList.itemCount,
                 key = topRatedList.itemKey(),
-                contentType = topRatedList.itemContentType(
-                )
+                contentType = topRatedList.itemContentType()
             ) { index ->
                 val item = topRatedList[index]
                 item?.let { topRated ->
@@ -113,8 +111,8 @@ fun TopRatedScreen(
 
 @Composable
 fun TopRatedItem(
-    topRated : com.example.remote.data.remote.movie.Movie,
-    onClick : (com.example.remote.data.remote.movie.Movie) -> Unit,
+    topRated: com.example.remote.data.remote.movie.Movie,
+    onClick: (com.example.remote.data.remote.movie.Movie) -> Unit
 ) {
     Card(
         shape = RoundedCornerShape(12.dp),

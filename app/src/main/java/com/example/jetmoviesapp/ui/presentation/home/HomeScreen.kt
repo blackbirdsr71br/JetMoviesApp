@@ -13,12 +13,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.example.remote.domain.model.HomeType
 import com.example.jetmoviesapp.ui.presentation.genres.GenresViewModel
 import com.example.jetmoviesapp.ui.presentation.home.components.Header
 import com.example.jetmoviesapp.ui.presentation.home.components.PopularHomeItem
 import com.example.jetmoviesapp.ui.presentation.home.components.TopRatedHomeItem
 import com.example.jetmoviesapp.ui.presentation.navigation.Screen
+import com.example.remote.domain.model.HomeType
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable

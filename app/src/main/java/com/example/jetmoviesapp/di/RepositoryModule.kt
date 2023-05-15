@@ -1,8 +1,7 @@
 package com.example.jetmoviesapp.di
 
-
-import com.example.local.domain.repository.MoviesRepositoryImpl
 import com.example.local.domain.repository.MoviesRepository
+import com.example.local.domain.repository.MoviesRepositoryImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -20,5 +19,4 @@ abstract class RepositoryModule {
     @Binds
     @Singleton
     abstract fun bindMoviesRepository(localRepositoryImpl: MoviesRepositoryImpl): MoviesRepository
-
 }

@@ -3,7 +3,6 @@ package com.example.jetmoviesapp.ui.presentation.nowplay
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyItemScope
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -40,8 +39,8 @@ import com.skydoves.landscapist.coil.CoilImage
 
 @Composable
 fun NowPlayScreen(
-    viewModel : NowPlayViewModel = hiltViewModel(),
-    navController : NavController,
+    viewModel: NowPlayViewModel = hiltViewModel(),
+    navController: NavController
 ) {
     val nowPlayList = viewModel.nowPlay.collectAsLazyPagingItems()
     Scaffold(
@@ -61,8 +60,7 @@ fun NowPlayScreen(
             items(
                 count = nowPlayList.itemCount,
                 key = nowPlayList.itemKey(),
-                contentType = nowPlayList.itemContentType(
-                )
+                contentType = nowPlayList.itemContentType()
             ) { index ->
                 val item = nowPlayList[index]
                 item?.let { topRated ->
@@ -100,8 +98,8 @@ fun NowPlayScreen(
 
 @Composable
 fun NowPlayItem(
-    topRated : com.example.remote.data.remote.movie.Movie,
-    onClick : (com.example.remote.data.remote.movie.Movie) -> Unit,
+    topRated: com.example.remote.data.remote.movie.Movie,
+    onClick: (com.example.remote.data.remote.movie.Movie) -> Unit
 ) {
     Card(
         shape = RoundedCornerShape(12.dp),

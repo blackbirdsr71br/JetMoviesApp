@@ -3,7 +3,6 @@ package com.example.jetmoviesapp.ui.presentation.latest
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyItemScope
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -57,17 +56,16 @@ fun LatestScreen(
                 .padding(paddingValues = it)
         ) {
             items(
-        count = latestlist.itemCount,
-        key = latestlist.itemKey(),
-        contentType = latestlist.itemContentType(
-            )
-    ) { index ->
-        val item = latestlist[index]
-        item?.let { topRated ->
-            LatesMovietItem(topRated = topRated) { navigatedItem ->
-                navController.navigate(route = Screen.MovieDetail.route + "/${navigatedItem.id}")
-            }
-        }
+                count = latestlist.itemCount,
+                key = latestlist.itemKey(),
+                contentType = latestlist.itemContentType()
+            ) { index ->
+                val item = latestlist[index]
+                item?.let { topRated ->
+                    LatesMovietItem(topRated = topRated) { navigatedItem ->
+                        navController.navigate(route = Screen.MovieDetail.route + "/${navigatedItem.id}")
+                    }
+                }
             }
             latestlist.apply {
                 when {
