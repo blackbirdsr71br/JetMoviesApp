@@ -1,9 +1,7 @@
 package com.example.jetmoviesapp.di
 
-import com.example.jetmoviesapp.data.repository.LocalRepositoryImpl
-import com.example.jetmoviesapp.data.repository.NetworkRepositoryImpl
-import com.example.jetmoviesapp.domain.repository.LocalRepository
-import com.example.jetmoviesapp.domain.repository.NetworkRepository
+import com.example.local.domain.repository.MoviesRepository
+import com.example.local.domain.repository.MoviesRepositoryImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -16,10 +14,9 @@ abstract class RepositoryModule {
 
     @Binds
     @Singleton
-    abstract fun bindRepository(repositoryImpl: NetworkRepositoryImpl): NetworkRepository
+    abstract fun bindRepository(repositoryImpl: com.example.remote.domain.repository.NetworkRepositoryImpl): com.example.remote.domain.repository.NetworkRepository
 
     @Binds
     @Singleton
-    abstract fun bindLocalRepository(localRepositoryImpl: LocalRepositoryImpl): LocalRepository
-
+    abstract fun bindMoviesRepository(localRepositoryImpl: MoviesRepositoryImpl): MoviesRepository
 }

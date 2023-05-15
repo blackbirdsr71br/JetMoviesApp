@@ -2,8 +2,9 @@ package com.example.jetmoviesapp.di
 
 import android.content.Context
 import androidx.room.Room
-import com.example.jetmoviesapp.data.local.WatchListDao
-import com.example.jetmoviesapp.data.local.WatchListDatabase
+import com.example.local.data.local.GenresListDao
+import com.example.local.data.local.WatchListDao
+import com.example.local.data.local.WatchListDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -23,7 +24,7 @@ object DatabaseModule {
         return Room.databaseBuilder(
             context.applicationContext,
             WatchListDatabase::class.java,
-            "watch_list_db"
+            "jetmovies_db"
         )
             .fallbackToDestructiveMigration()
             .build()
@@ -35,5 +36,13 @@ object DatabaseModule {
         db: WatchListDatabase
     ): WatchListDao {
         return db.watchListDao()
+    }
+
+    @Singleton
+    @Provides
+    fun provideGenresListDao(
+        db: WatchListDatabase
+    ): GenresListDao {
+        return db.genresListDao()
     }
 }

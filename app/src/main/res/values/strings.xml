@@ -4,4 +4,8 @@
     <string name="app_search">Search List</string>
     <string name="app_genre">Género</string>
     <string name="app_error">No se encuentra</string>
+    <string name="web_client_id">603668407707-ldh0lrua72g1gor2e160g4p0lubett76.apps.googleusercontent.com</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="logout">Logout</string>
+    <string name="drawer_test_tag">drawer_test_tag</string>
 </resources>
