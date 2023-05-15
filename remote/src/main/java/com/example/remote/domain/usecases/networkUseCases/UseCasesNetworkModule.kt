@@ -1,12 +1,9 @@
-package com.example.jetmoviesapp.domain.usecases.remote.networkUseCases
+package com.example.remote.domain.usecases.networkUseCases
 
-import com.example.jetmoviesapp.data.paging.SearchMovie
-import com.example.local.domain.repository.MoviesRepository
+
+import com.example.remote.data.paging.SearchMovie
 import com.example.remote.domain.repository.NetworkRepository
-import com.example.jetmoviesapp.domain.usecases.local.dataBaseUseCases.DeleteMovieUseCase
-import com.example.jetmoviesapp.domain.usecases.local.dataBaseUseCases.GetMovieByIdUseCase
-import com.example.jetmoviesapp.domain.usecases.local.dataBaseUseCases.GetWatchListUseCase
-import com.example.jetmoviesapp.domain.usecases.local.dataBaseUseCases.InsertMovieUseCase
+
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,7 +14,7 @@ import dagger.hilt.components.SingletonComponent
 class UseCasesNetworkModule {
 
     @Provides
-    fun usecases(repository: com.example.remote.domain.repository.NetworkRepository) = UseCaseNetwork(
+    fun usecases(repository: NetworkRepository) = UseCaseNetwork(
         getMoviesHome = GetHomeMoviesUseCase(repository),
         getGenresMovies = GetGenresMoviesUseCase(repository),
         getNowPlayMovies = GetNowPlayMoviesUseCase(repository),
@@ -31,24 +28,7 @@ class UseCasesNetworkModule {
     )
 }
 
-@Module
-@InstallIn(SingletonComponent::class)
-class UseCasesMovies {
-    @Provides
-    fun usecases(repository: MoviesRepository) = UseCaseMovie(
-        InsertMovieUseCase(repository),
-        DeleteMovieUseCase(repository),
-        GetWatchListUseCase(repository),
-        GetMovieByIdUseCase(repository)
-    )
-}
 
-data class UseCaseMovie(
-    val insert: InsertMovieUseCase,
-    val deleteMovie: DeleteMovieUseCase,
-    val getWatchList: GetWatchListUseCase,
-    val getMoviebyId: GetMovieByIdUseCase
-)
 
 data class UseCaseNetwork(
     val getLatestMovies: GetLatestMoviesUseCase,

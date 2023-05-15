@@ -1,10 +1,8 @@
-package com.example.jetmoviesapp.data.paging
+package com.example.remote.data.paging
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.example.remote.data.remote.movie.Movie
-import com.example.remote.domain.repository.NetworkRepository
-import com.example.jetmoviesapp.domain.usecases.remote.networkUseCases.UseCaseNetwork
+import com.example.remote.domain.usecases.networkUseCases.UseCaseNetwork
 import retrofit2.HttpException
 import java.io.IOException
 

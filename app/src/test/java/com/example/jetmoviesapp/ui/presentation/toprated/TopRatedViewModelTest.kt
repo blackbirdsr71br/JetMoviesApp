@@ -1,16 +1,15 @@
 package com.example.jetmoviesapp.ui.presentation.toprated
 
-import com.example.jetmoviesapp.data.paging.SearchMovie
-import com.example.remote.domain.repository.NetworkRepository
-import com.example.jetmoviesapp.domain.usecases.remote.networkUseCases.GetByGenderMoviesUseCase
-import com.example.jetmoviesapp.domain.usecases.remote.networkUseCases.GetGenresMoviesUseCase
-import com.example.jetmoviesapp.domain.usecases.remote.networkUseCases.GetHomeMoviesUseCase
-import com.example.jetmoviesapp.domain.usecases.remote.networkUseCases.GetLatestMoviesUseCase
-import com.example.jetmoviesapp.domain.usecases.remote.networkUseCases.GetMovieByIdNetworkUseCase
-import com.example.jetmoviesapp.domain.usecases.remote.networkUseCases.GetNowPlayMoviesUseCase
-import com.example.jetmoviesapp.domain.usecases.remote.networkUseCases.GetPopularMoviesUseCase
-import com.example.jetmoviesapp.domain.usecases.remote.networkUseCases.GetTopRatedMoviesUseCase
-import com.example.jetmoviesapp.domain.usecases.remote.networkUseCases.UseCaseNetwork
+import com.example.remote.data.paging.SearchMovie
+import com.example.remote.domain.usecases.networkUseCases.GetByGenderMoviesUseCase
+import com.example.remote.domain.usecases.networkUseCases.GetGenresMoviesUseCase
+import com.example.remote.domain.usecases.networkUseCases.GetHomeMoviesUseCase
+import com.example.remote.domain.usecases.networkUseCases.GetLatestMoviesUseCase
+import com.example.remote.domain.usecases.networkUseCases.GetMovieByIdNetworkUseCase
+import com.example.remote.domain.usecases.networkUseCases.GetNowPlayMoviesUseCase
+import com.example.remote.domain.usecases.networkUseCases.GetPopularMoviesUseCase
+import com.example.remote.domain.usecases.networkUseCases.GetTopRatedMoviesUseCase
+import com.example.remote.domain.usecases.networkUseCases.UseCaseNetwork
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.runBlocking
 import org.junit.Before

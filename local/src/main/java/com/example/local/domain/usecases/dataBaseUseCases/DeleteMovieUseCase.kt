@@ -1,4 +1,4 @@
-package com.example.jetmoviesapp.domain.usecases.local.dataBaseUseCases
+package com.example.local.domain.usecases.dataBaseUseCases
 
 import com.example.local.data.local.entities.MovieEntity
 import com.example.local.domain.repository.MoviesRepository

@@ -7,9 +7,8 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.example.jetmoviesapp.data.paging.SearchPagingSource
-import com.example.remote.data.remote.movie.Movie
-import com.example.jetmoviesapp.domain.usecases.remote.networkUseCases.UseCaseNetwork
+import com.example.remote.data.paging.SearchPagingSource
+import com.example.remote.domain.usecases.networkUseCases.UseCaseNetwork
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch

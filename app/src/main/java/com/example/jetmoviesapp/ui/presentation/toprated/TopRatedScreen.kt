@@ -3,6 +3,7 @@ package com.example.jetmoviesapp.ui.presentation.toprated
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyItemScope
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -25,20 +26,23 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
+import androidx.paging.compose.itemContentType
+import androidx.paging.compose.itemKey
 import androidx.paging.compose.items
 import com.example.common.Constants
 import com.example.jetmoviesapp.R
 import com.example.jetmoviesapp.ui.presentation.composables.JetMoviesTopBar
 import com.example.jetmoviesapp.ui.presentation.navigation.Screen
 import com.example.jetmoviesapp.ui.theme.ratingStarColor
+import com.example.remote.data.remote.movie.Movie
 import com.skydoves.landscapist.CircularReveal
 import com.skydoves.landscapist.ShimmerParams
 import com.skydoves.landscapist.coil.CoilImage
 
 @Composable
 fun TopRatedScreen(
-    viewModel: TopRatedViewModel = hiltViewModel(),
-    navController: NavController
+    viewModel : TopRatedViewModel = hiltViewModel(),
+    navController : NavController,
 ) {
     val topRatedList = viewModel.topRated.collectAsLazyPagingItems()
 
@@ -56,7 +60,13 @@ fun TopRatedScreen(
             modifier = Modifier
                 .padding(paddingValues = it)
         ) {
-            items(topRatedList) { item ->
+            items(
+                count = topRatedList.itemCount,
+                key = topRatedList.itemKey(),
+                contentType = topRatedList.itemContentType(
+                )
+            ) { index ->
+                val item = topRatedList[index]
                 item?.let { topRated ->
                     TopRatedItem(topRated = topRated) { navigatedItem ->
                         navController.navigate(route = Screen.MovieDetail.route + "/${navigatedItem.id}")
@@ -102,7 +112,10 @@ fun TopRatedScreen(
 }
 
 @Composable
-fun TopRatedItem(topRated: com.example.remote.data.remote.movie.Movie, onClick: (com.example.remote.data.remote.movie.Movie) -> Unit) {
+fun TopRatedItem(
+    topRated : com.example.remote.data.remote.movie.Movie,
+    onClick : (com.example.remote.data.remote.movie.Movie) -> Unit,
+) {
     Card(
         shape = RoundedCornerShape(12.dp),
         elevation = 4.dp,

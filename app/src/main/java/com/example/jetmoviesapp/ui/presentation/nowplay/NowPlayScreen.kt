@@ -3,6 +3,7 @@ package com.example.jetmoviesapp.ui.presentation.nowplay
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyItemScope
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -24,20 +25,23 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
+import androidx.paging.compose.itemContentType
+import androidx.paging.compose.itemKey
 import androidx.paging.compose.items
 import com.example.common.Constants
 import com.example.jetmoviesapp.R
 import com.example.jetmoviesapp.ui.presentation.composables.JetMoviesTopBar
 import com.example.jetmoviesapp.ui.presentation.navigation.Screen
 import com.example.jetmoviesapp.ui.theme.ratingStarColor
+import com.example.remote.data.remote.movie.Movie
 import com.skydoves.landscapist.CircularReveal
 import com.skydoves.landscapist.ShimmerParams
 import com.skydoves.landscapist.coil.CoilImage
 
 @Composable
 fun NowPlayScreen(
-    viewModel: NowPlayViewModel = hiltViewModel(),
-    navController: NavController
+    viewModel : NowPlayViewModel = hiltViewModel(),
+    navController : NavController,
 ) {
     val nowPlayList = viewModel.nowPlay.collectAsLazyPagingItems()
     Scaffold(
@@ -54,7 +58,13 @@ fun NowPlayScreen(
             modifier = Modifier
                 .padding(paddingValues = it)
         ) {
-            items(nowPlayList) { item ->
+            items(
+                count = nowPlayList.itemCount,
+                key = nowPlayList.itemKey(),
+                contentType = nowPlayList.itemContentType(
+                )
+            ) { index ->
+                val item = nowPlayList[index]
                 item?.let { topRated ->
                     NowPlayItem(topRated = topRated) { navigatedItem ->
                         navController.navigate(route = Screen.MovieDetail.route + "/${navigatedItem.id}")
@@ -89,7 +99,10 @@ fun NowPlayScreen(
 }
 
 @Composable
-fun NowPlayItem(topRated: com.example.remote.data.remote.movie.Movie, onClick: (com.example.remote.data.remote.movie.Movie) -> Unit) {
+fun NowPlayItem(
+    topRated : com.example.remote.data.remote.movie.Movie,
+    onClick : (com.example.remote.data.remote.movie.Movie) -> Unit,
+) {
     Card(
         shape = RoundedCornerShape(12.dp),
         elevation = 4.dp,

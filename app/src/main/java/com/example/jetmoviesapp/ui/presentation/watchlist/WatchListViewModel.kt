@@ -5,7 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.local.data.local.entities.MovieEntity
-import com.example.jetmoviesapp.domain.usecases.remote.networkUseCases.UseCaseMovie
+import com.example.local.domain.usecases.dataBaseUseCases.UseCaseMovie
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.catch

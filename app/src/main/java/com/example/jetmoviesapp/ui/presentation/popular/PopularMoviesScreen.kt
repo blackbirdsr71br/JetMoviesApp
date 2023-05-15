@@ -3,6 +3,7 @@ package com.example.jetmoviesapp.ui.presentation.popular
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyItemScope
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -23,19 +24,22 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
+import androidx.paging.compose.itemContentType
+import androidx.paging.compose.itemKey
 import androidx.paging.compose.items
 import com.example.common.Constants
 import com.example.jetmoviesapp.ui.presentation.composables.JetMoviesTopBar
 import com.example.jetmoviesapp.ui.presentation.navigation.Screen
 import com.example.jetmoviesapp.ui.theme.ratingStarColor
+import com.example.remote.data.remote.movie.Movie
 import com.skydoves.landscapist.CircularReveal
 import com.skydoves.landscapist.ShimmerParams
 import com.skydoves.landscapist.coil.CoilImage
 
 @Composable
 fun PopularMoviesScreen(
-    viewModel: PopularViewModel = hiltViewModel(),
-    navController: NavController
+    viewModel : PopularViewModel = hiltViewModel(),
+    navController : NavController,
 ) {
     val popularMovies = viewModel.popularMovies.collectAsLazyPagingItems()
 
@@ -53,12 +57,24 @@ fun PopularMoviesScreen(
             modifier = Modifier
                 .padding(paddingValues = it)
         ) {
-            items(popularMovies) { popular ->
-                popular?.let {
-                    PopularMoviesItem(popular = popular) { navigated ->
+            items(
+                count = popularMovies.itemCount,
+                key = popularMovies.itemKey(),
+                contentType = popularMovies.itemContentType(
+                )
+            ) { index ->
+                val item = popularMovies[index]
+                item?.let {
+                    PopularMoviesItem(popular = item) { navigated ->
                         navController.navigate(route = Screen.MovieDetail.route + "/${navigated.id}") {
-                            navController.popBackStack(route = Screen.MovieDetail.route, inclusive = true)
-                            navController.popBackStack(route = Screen.Popular.route, inclusive = true)
+                            navController.popBackStack(
+                                route = Screen.MovieDetail.route,
+                                inclusive = true
+                            )
+                            navController.popBackStack(
+                                route = Screen.Popular.route,
+                                inclusive = true
+                            )
                         }
                     }
                 }
@@ -100,7 +116,10 @@ fun PopularMoviesScreen(
 }
 
 @Composable
-fun PopularMoviesItem(popular: com.example.remote.data.remote.movie.Movie, onClick: (com.example.remote.data.remote.movie.Movie) -> Unit) {
+fun PopularMoviesItem(
+    popular : com.example.remote.data.remote.movie.Movie,
+    onClick : (com.example.remote.data.remote.movie.Movie) -> Unit,
+) {
     Card(
         shape = RoundedCornerShape(12.dp),
         elevation = 4.dp,

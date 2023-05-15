@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyItemScope
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.LinearProgressIndicator
@@ -22,24 +23,33 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
+import androidx.paging.compose.itemContentType
+import androidx.paging.compose.itemKey
 import androidx.paging.compose.items
 import com.example.common.Constants
 import com.example.jetmoviesapp.R
+import com.example.remote.data.remote.movie.Movie
 import com.skydoves.landscapist.CircularReveal
 import com.skydoves.landscapist.ShimmerParams
 import com.skydoves.landscapist.coil.CoilImage
 
 @Composable
 fun SearchedList(
-    movies: LazyPagingItems<com.example.remote.data.remote.movie.Movie>,
-    navController: NavController
+    movies : LazyPagingItems<com.example.remote.data.remote.movie.Movie>,
+    navController : NavController,
 ) {
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        items(movies) { item ->
+        items(
+            count = movies.itemCount,
+            key = movies.itemKey(),
+            contentType = movies.itemContentType(
+            )
+        ) { index ->
+            val item = movies[index]
             item?.let { movie ->
                 Column {
                     SearchedItem(movie = movie) { navigatedItem ->
@@ -77,7 +87,10 @@ fun SearchedList(
 }
 
 @Composable
-fun SearchedItem(movie: com.example.remote.data.remote.movie.Movie, onClick: (com.example.remote.data.remote.movie.Movie) -> Unit) {
+fun SearchedItem(
+    movie : com.example.remote.data.remote.movie.Movie,
+    onClick : (com.example.remote.data.remote.movie.Movie) -> Unit,
+) {
     Card(
         shape = RoundedCornerShape(12.dp),
         elevation = 4.dp,

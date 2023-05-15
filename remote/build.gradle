@@ -50,4 +50,9 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
     implementation "com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.3"
+
+    // Jetpack Compose paging
+    implementation "androidx.paging:paging-compose:1.0.0-alpha19"
+    implementation "com.google.accompanist:accompanist-systemuicontroller:0.28.0"
+    implementation "com.google.accompanist:accompanist-flowlayout:0.29.1-alpha"
 }
