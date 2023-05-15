@@ -18,7 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.example.jetmoviesapp.data.remote.genre.Genre
+import com.example.remote.data.remote.genre.Genre
 import com.example.jetmoviesapp.ui.presentation.composables.JetMoviesTopBar
 import com.example.jetmoviesapp.ui.presentation.navigation.Screen
 import com.example.jetmoviesapp.ui.theme.genreBgColor
@@ -54,7 +54,7 @@ fun GenresScreen(
 }
 
 @Composable
-fun GenresItem(genre: Genre, onClick: (Genre) -> Unit) {
+fun GenresItem(genre: com.example.remote.data.remote.genre.Genre, onClick: (com.example.remote.data.remote.genre.Genre) -> Unit) {
     Card(
         elevation = 2.dp,
         shape = RoundedCornerShape(50),

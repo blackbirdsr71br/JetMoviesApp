@@ -16,17 +16,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.example.jetmoviesapp.common.Constants
-import com.example.jetmoviesapp.data.remote.movie.Movie
+import com.example.common.Constants
 import com.example.jetmoviesapp.ui.theme.categoryColor
 import com.skydoves.landscapist.CircularReveal
 import com.skydoves.landscapist.coil.CoilImage
 
 @Composable
 fun SimilarMovies(
-    similar: List<Movie>,
+    similar: List<com.example.remote.data.remote.movie.Movie>,
     modifier: Modifier = Modifier,
-    onClickItem: (Movie) -> Unit
+    onClickItem: (com.example.remote.data.remote.movie.Movie) -> Unit
 ) {
     Column(modifier = modifier) {
         Text(

@@ -16,15 +16,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.jetmoviesapp.common.Constants
-import com.example.jetmoviesapp.data.remote.moviedetail.Cast
+import com.example.common.Constants
 import com.example.jetmoviesapp.ui.theme.categoryColor
 import com.skydoves.landscapist.CircularReveal
 import com.skydoves.landscapist.coil.CoilImage
 
 @Composable
 fun MovieCast(
-    cast: List<Cast>,
+    cast: List<com.example.remote.data.remote.moviedetail.Cast>,
     modifier: Modifier = Modifier
 ) {
     Column(modifier = modifier) {

@@ -1,7 +1,6 @@
 package com.example.jetmoviesapp.di
 
-import com.example.jetmoviesapp.common.Constants
-import com.example.jetmoviesapp.data.remote.ApiService
+import com.example.common.Constants
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -38,7 +37,7 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideApiService(okHttpClient: OkHttpClient): ApiService {
+    fun provideApiService(okHttpClient: OkHttpClient): com.example.remote.data.remote.ApiService {
         return Retrofit.Builder()
             .baseUrl(Constants.BASE_URL)
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())

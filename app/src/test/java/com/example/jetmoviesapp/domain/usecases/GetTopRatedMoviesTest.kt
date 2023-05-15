@@ -1,8 +1,8 @@
 package com.example.jetmoviesapp.domain.usecases
 
-import com.example.jetmoviesapp.data.remote.movie.Movie
-import com.example.jetmoviesapp.data.remote.movie.MovieResponse
-import com.example.jetmoviesapp.domain.repository.NetworkRepository
+import com.example.remote.data.remote.movie.Movie
+import com.example.remote.data.remote.movie.MovieResponse
+import com.example.remote.domain.repository.NetworkRepository
 import com.example.jetmoviesapp.domain.usecases.remote.networkUseCases.GetTopRatedMoviesUseCase
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
@@ -16,7 +16,7 @@ import java.time.LocalDateTime
 class GetTopRatedMoviesTest {
 
     @RelaxedMockK
-    private lateinit var repository: NetworkRepository
+    private lateinit var repository: com.example.remote.domain.repository.NetworkRepository
 
     lateinit var getTopRatedMovies: GetTopRatedMoviesUseCase
 
@@ -31,7 +31,7 @@ class GetTopRatedMoviesTest {
         // Given
 
         val movieList = listOf(
-            Movie(
+            com.example.remote.data.remote.movie.Movie(
                 posterPath = "lugar del poster",
                 adult = false,
                 overview = "Pelicula sobre los test",
@@ -48,7 +48,7 @@ class GetTopRatedMoviesTest {
                 voteAverage = 101.0
             )
         )
-        val movieResponse = MovieResponse(
+        val movieResponse = com.example.remote.data.remote.movie.MovieResponse(
             page = 1,
             results = movieList,
             total_pages = 1,

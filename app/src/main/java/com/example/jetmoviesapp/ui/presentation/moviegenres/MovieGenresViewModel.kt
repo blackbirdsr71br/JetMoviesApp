@@ -7,7 +7,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.example.jetmoviesapp.data.paging.MoviePagingSource
-import com.example.jetmoviesapp.data.remote.movie.Movie
+import com.example.remote.data.remote.movie.Movie
 import com.example.jetmoviesapp.domain.usecases.remote.networkUseCases.UseCaseNetwork
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
@@ -18,7 +18,7 @@ class MovieGenresViewModel @Inject constructor(
     private val useCaseNetwork: UseCaseNetwork
 ) : ViewModel() {
 
-    fun moviesWithGenres(genreId: Int): Flow<PagingData<Movie>> {
+    fun moviesWithGenres(genreId: Int): Flow<PagingData<com.example.remote.data.remote.movie.Movie>> {
         return Pager(
             config = PagingConfig(pageSize = 20),
             pagingSourceFactory = {

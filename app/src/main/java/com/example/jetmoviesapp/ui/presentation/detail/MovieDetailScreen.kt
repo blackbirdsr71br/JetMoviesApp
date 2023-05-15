@@ -25,7 +25,7 @@ import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.example.jetmoviesapp.common.Constants
+import com.example.common.Constants
 import com.example.local.data.local.entities.MovieEntity
 import com.example.jetmoviesapp.ui.presentation.detail.components.MovieCast
 import com.example.jetmoviesapp.ui.presentation.detail.components.MovieDescription

@@ -23,9 +23,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.jetmoviesapp.common.Constants
-import com.example.jetmoviesapp.data.remote.genre.Genre
-import com.example.jetmoviesapp.data.remote.movie.Movie
+import com.example.common.Constants
 import com.example.jetmoviesapp.ui.theme.genreBgColor
 import com.example.jetmoviesapp.ui.theme.genreColor
 import com.example.jetmoviesapp.ui.theme.ratingStarColor
@@ -36,9 +34,9 @@ import com.skydoves.landscapist.coil.CoilImage
 
 @Composable
 fun PopularHomeItem(
-    popular: Movie,
-    genres: List<Genre>,
-    onClick: (Movie) -> Unit
+    popular: com.example.remote.data.remote.movie.Movie,
+    genres: List<com.example.remote.data.remote.genre.Genre>,
+    onClick: (com.example.remote.data.remote.movie.Movie) -> Unit
 ) {
     Row(
         modifier = Modifier

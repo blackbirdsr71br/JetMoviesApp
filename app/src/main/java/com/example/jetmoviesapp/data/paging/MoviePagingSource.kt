@@ -2,7 +2,7 @@ package com.example.jetmoviesapp.data.paging
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.example.jetmoviesapp.data.remote.movie.Movie
+import com.example.remote.data.remote.movie.Movie
 import com.example.jetmoviesapp.domain.usecases.remote.networkUseCases.UseCaseNetwork
 import retrofit2.HttpException
 import java.io.IOException
@@ -10,15 +10,15 @@ import java.io.IOException
 class MoviePagingSource(
     private val useCase: UseCaseNetwork,
     private val source: Source
-) : PagingSource<Int, Movie>() {
-    override fun getRefreshKey(state: PagingState<Int, Movie>): Int? {
+) : PagingSource<Int, com.example.remote.data.remote.movie.Movie>() {
+    override fun getRefreshKey(state: PagingState<Int, com.example.remote.data.remote.movie.Movie>): Int? {
         return state.anchorPosition?.let { anchorPosition ->
             val anchorPage = state.closestPageToPosition(anchorPosition)
             anchorPage?.prevKey?.plus(1) ?: anchorPage?.nextKey?.minus(1)
         }
     }
 
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Movie> {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, com.example.remote.data.remote.movie.Movie> {
         return try {
             val nextPageNumber = params.key ?: 1
 

@@ -24,8 +24,7 @@ import androidx.navigation.NavController
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
-import com.example.jetmoviesapp.common.Constants
-import com.example.jetmoviesapp.data.remote.movie.Movie
+import com.example.common.Constants
 import com.example.jetmoviesapp.ui.presentation.composables.JetMoviesTopBar
 import com.example.jetmoviesapp.ui.presentation.navigation.Screen
 import com.example.jetmoviesapp.ui.theme.ratingStarColor
@@ -101,7 +100,7 @@ fun PopularMoviesScreen(
 }
 
 @Composable
-fun PopularMoviesItem(popular: Movie, onClick: (Movie) -> Unit) {
+fun PopularMoviesItem(popular: com.example.remote.data.remote.movie.Movie, onClick: (com.example.remote.data.remote.movie.Movie) -> Unit) {
     Card(
         shape = RoundedCornerShape(12.dp),
         elevation = 4.dp,

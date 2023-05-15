@@ -1,7 +1,7 @@
 package com.example.jetmoviesapp.ui.presentation.toprated
 
 import com.example.jetmoviesapp.data.paging.SearchMovie
-import com.example.jetmoviesapp.domain.repository.NetworkRepository
+import com.example.remote.domain.repository.NetworkRepository
 import com.example.jetmoviesapp.domain.usecases.remote.networkUseCases.GetByGenderMoviesUseCase
 import com.example.jetmoviesapp.domain.usecases.remote.networkUseCases.GetGenresMoviesUseCase
 import com.example.jetmoviesapp.domain.usecases.remote.networkUseCases.GetHomeMoviesUseCase
@@ -17,7 +17,7 @@ import org.junit.Before
 import org.junit.Test
 
 class TopRatedViewModelTest {
-    private lateinit var networkRepository: NetworkRepository
+    private lateinit var networkRepository: com.example.remote.domain.repository.NetworkRepository
 
     private lateinit var viewModel: TopRatedViewModel
     lateinit var useCaseNetwork: UseCaseNetwork

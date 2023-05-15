@@ -2,7 +2,7 @@ package com.example.jetmoviesapp.domain.usecases.remote.networkUseCases
 
 import com.example.jetmoviesapp.data.paging.SearchMovie
 import com.example.local.domain.repository.MoviesRepository
-import com.example.jetmoviesapp.domain.repository.NetworkRepository
+import com.example.remote.domain.repository.NetworkRepository
 import com.example.jetmoviesapp.domain.usecases.local.dataBaseUseCases.DeleteMovieUseCase
 import com.example.jetmoviesapp.domain.usecases.local.dataBaseUseCases.GetMovieByIdUseCase
 import com.example.jetmoviesapp.domain.usecases.local.dataBaseUseCases.GetWatchListUseCase
@@ -17,7 +17,7 @@ import dagger.hilt.components.SingletonComponent
 class UseCasesNetworkModule {
 
     @Provides
-    fun usecases(repository: NetworkRepository) = UseCaseNetwork(
+    fun usecases(repository: com.example.remote.domain.repository.NetworkRepository) = UseCaseNetwork(
         getMoviesHome = GetHomeMoviesUseCase(repository),
         getGenresMovies = GetGenresMoviesUseCase(repository),
         getNowPlayMovies = GetNowPlayMoviesUseCase(repository),

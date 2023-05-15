@@ -15,8 +15,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.example.jetmoviesapp.common.Constants
-import com.example.jetmoviesapp.data.remote.movie.Movie
+import com.example.common.Constants
 import com.example.jetmoviesapp.ui.theme.ratingStarColor
 import com.skydoves.landscapist.CircularReveal
 import com.skydoves.landscapist.ShimmerParams
@@ -24,8 +23,8 @@ import com.skydoves.landscapist.coil.CoilImage
 
 @Composable
 fun TopRatedHomeItem(
-    topRated: Movie,
-    onClick: (Movie) -> Unit
+    topRated: com.example.remote.data.remote.movie.Movie,
+    onClick: (com.example.remote.data.remote.movie.Movie) -> Unit
 ) {
     Column(
         modifier = Modifier

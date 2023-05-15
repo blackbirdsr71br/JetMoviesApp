@@ -1,6 +1,6 @@
 package com.example.jetmoviesapp.di
 
-import com.example.jetmoviesapp.common.Constants
+import com.example.common.Constants
 import okhttp3.Interceptor
 import okhttp3.Response
 

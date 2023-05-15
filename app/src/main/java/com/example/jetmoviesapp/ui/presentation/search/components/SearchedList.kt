@@ -23,16 +23,15 @@ import androidx.navigation.NavController
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.items
+import com.example.common.Constants
 import com.example.jetmoviesapp.R
-import com.example.jetmoviesapp.common.Constants
-import com.example.jetmoviesapp.data.remote.movie.Movie
 import com.skydoves.landscapist.CircularReveal
 import com.skydoves.landscapist.ShimmerParams
 import com.skydoves.landscapist.coil.CoilImage
 
 @Composable
 fun SearchedList(
-    movies: LazyPagingItems<Movie>,
+    movies: LazyPagingItems<com.example.remote.data.remote.movie.Movie>,
     navController: NavController
 ) {
     LazyColumn(
@@ -78,7 +77,7 @@ fun SearchedList(
 }
 
 @Composable
-fun SearchedItem(movie: Movie, onClick: (Movie) -> Unit) {
+fun SearchedItem(movie: com.example.remote.data.remote.movie.Movie, onClick: (com.example.remote.data.remote.movie.Movie) -> Unit) {
     Card(
         shape = RoundedCornerShape(12.dp),
         elevation = 4.dp,

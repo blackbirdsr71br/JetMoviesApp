@@ -19,7 +19,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.jetmoviesapp.common.Constants
+import com.example.common.Constants
 import com.example.local.data.local.entities.MovieEntity
 import com.example.jetmoviesapp.ui.theme.ratingStarColor
 import com.skydoves.landscapist.CircularReveal

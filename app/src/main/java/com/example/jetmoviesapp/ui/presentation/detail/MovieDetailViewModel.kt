@@ -5,7 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.jetmoviesapp.common.Resource
+import com.example.common.Resource
 import com.example.jetmoviesapp.domain.usecases.remote.networkUseCases.UseCaseMovie
 import com.example.jetmoviesapp.domain.usecases.remote.networkUseCases.UseCaseNetwork
 import dagger.hilt.android.lifecycle.HiltViewModel

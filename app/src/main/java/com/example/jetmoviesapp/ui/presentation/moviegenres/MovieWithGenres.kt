@@ -3,6 +3,7 @@ package com.example.jetmoviesapp.ui.presentation.moviegenres
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyItemScope
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -23,22 +24,24 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
+import androidx.paging.compose.itemContentType
+import androidx.paging.compose.itemKey
 import androidx.paging.compose.items
-import com.example.jetmoviesapp.common.Constants
-import com.example.jetmoviesapp.data.remote.movie.Movie
+import com.example.common.Constants
 import com.example.jetmoviesapp.ui.presentation.composables.JetMoviesTopBar
 import com.example.jetmoviesapp.ui.presentation.navigation.Screen
 import com.example.jetmoviesapp.ui.theme.ratingStarColor
+import com.example.remote.data.remote.movie.Movie
 import com.skydoves.landscapist.CircularReveal
 import com.skydoves.landscapist.ShimmerParams
 import com.skydoves.landscapist.coil.CoilImage
 
 @Composable
 fun MovieWithGenres(
-    viewModel: MovieGenresViewModel = hiltViewModel(),
-    navController: NavController,
-    genreId: Int?,
-    genreName: String?
+    viewModel : MovieGenresViewModel = hiltViewModel(),
+    navController : NavController,
+    genreId : Int?,
+    genreName : String?,
 ) {
     val movies = viewModel.moviesWithGenres(genreId = genreId ?: 0).collectAsLazyPagingItems()
 
@@ -55,7 +58,13 @@ fun MovieWithGenres(
         LazyColumn(
             modifier = Modifier.padding(it)
         ) {
-            items(movies) { item ->
+            items(
+                count = movies.itemCount,
+                key = movies.itemKey(),
+                contentType = movies.itemContentType(
+                )
+            ) { index ->
+                val item = movies[index]
                 item?.let { movie ->
                     MovieWithGenresItem(movie = movie) { navigatedItem ->
                         navController.navigate(route = Screen.MovieDetail.route + "/${navigatedItem.id}")
@@ -90,7 +99,10 @@ fun MovieWithGenres(
 }
 
 @Composable
-fun MovieWithGenresItem(movie: Movie, onClick: (Movie) -> Unit) {
+fun MovieWithGenresItem(
+    movie : com.example.remote.data.remote.movie.Movie,
+    onClick : (com.example.remote.data.remote.movie.Movie) -> Unit,
+) {
     Card(
         shape = RoundedCornerShape(12.dp),
         elevation = 4.dp,
