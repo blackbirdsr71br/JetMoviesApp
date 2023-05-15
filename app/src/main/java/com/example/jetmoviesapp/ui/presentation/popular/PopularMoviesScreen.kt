@@ -25,12 +25,10 @@ import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemContentType
 import androidx.paging.compose.itemKey
-import androidx.paging.compose.items
 import com.example.common.Constants
 import com.example.jetmoviesapp.ui.presentation.composables.JetMoviesTopBar
 import com.example.jetmoviesapp.ui.presentation.navigation.Screen
 import com.example.jetmoviesapp.ui.theme.ratingStarColor
-import com.example.remote.data.remote.movie.Movie
 import com.skydoves.landscapist.CircularReveal
 import com.skydoves.landscapist.ShimmerParams
 import com.skydoves.landscapist.coil.CoilImage
