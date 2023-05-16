@@ -1,9 +1,11 @@
-package com.example.jetmoviesapp.ui.presentation.loginauth.signin
+package com.example.jetmoviesapp.domain
 
 import android.content.Context
 import android.content.Intent
 import android.content.IntentSender
 import com.example.jetmoviesapp.R
+import com.example.jetmoviesapp.ui.presentation.loginauth.signin.SignInResult
+import com.example.jetmoviesapp.ui.presentation.loginauth.signin.UserData
 import com.google.android.gms.auth.api.identity.BeginSignInRequest
 import com.google.android.gms.auth.api.identity.BeginSignInRequest.GoogleIdTokenRequestOptions
 import com.google.android.gms.auth.api.identity.SignInClient

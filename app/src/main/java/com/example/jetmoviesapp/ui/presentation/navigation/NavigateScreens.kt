@@ -23,7 +23,7 @@ import com.example.jetmoviesapp.ui.presentation.MainScreen
 import com.example.jetmoviesapp.ui.presentation.detail.MovieDetailScreen
 import com.example.jetmoviesapp.ui.presentation.genres.GenresScreen
 import com.example.jetmoviesapp.ui.presentation.latest.LatestScreen
-import com.example.jetmoviesapp.ui.presentation.loginauth.signin.GoogleAuthUiClient
+import com.example.jetmoviesapp.domain.GoogleAuthUiClient
 import com.example.jetmoviesapp.ui.presentation.loginauth.signin.SignInScreen
 import com.example.jetmoviesapp.ui.presentation.loginauth.signin.SignInViewmodel
 import com.example.jetmoviesapp.ui.presentation.moviegenres.MovieWithGenres

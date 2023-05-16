@@ -10,7 +10,9 @@ import com.example.remote.data.paging.MoviePagingSource
 import com.example.remote.data.remote.movie.Movie
 import com.example.remote.domain.usecases.networkUseCases.UseCaseNetwork
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
 @HiltViewModel
@@ -26,5 +28,7 @@ class LatestMoviesViewModel @Inject constructor(
                 MoviePagingSource.Source.Latest
             )
         }
-    ).flow.cachedIn(viewModelScope)
+    ).flow
+        .cachedIn(viewModelScope)
+        .flowOn((Dispatchers.IO))
 }

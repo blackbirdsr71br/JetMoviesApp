@@ -40,7 +40,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.jetmoviesapp.ui.presentation.composables.drawer.DrawerCompose
 import com.example.jetmoviesapp.ui.presentation.home.HomeScreen
-import com.example.jetmoviesapp.ui.presentation.loginauth.signin.GoogleAuthUiClient
+import com.example.jetmoviesapp.domain.GoogleAuthUiClient
 import com.example.jetmoviesapp.ui.presentation.navigation.AppBottomNavigation
 import com.example.jetmoviesapp.ui.presentation.navigation.Screen
 import com.example.jetmoviesapp.ui.theme.RainbowColors

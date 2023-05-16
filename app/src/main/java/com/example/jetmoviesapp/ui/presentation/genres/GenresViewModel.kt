@@ -15,8 +15,8 @@ class GenresViewModel @Inject constructor(
     private val useCase: UseCaseNetwork
 ) : ViewModel() {
 
-    private val _stateGenres = mutableStateOf<List<com.example.remote.data.remote.genre.Genre>>(emptyList())
-    val stateGenres: State<List<com.example.remote.data.remote.genre.Genre>> get() = _stateGenres
+    private val _stateGenres = mutableStateOf<List<Genre>>(emptyList())
+    val stateGenres: State<List<Genre>> get() = _stateGenres
 
     init {
         getGenres()

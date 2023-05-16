@@ -7,7 +7,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.core.view.WindowCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.compose.rememberNavController
-import com.example.jetmoviesapp.ui.presentation.loginauth.signin.GoogleAuthUiClient
+import com.example.jetmoviesapp.domain.GoogleAuthUiClient
 import com.example.jetmoviesapp.ui.presentation.navigation.NavigateScreens
 import com.example.jetmoviesapp.ui.theme.JetMoviesAppTheme
 import com.google.android.gms.auth.api.identity.Identity

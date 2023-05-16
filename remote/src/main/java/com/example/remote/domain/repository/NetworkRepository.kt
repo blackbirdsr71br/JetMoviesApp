@@ -20,8 +20,6 @@ interface NetworkRepository {
 
     //suspend fun getPopularMovies(page: Int): Flow<Resource<List<HomeType.Popular>>>
 
-
-
     fun getMovieByIdN(id: Int): Flow<Resource<MovieDetail>>
 
     suspend fun getMovieWithGenres(page: Int, genreId: Int): MovieResponse

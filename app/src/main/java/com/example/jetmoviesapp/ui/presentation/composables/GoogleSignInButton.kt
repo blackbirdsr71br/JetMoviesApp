@@ -1,4 +1,4 @@
-package com.example.jetmoviesapp.ui.presentation.loginauth.signin
+package com.example.jetmoviesapp.ui.presentation.composables
 
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.LinearOutSlowInEasing
