@@ -1,7 +1,6 @@
 package com.example.common
 
 object Constants {
-    const val API_KEY = "06e1a68730f8145ca268679527eb1f96"
     const val BASE_URL = "https://api.themoviedb.org/3/"
     const val IMAGE_URL = "https://image.tmdb.org/t/p/original/"
 

@@ -1,6 +1,7 @@
 package com.example.jetmoviesapp.di
 
 import com.example.common.Constants
+import com.example.jetmoviesapp.BuildConfig
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -25,7 +26,7 @@ object NetworkModule {
             val request = chain.request()
             val requestUrl = request.url
             val url = requestUrl.newBuilder()
-                .addQueryParameter("api_key", Constants.API_KEY)
+                .addQueryParameter("api_key", BuildConfig.api_key)
                 .build()
 
             val modifiedRequest = request.newBuilder()

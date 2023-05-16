@@ -7,6 +7,11 @@ plugins {
     id("org.jlleitschuh.gradle.ktlint")
 }
 
+def apikeyPropertiesFile = rootProject.file("apikey.properties")
+def apikeyProperties = new Properties()
+apikeyProperties.load(new FileInputStream(apikeyPropertiesFile))
+
+
 android {
     namespace 'com.example.jetmoviesapp'
     compileSdk 33
@@ -22,6 +27,8 @@ android {
         vectorDrawables {
             useSupportLibrary true
         }
+        buildConfigField("String", "api_key", apikeyProperties['api_key'])
+
     }
 
     buildTypes {
