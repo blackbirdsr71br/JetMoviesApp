@@ -1,6 +1,9 @@
 package com.example.remote.domain.repository
 
+import com.example.common.Constants
 import com.example.common.Resource
+import com.example.remote.data.remote.movie.Movie
+import com.example.remote.data.remote.movie.MovieResponse
 import com.example.remote.data.remote.moviedetail.toMovieDetail
 import com.example.remote.domain.model.HomeType
 import com.example.remote.domain.model.MovieDetail
@@ -14,15 +17,15 @@ class NetworkRepositoryImpl @Inject constructor(
     private val api: com.example.remote.data.remote.ApiService
 ) : NetworkRepository {
 
-    override suspend fun getTopRatedMovies(page: Int): com.example.remote.data.remote.movie.MovieResponse {
+    override suspend fun getTopRatedMovies(page: Int): MovieResponse {
         return api.getTopRatedMovies(page = page)
     }
 
-    override suspend fun getNowPlayingMovies(page: Int): com.example.remote.data.remote.movie.MovieResponse {
+    override suspend fun getNowPlayingMovies(page: Int): MovieResponse {
         return api.getNowPlayingMovies(page = page)
     }
 
-    override suspend fun getLatestMovies(page: Int): com.example.remote.data.remote.movie.MovieResponse {
+    override suspend fun getLatestMovies(page: Int): MovieResponse {
         return api.getLatestMovies(page = page)
     }
 
@@ -30,15 +33,15 @@ class NetworkRepositoryImpl @Inject constructor(
         return api.getGenres()
     }
 
-    override suspend fun getPopularMovies(page: Int): com.example.remote.data.remote.movie.MovieResponse {
+    override suspend fun getPopularMovies(page: Int): MovieResponse {
         return api.getPopularMovies(page = page)
     }
 
-    override suspend fun getMovieWithGenres(page: Int, genreId: Int): com.example.remote.data.remote.movie.MovieResponse {
+    override suspend fun getMovieWithGenres(page: Int, genreId: Int): MovieResponse {
         return api.getMovieWithGenres(page = page, genreId = genreId)
     }
 
-    override suspend fun searchMovie(page: Int, query: String): com.example.remote.data.remote.movie.MovieResponse {
+    override suspend fun searchMovie(page: Int, query: String): MovieResponse {
         return api.searchMovie(query = query, page = page)
     }
 
@@ -64,5 +67,5 @@ class NetworkRepositoryImpl @Inject constructor(
         } catch (e: Exception) {
             emit(Resource.Error(e.localizedMessage ?: "An unexpected error occured"))
         }
-    }
+    }.flowOn(Dispatchers.IO)
 }
