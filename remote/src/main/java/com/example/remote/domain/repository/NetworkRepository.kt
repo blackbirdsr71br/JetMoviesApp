@@ -2,8 +2,8 @@ package com.example.remote.domain.repository
 
 import com.example.common.Resource
 import com.example.remote.data.remote.movie.MovieResponse
-import com.example.remote.domain.model.HomeType
-import com.example.remote.domain.model.MovieDetail
+import com.example.remote.data.model.HomeType
+import com.example.remote.data.model.MovieDetail
 import kotlinx.coroutines.flow.Flow
 
 interface NetworkRepository {
@@ -17,8 +17,6 @@ interface NetworkRepository {
     suspend fun getGenres(): com.example.remote.data.remote.genre.GenreResponse
 
     suspend fun getPopularMovies(page: Int): MovieResponse
-
-    //suspend fun getPopularMovies(page: Int): Flow<Resource<List<HomeType.Popular>>>
 
     fun getMovieByIdN(id: Int): Flow<Resource<MovieDetail>>
 

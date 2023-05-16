@@ -8,7 +8,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.example.remote.data.paging.SearchPagingSource
-import com.example.remote.domain.usecases.networkUseCases.UseCaseNetwork
+import com.example.remote.domain.usecases.UseCaseNetwork
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch

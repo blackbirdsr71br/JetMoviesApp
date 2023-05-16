@@ -1,6 +1,6 @@
 package com.example.jetmoviesapp.ui.presentation.detail
 
-import com.example.remote.domain.model.MovieDetail
+import com.example.remote.data.model.MovieDetail
 
 data class MovieDetailState(
     val movie: MovieDetail? = null,

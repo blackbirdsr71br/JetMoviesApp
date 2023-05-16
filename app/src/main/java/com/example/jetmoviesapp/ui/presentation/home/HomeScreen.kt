@@ -18,7 +18,7 @@ import com.example.jetmoviesapp.ui.presentation.home.components.Header
 import com.example.jetmoviesapp.ui.presentation.home.components.PopularHomeItem
 import com.example.jetmoviesapp.ui.presentation.home.components.TopRatedHomeItem
 import com.example.jetmoviesapp.ui.presentation.navigation.Screen
-import com.example.remote.domain.model.HomeType
+import com.example.remote.data.model.HomeType
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
@@ -39,7 +39,7 @@ fun HomeScreen(
         LazyColumn(modifier = Modifier.fillMaxHeight()) {
             homeItems.forEach { homeType ->
                 when (homeType) {
-                    is com.example.remote.domain.model.HomeType.TopRated -> {
+                    is HomeType.TopRated -> {
                         item {
                             Header(header = "Top Rated", onClickSeeMore = {
                                 navController.navigate(route = "top_rated")
@@ -56,7 +56,7 @@ fun HomeScreen(
                         }
                     }
 
-                    is com.example.remote.domain.model.HomeType.Popular -> {
+                    is HomeType.Popular -> {
                         item {
                             Header(header = "Popular", onClickSeeMore = {
                                 navController.navigate(route = Screen.Popular.route)

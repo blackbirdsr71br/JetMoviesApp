@@ -1,9 +1,9 @@
 package com.example.jetmoviesapp.ui.presentation.home
 
-import com.example.remote.domain.model.HomeType
+import com.example.remote.data.model.HomeType
 
 data class HomeState(
-    val homeList: List<com.example.remote.domain.model.HomeType> = emptyList(),
+    val homeList: List<HomeType> = emptyList(),
     val isLoading: Boolean = false,
     val error: String = ""
 )

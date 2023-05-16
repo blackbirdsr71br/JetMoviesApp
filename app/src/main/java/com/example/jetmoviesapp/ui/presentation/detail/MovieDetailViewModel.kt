@@ -6,8 +6,8 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.common.Resource
-import com.example.local.domain.usecases.dataBaseUseCases.UseCaseMovie
-import com.example.remote.domain.usecases.networkUseCases.UseCaseNetwork
+import com.example.local.domain.usecases.UseCaseMovie
+import com.example.remote.domain.usecases.UseCaseNetwork
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

@@ -1,4 +1,4 @@
-package com.example.local.domain.usecases.dataBaseUseCases
+package com.example.local.domain.usecases
 
 import com.example.local.domain.repository.MoviesRepository
 

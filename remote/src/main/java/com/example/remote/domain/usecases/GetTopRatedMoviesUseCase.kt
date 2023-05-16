@@ -1,4 +1,4 @@
-package com.example.remote.domain.usecases.networkUseCases
+package com.example.remote.domain.usecases
 
 import com.example.remote.domain.repository.NetworkRepository
 

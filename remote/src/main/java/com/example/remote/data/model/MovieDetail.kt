@@ -1,4 +1,4 @@
-package com.example.remote.domain.model
+package com.example.remote.data.model
 
 import com.example.remote.data.remote.genre.Genre
 import com.example.remote.data.remote.movie.MovieResponse

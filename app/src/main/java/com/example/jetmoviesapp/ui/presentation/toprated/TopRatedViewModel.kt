@@ -7,7 +7,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.example.remote.data.paging.MoviePagingSource
-import com.example.remote.domain.usecases.networkUseCases.UseCaseNetwork
+import com.example.remote.domain.usecases.UseCaseNetwork
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -29,5 +29,4 @@ class TopRatedViewModel @Inject constructor(
         }
     ).flow
         .cachedIn(viewModelScope)
-        .flowOn(Dispatchers.IO)
 }

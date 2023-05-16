@@ -3,7 +3,7 @@ package com.example.remote.data.paging
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.remote.data.remote.movie.Movie
-import com.example.remote.domain.usecases.networkUseCases.UseCaseNetwork
+import com.example.remote.domain.usecases.UseCaseNetwork
 import retrofit2.HttpException
 import java.io.IOException
 

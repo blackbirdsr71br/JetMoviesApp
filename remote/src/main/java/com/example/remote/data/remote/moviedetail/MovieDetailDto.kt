@@ -2,7 +2,7 @@ package com.example.remote.data.remote.moviedetail
 
 import com.example.remote.data.remote.genre.Genre
 import com.example.remote.data.remote.movie.MovieResponse
-import com.example.remote.domain.model.MovieDetail
+import com.example.remote.data.model.MovieDetail
 import com.google.gson.annotations.SerializedName
 
 data class MovieDetailDto(
